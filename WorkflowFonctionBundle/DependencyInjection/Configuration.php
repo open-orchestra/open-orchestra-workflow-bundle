@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\FonctionBundle\DependencyInjection;
+namespace OpenOrchestra\WorkflowFonctionBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,17 +18,17 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('open_orchestra_workflow');
+        $rootNode = $treeBuilder->root('open_orchestra_workflowfonction');
 
         $rootNode->children()
             ->arrayNode('document')
                 ->addDefaultsIfNotSet()
                 ->children()
-                    ->arrayNode('fonction')
+                    ->arrayNode('workflowfonction')
                         ->addDefaultsIfNotSet()
                         ->children()
-                            ->scalarNode('class')->defaultValue('OpenOrchestra\FonctionBundle\Document\Fonction')->end()
-                            ->scalarNode('repository')->defaultValue('OpenOrchestra\FonctionBundle\Repository\FonctionRepository')->end()
+                            ->scalarNode('class')->defaultValue('OpenOrchestra\WorkflowFonctionBundle\Document\WorkflowFonction')->end()
+                            ->scalarNode('repository')->defaultValue('OpenOrchestra\WorkflowFonctionBundle\Repository\WorkflowFonctionRepository')->end()
                         ->end()
                     ->end()
                 ->end()

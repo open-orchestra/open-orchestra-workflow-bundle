@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\FonctionBundle\DependencyInjection;
+namespace OpenOrchestra\WorkflowFonctionBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class OpenOrchestraFonctionExtension extends Extension
+class OpenOrchestraWorkflowFonctionExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -25,8 +25,8 @@ class OpenOrchestraFonctionExtension extends Extension
 
         foreach ($config['document'] as $class => $content) {
             if (is_array($content)) {
-                $container->setParameter('open_orchestra_workflow.document.' . $class . '.class', $content['class']);
-                $container->register('open_orchestra_workflow.repository.' . $class, $content['repository'])
+                $container->setParameter('open_orchestra_workflowfonction.document.' . $class . '.class', $content['class']);
+                $container->register('open_orchestra_workflowfonction.repository.' . $class, $content['repository'])
                     ->setFactoryService('doctrine.odm.mongodb.document_manager')
                     ->setFactoryMethod('getRepository')
                     ->addArgument($content['class']);

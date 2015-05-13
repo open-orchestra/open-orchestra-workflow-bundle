@@ -1,6 +1,6 @@
 {
     "name": "open-orchestra/open-orchestra-fonction-bundle",
-    "description": "A fonction bundle for the OpenOrchestra Project",
+    "description": "A workflow fonction bundle for the OpenOrchestra Project",
     "license": "Apache-2.0",
     "authors": [
         {
@@ -29,8 +29,8 @@
     },
     "autoload": {
         "psr-0": {
-            "OpenOrchestra\\FonctionBundle": "",
-            "OpenOrchestra\\Fonction": ""
+            "OpenOrchestra\\WorkflowFonctionBundle": "",
+            "OpenOrchestra\\WorkflowFonction": ""
         }
     },
     "target-dir": "OpenOrchestra"

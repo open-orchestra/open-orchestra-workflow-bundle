@@ -1,14 +1,14 @@
 <?php
 
-namespace OpenOrchestra\FonctionBundle;
+namespace OpenOrchestra\WorkflowFonctionBundle;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * Class OpenOrchestraFonctionBundle
+ * Class OpenOrchestraWorkflowFonctionBundle
  */
-class OpenOrchestraFonctionBundle extends Bundle
+class OpenOrchestraWorkflowFonctionBundle extends Bundle
 {
     /**
      * @param ContainerBuilder $container

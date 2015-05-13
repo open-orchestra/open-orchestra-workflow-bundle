@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\Fonction\Model;
+namespace OpenOrchestra\WorkflowFonction\Model;
 
 use Doctrine\Common\Collections\Collection;
 use OpenOrchestra\ModelInterface\Model\BlameableInterface;
@@ -8,9 +8,9 @@ use OpenOrchestra\ModelInterface\Model\TimestampableInterface;
 use OpenOrchestra\ModelInterface\Model\RoleInterface;
 
 /**
- * Interface FonctionInterface
+ * Interface WorkflowFonctionInterface
  */
-interface FonctionInterface extends TimestampableInterface, BlameableInterface
+interface WorkflowFonctionInterface extends TimestampableInterface, BlameableInterface
 {
     /**
      * @return string

@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\FonctionBundle\Document;
+namespace OpenOrchestra\WorkflowFonctionBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -8,18 +8,18 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
-use OpenOrchestra\Fonction\Model\FonctionInterface;
+use OpenOrchestra\WorkflowFonction\Model\WorkflowFonctionInterface;
 use OpenOrchestra\ModelInterface\Model\RoleInterface;
 
 /**
- * Class Fonction
+ * Class WorkflowFonction
  *
  * @ODM\Document(
- *   collection="fonction",
- *   repositoryClass="OpenOrchestra\FonctionBundle\Repository\FonctionRepository"
+ *   collection="workflowfonction",
+ *   repositoryClass="OpenOrchestra\WorkflowFonctionBundle\Repository\WorkflowFonctionRepository"
  * )
  */
-class Fonction implements FonctionInterface
+class WorkflowFonction implements WorkflowFonctionInterface
 {
     use BlameableDocument;
     use TimestampableDocument;
