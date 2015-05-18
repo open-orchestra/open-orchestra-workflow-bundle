@@ -18,6 +18,7 @@ class WorkflowFunctionRepository extends DocumentRepository implements WorkflowF
     public function findAllWorkflowFunction()
     {
         $qb = $this->createQueryBuilder('w');
+
         return $qb->getQuery()->execute();
     }
 }
