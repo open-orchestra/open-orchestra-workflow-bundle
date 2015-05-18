@@ -1,5 +1,5 @@
 {
-    "name": "open-orchestra/open-orchestra-function-bundle",
+    "name": "open-orchestra/open-orchestra-workflow-function-bundle",
     "description": "A workflow function bundle for the OpenOrchestra Project",
     "license": "Apache-2.0",
     "authors": [
