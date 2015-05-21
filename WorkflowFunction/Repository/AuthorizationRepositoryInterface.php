@@ -5,14 +5,14 @@ namespace OpenOrchestra\WorkflowFunction\Repository;
 use Doctrine\Common\Collections\Collection;
 
 /**
- * Interface WorkflowFunctionRepositoryInterface
+ * Interface AuthorizationRepositoryInterface
  */
-interface WorkflowFunctionRepositoryInterface
+interface AuthorizationRepositoryInterface
 {
     /**
      * @return Collection
      */
-    public function findAllWorkflowFunction();
+    public function findByUser($userMongoId);
 
     /**
      * @param string $id

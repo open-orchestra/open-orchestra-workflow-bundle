@@ -31,6 +31,13 @@ class Configuration implements ConfigurationInterface
                             ->scalarNode('repository')->defaultValue('OpenOrchestra\WorkflowFunctionBundle\Repository\WorkflowFunctionRepository')->end()
                         ->end()
                     ->end()
+                    ->arrayNode('authorization')
+                        ->addDefaultsIfNotSet()
+                        ->children()
+                            ->scalarNode('class')->defaultValue('OpenOrchestra\WorkflowFunctionBundle\Document\Authorization')->end()
+                            ->scalarNode('repository')->defaultValue('OpenOrchestra\WorkflowFunctionBundle\Repository\AuthorizationRepository')->end()
+                        ->end()
+                    ->end()
                 ->end()
             ->end()
         ->end();
