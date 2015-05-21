@@ -3,33 +3,16 @@
 namespace OpenOrchestra\WorkflowFunctionBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Inflector\Inflector;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
-use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Description of Base Authorization
+ * Description of Authorization
  *
  * @ODM\EmbeddedDocument
  */
 class Authorization implements AuthorizationInterface
 {
-    /**
-     * @var string $authorizationId
-     *
-     * @ODM\Field(type="string")
-     */
-    protected $authorizationId;
-
-    /**
-     * @var UserInterface $user
-     *
-     * @ODM\ReferenceOne(targetDocument="Symfony\Component\Security\Core\User\UserInterface")
-     */
-    protected $user;
-
     /**
      * @var string $name
      *
@@ -50,45 +33,6 @@ class Authorization implements AuthorizationInterface
     public function __construct()
     {
         $this->workflowFunctions = new ArrayCollection();
-    }
-    /**
-     * Set authorizationId
-     *
-     * @param string $authorizationId
-     */
-    public function setAuthorizationId($authorizationId)
-    {
-        $this->authorizationId = $authorizationId;
-    }
-
-    /**
-     * Get authorizationId
-     *
-     * @return string
-     */
-    public function getAuthorizationId()
-    {
-        return $this->authorizationId;
-    }
-
-    /**
-     * Set user
-     *
-     * @param UserInterface $user
-     */
-    public function setUser(UserInterface $user)
-    {
-        $this->user = $user;
-    }
-
-    /**
-     * Get user
-     *
-     * @return UserInterface $user
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 
     /**
@@ -112,7 +56,9 @@ class Authorization implements AuthorizationInterface
     }
 
     /**
-     * @param WorkflowFunctionInterface $workflowFunction
+     * Set workflowFunctions
+     *
+     * @param ArrayCollection
      */
     public function setWorkflowFunctions(ArrayCollection $workflowFunctions)
     {
@@ -120,6 +66,8 @@ class Authorization implements AuthorizationInterface
     }
 
     /**
+     * Get workflowFunctions
+     *
      * @return ArrayCollection
      */
     public function getWorkflowFunctions()

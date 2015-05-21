@@ -2,15 +2,19 @@
 
 namespace OpenOrchestra\WorkflowFunction\Repository;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * Interface WorkflowFunctionRepositoryInterface
  */
-interface WorkflowFunctionRepositoryInterface
+interface WorkflowRightRepositoryInterface
 {
     /**
-     * @return Collection
+     * @param UserInterface $user
+     *
+     * @return WorkflowRightInterface
      */
-    public function findAllWorkflowFunction();
+    public function findOneByUser(UserInterface $user);
 
     /**
      * @param string $id

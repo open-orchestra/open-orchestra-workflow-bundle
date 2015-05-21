@@ -2,9 +2,7 @@
 
 namespace OpenOrchestra\WorkflowFunctionBundle\Repository;
 
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\DocumentRepository;
-use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 use OpenOrchestra\WorkflowFunction\Repository\WorkflowFunctionRepositoryInterface;
 
 /**

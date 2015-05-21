@@ -25,11 +25,15 @@ class OpenOrchestraWorkflowFunctionExtension extends Extension
 
         foreach ($config['document'] as $class => $content) {
             if (is_array($content)) {
-                $container->setParameter('open_orchestra_workflow_function.document.' . $class . '.class', $content['class']);
-                $container->register('open_orchestra_workflow_function.repository.' . $class, $content['repository'])
-                    ->setFactoryService('doctrine.odm.mongodb.document_manager')
-                    ->setFactoryMethod('getRepository')
-                    ->addArgument($content['class']);
+                if (array_key_exists('class', $content)) {
+                    $container->setParameter('open_orchestra_workflow_function.document.' . $class . '.class', $content['class']);
+                }
+                if (array_key_exists('repository', $content)) {
+                    $container->register('open_orchestra_workflow_function.repository.' . $class, $content['repository'])
+                        ->setFactoryService('doctrine.odm.mongodb.document_manager')
+                        ->setFactoryMethod('getRepository')
+                        ->addArgument($content['class']);
+                }
             }
         }
     }
