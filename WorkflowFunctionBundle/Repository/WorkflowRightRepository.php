@@ -4,7 +4,6 @@ namespace OpenOrchestra\WorkflowFunctionBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use OpenOrchestra\WorkflowFunction\Repository\WorkflowRightRepositoryInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class WorkflowRightRepositoryInterface
@@ -12,14 +11,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class WorkflowRightRepository extends DocumentRepository implements WorkflowRightRepositoryInterface
 {
     /**
-     * @param UserInterface $user
+     * @param string $userId
      *
      * @return WorkflowRightInterface
      */
-    public function findOneByUser(UserInterface $user)
+    public function findOneByUserId($userId)
     {
         $qb = $this->createQueryBuilder();
-        $qb->field('user.id')->equals($user->getId());
+        $qb->field('user.id')->equals($userId);
 
         return $qb->getQuery()->getSingleResult();
     }
