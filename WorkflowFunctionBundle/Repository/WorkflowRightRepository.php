@@ -20,6 +20,7 @@ class WorkflowRightRepository extends DocumentRepository implements WorkflowRigh
     {
         $qb = $this->createQueryBuilder();
         $qb->field('user.id')->equals($user->getId());
+
         return $qb->getQuery()->getSingleResult();
     }
 }

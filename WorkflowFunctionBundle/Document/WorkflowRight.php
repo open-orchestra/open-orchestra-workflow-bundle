@@ -102,7 +102,8 @@ class WorkflowRight implements WorkflowRightInterface
      *
      * @param AuthorizationInterface
      */
-    public function removeAuthorization(AuthorizationInterface $authorization) {
+    public function removeAuthorization(AuthorizationInterface $authorization)
+    {
         $this->authorizations->removeElement($authorization);
     }
 
@@ -111,7 +112,8 @@ class WorkflowRight implements WorkflowRightInterface
      *
      * @param AuthorizationInterface
      */
-    public function addAuthorization(AuthorizationInterface $authorization){
+    public function addAuthorization(AuthorizationInterface $authorization)
+    {
         $this->authorizations[] = $authorization;
     }
 
