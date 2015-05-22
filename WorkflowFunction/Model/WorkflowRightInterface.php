@@ -11,7 +11,7 @@ use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
  */
 interface WorkflowRightInterface
 {
-    const NODE = 'node';
+    const NODE = 'open_orchestra_workflow_function.node';
 
     /**
      * @return string
