@@ -10,14 +10,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 interface AuthorizationInterface
 {
     /**
-     * @param string $name
+     * @param string $id
      */
-    public function setName($name);
+    public function setId($id);
 
     /**
      * @return string
      */
-    public function getName();
+    public function getId();
 
     /**
      * @param ArrayCollection

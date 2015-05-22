@@ -14,11 +14,9 @@ use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
 class Authorization implements AuthorizationInterface
 {
     /**
-     * @var string $name
-     *
-     * @ODM\Field(type="string")
+     * @var string $id
      */
-    protected $name;
+    protected $id;
 
     /**
      * @var ArrayCollection $workflowFunctions
@@ -36,29 +34,29 @@ class Authorization implements AuthorizationInterface
     }
 
     /**
-     * Set name
+     * Set id
      *
-     * @param string $name
+     * @param string $id
      */
-    public function setName($name)
+    public function setId($id)
     {
-        $this->name = $name;
+        $this->id = $id;
     }
 
     /**
-     * Get name
+     * Get id
      *
      * @return string
      */
-    public function getName()
+    public function getId()
     {
-        return $this->name;
+        return $this->id;
     }
 
     /**
      * Set workflowFunctions
      *
-     * @param ArrayCollection
+     * @param ArrayCollection $workflowFunctions
      */
     public function setWorkflowFunctions(ArrayCollection $workflowFunctions)
     {

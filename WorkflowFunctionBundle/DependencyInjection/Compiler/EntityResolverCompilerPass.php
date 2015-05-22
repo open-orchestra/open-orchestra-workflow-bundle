@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\UserBundle\DependencyInjection\Compiler;
+namespace OpenOrchestra\WorkflowFunctionBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

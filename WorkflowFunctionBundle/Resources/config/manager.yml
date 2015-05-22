@@ -1,0 +1,9 @@
+parameters:
+    open_orchestra_workflow_function.manager.workflow_right.class: OpenOrchestra\WorkflowFunctionBundle\Manager\WorkflowRightManager
+
+services:
+    open_orchestra_workflow_function.manager.workflow_right:
+        class: %open_orchestra_workflow_function.manager.workflow_right.class%
+        arguments:
+            - %open_orchestra_workflow_function.document.authorization.class%
+            - %open_orchestra_workflow_function.document.workflow_right.class%
