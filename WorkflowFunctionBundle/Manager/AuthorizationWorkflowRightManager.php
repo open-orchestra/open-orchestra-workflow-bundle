@@ -31,7 +31,6 @@ class AuthorizationWorkflowRightManager
         $indexAuthorizations = array();
         foreach ($authorizations as $authorization) {
             $id = $authorization->getReferenceId();
-            var_dump($id);
             $indexAuthorizations[$id] = $authorization;
         }
         $authorizationsId = array_keys($indexAuthorizations);
