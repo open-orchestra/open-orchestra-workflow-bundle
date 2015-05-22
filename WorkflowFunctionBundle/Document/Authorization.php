@@ -14,9 +14,11 @@ use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
 class Authorization implements AuthorizationInterface
 {
     /**
-     * @var string $id
+     * @var string $referenceId
+     *
+     * @ODM\Field(type="string")
      */
-    protected $id;
+    protected $referenceId;
 
     /**
      * @var ArrayCollection $workflowFunctions
@@ -34,23 +36,23 @@ class Authorization implements AuthorizationInterface
     }
 
     /**
-     * Set id
+     * Set referenceId
      *
-     * @param string $id
+     * @param string $referenceId
      */
-    public function setId($id)
+    public function setReferenceId($referenceId)
     {
-        $this->id = $id;
+        $this->referenceId = $referenceId;
     }
 
     /**
-     * Get id
+     * Get referenceId
      *
      * @return string
      */
-    public function getId()
+    public function getReferenceId()
     {
-        return $this->id;
+        return $this->referenceId;
     }
 
     /**

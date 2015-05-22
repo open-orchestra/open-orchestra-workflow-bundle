@@ -2,44 +2,36 @@
 
 namespace OpenOrchestra\WorkflowFunctionBundle\Manager;
 
-use Doctrine\ODM\MongoDB\DocumentManager;
+use OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface;
 
 /**
- * Class WorkflowRightManager
+ * Class AuthorizationWorkflowRightManager
  */
-class WorkflowRightManager
+class AuthorizationWorkflowRightManager
 {
-    protected $documentManager;
-
     /**
      * Constructor
      *
      * @param string $authorizationClass
-     * @param string $workflowRightClass
      */
-    public function __construct($authorizationClass, $workflowRightClass)
+    public function __construct($authorizationClass)
     {
         $this->authorizationClass = $authorizationClass;
-        $this->workflowRightClass = $workflowRightClass;
     }
 
     /**
      * @param array $references
-     * @param WorkflowRightInterface|null $workflowRight
+     * @param WorkflowRightInterface $workflowRight
      *
      * @return WorkflowRightInterface
      */
-    public function clean($references, $workflowRight = null)
+    public function cleanAuthorization($references, WorkflowRightInterface $workflowRight)
     {
-        if (null === $workflowRight) {
-            $workflowRightClass = $this->workflowRightClass;
-            $workflowRight = new $workflowRightClass();
-        }
-
         $authorizations = $workflowRight->getAuthorizations();
         $indexAuthorizations = array();
         foreach ($authorizations as $authorization) {
-            $id = $authorization->getId();
+            $id = $authorization->getReferenceId();
+            var_dump($id);
             $indexAuthorizations[$id] = $authorization;
         }
         $authorizationsId = array_keys($indexAuthorizations);
@@ -62,7 +54,7 @@ class WorkflowRightManager
         $adds = array_diff($referencesId, $authorizationsId);
         foreach ($adds as $add) {
             $authorization = new $authorizationClass();
-            $authorization->setId($indexReferences[$add]->getId());
+            $authorization->setReferenceId($indexReferences[$add]->getId());
             $workflowRight->addAuthorization($authorization);
         }
 

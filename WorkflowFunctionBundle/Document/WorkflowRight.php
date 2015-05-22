@@ -5,7 +5,6 @@ namespace OpenOrchestra\WorkflowFunctionBundle\Document;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
 
 /**
@@ -19,11 +18,11 @@ use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
 class WorkflowRight implements WorkflowRightInterface
 {
     /**
-     * @var UserInterface $user
+     * @var string $userId
      *
-     * @ODM\ReferenceOne(targetDocument="Symfony\Component\Security\Core\User\UserInterface")
+     * @ODM\Field(type="string")
      */
-    protected $user;
+    protected $userId;
 
     /**
      * @var ArrayCollection $authorizations
@@ -58,23 +57,23 @@ class WorkflowRight implements WorkflowRightInterface
     }
 
     /**
-     * Set user
+     * Set userId
      *
-     * @param UserInterface $user
+     * @param string $userId
      */
-    public function setUser(UserInterface $user)
+    public function setUserId($userId)
     {
-        $this->user = $user;
+        $this->userId = $userId;
     }
 
     /**
-     * Get user
+     * Get userId
      *
-     * @return UserInterface
+     * @return string
      */
-    public function getUser()
+    public function getUserId()
     {
-        return $this->user;
+        return $this->userId;
     }
 
     /**

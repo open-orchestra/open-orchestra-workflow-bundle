@@ -19,14 +19,14 @@ interface WorkflowRightInterface
     public function getId();
 
     /**
-     * @param UserInterface $user
+     * @param string $userId
      */
-    public function setUser(UserInterface $user);
+    public function setUserId($userId);
 
     /**
-     * @return UserInterface
+     * @return string
      */
-    public function getUser();
+    public function getUserId();
 
     /**
      * @param ArrayCollection
