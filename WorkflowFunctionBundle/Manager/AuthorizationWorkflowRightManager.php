@@ -3,6 +3,7 @@
 namespace OpenOrchestra\WorkflowFunctionBundle\Manager;
 
 use OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface;
+use OpenOrchestra\WorkflowFunction\Model\ReferenceInterface;
 
 /**
  * Class AuthorizationWorkflowRightManager
@@ -37,7 +38,7 @@ class AuthorizationWorkflowRightManager
 
         $indexReferences = array();
         foreach ($references as $reference) {
-            if (method_exists($reference, 'getId')) {
+            if ($reference instanceof ReferenceInterface || method_exists($reference, 'getId')) {
                 $id = $reference->getId();
                 $indexReferences[$id] = $reference;
             }

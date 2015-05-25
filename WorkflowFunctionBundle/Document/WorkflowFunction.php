@@ -10,7 +10,6 @@ use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 use OpenOrchestra\ModelInterface\Model\RoleInterface;
-use OpenOrchestra\WorkflowFunctionBundle\Document\EmbeddedCollection;
 
 /**
  * Class WorkflowFunction
@@ -20,7 +19,7 @@ use OpenOrchestra\WorkflowFunctionBundle\Document\EmbeddedCollection;
  *   repositoryClass="OpenOrchestra\WorkflowFunctionBundle\Repository\WorkflowFunctionRepository"
  * )
  */
-class WorkflowFunction extends EmbeddedCollection implements WorkflowFunctionInterface
+class WorkflowFunction implements WorkflowFunctionInterface
 {
     use BlameableDocument;
     use TimestampableDocument;
@@ -52,6 +51,18 @@ class WorkflowFunction extends EmbeddedCollection implements WorkflowFunctionInt
     public function __construct()
     {
         $this->initCollections();
+    }
+
+    /**
+     * Clone the element
+     */
+    public function __clone()
+    {
+        $this->initCollections();
+    }
+
+    protected function initCollections() {
+        $this->roles = new ArrayCollection();
     }
 
     /**

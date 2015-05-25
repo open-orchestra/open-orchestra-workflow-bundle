@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface;
 use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
-use OpenOrchestra\WorkflowFunctionBundle\Document\EmbeddedCollection;
 
 /**
  * Class WorkflowRight
@@ -16,7 +15,7 @@ use OpenOrchestra\WorkflowFunctionBundle\Document\EmbeddedCollection;
  *   repositoryClass="OpenOrchestra\WorkflowFunctionBundle\Repository\WorkflowRightRepository"
  * )
  */
-class WorkflowRight extends EmbeddedCollection implements WorkflowRightInterface
+class WorkflowRight implements WorkflowRightInterface
 {
     /**
      * @var string $userId
@@ -45,6 +44,18 @@ class WorkflowRight extends EmbeddedCollection implements WorkflowRightInterface
     public function __construct()
     {
         $this->initCollections();
+    }
+
+    /**
+     * Clone the element
+     */
+    public function __clone()
+    {
+        $this->initCollections();
+    }
+
+    protected function initCollections() {
+        $this->authorizations = new ArrayCollection();
     }
 
     /**
@@ -115,13 +126,5 @@ class WorkflowRight extends EmbeddedCollection implements WorkflowRightInterface
     public function addAuthorization(AuthorizationInterface $authorization)
     {
         $this->authorizations[] = $authorization;
-    }
-
-    /**
-     * Clone the element
-     */
-    public function __clone()
-    {
-        $this->initCollections();
     }
 }
