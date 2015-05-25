@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface;
 use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
-use OpenOrchestra\WorkflowFunctionBundle\MongoTrait\EmbeddedCollection;
+use OpenOrchestra\WorkflowFunctionBundle\Document\EmbeddedCollection;
 
 /**
  * Class WorkflowRight
@@ -16,10 +16,8 @@ use OpenOrchestra\WorkflowFunctionBundle\MongoTrait\EmbeddedCollection;
  *   repositoryClass="OpenOrchestra\WorkflowFunctionBundle\Repository\WorkflowRightRepository"
  * )
  */
-class WorkflowRight implements WorkflowRightInterface
+class WorkflowRight extends EmbeddedCollection implements WorkflowRightInterface
 {
-    use EmbeddedCollection;
-
     /**
      * @var string $userId
      *

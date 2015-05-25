@@ -5,16 +5,15 @@ namespace OpenOrchestra\WorkflowFunctionBundle\Document;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
-use OpenOrchestra\WorkflowFunctionBundle\MongoTrait\EmbeddedCollection;
+use OpenOrchestra\WorkflowFunctionBundle\Document\EmbeddedCollection;
 
 /**
  * Description of Authorization
  *
  * @ODM\EmbeddedDocument
  */
-class Authorization implements AuthorizationInterface
+class Authorization extends EmbeddedCollection implements AuthorizationInterface
 {
-    use EmbeddedCollection;
     /**
      * @var string $referenceId
      *
