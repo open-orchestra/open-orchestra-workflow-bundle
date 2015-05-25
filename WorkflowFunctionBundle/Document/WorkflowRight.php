@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface;
 use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
+use OpenOrchestra\WorkflowFunctionBundle\MongoTrait\EmbeddedCollection;
 
 /**
  * Class WorkflowRight
@@ -17,6 +18,8 @@ use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
  */
 class WorkflowRight implements WorkflowRightInterface
 {
+    use EmbeddedCollection;
+
     /**
      * @var string $userId
      *
@@ -43,7 +46,7 @@ class WorkflowRight implements WorkflowRightInterface
      */
     public function __construct()
     {
-        $this->authorizations = new ArrayCollection();
+        $this->initCollections();
     }
 
     /**
@@ -121,6 +124,6 @@ class WorkflowRight implements WorkflowRightInterface
      */
     public function __clone()
     {
-        $this->authorizations = new ArrayCollection();
+        $this->initCollections();
     }
 }

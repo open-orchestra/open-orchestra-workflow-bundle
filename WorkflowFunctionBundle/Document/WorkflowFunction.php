@@ -10,6 +10,7 @@ use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 use OpenOrchestra\ModelInterface\Model\RoleInterface;
+use OpenOrchestra\WorkflowFunctionBundle\MongoTrait\EmbeddedCollection;
 
 /**
  * Class WorkflowFunction
@@ -23,6 +24,7 @@ class WorkflowFunction implements WorkflowFunctionInterface
 {
     use BlameableDocument;
     use TimestampableDocument;
+    use EmbeddedCollection;
 
     /**
      * @var string $id
@@ -50,7 +52,7 @@ class WorkflowFunction implements WorkflowFunctionInterface
      */
     public function __construct()
     {
-        $this->roles = new ArrayCollection();
+        $this->initCollections();
     }
 
     /**

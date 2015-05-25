@@ -5,6 +5,7 @@ namespace OpenOrchestra\WorkflowFunctionBundle\Document;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
+use OpenOrchestra\WorkflowFunctionBundle\MongoTrait\EmbeddedCollection;
 
 /**
  * Description of Authorization
@@ -13,6 +14,7 @@ use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
  */
 class Authorization implements AuthorizationInterface
 {
+    use EmbeddedCollection;
     /**
      * @var string $referenceId
      *
@@ -32,7 +34,7 @@ class Authorization implements AuthorizationInterface
      */
     public function __construct()
     {
-        $this->workflowFunctions = new ArrayCollection();
+        $this->initCollections();
     }
 
     /**
@@ -80,6 +82,6 @@ class Authorization implements AuthorizationInterface
      */
     public function __clone()
     {
-        $this->workflowFunctions = new ArrayCollection();
+        $this->initCollections();
     }
 }
