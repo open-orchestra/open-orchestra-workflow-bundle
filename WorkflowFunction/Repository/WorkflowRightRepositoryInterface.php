@@ -5,12 +5,14 @@ namespace OpenOrchestra\WorkflowFunction\Repository;
 /**
  * Interface WorkflowFunctionRepositoryInterface
  */
-interface WorkflowFunctionRepositoryInterface
+interface WorkflowRightRepositoryInterface
 {
     /**
-     * @return Collection
+     * @param string $userId
+     *
+     * @return WorkflowRightInterface
      */
-    public function findAllWorkflowFunction();
+    public function findOneByUserId($userId);
 
     /**
      * @param string $id

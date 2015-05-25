@@ -50,6 +50,18 @@ class WorkflowFunction implements WorkflowFunctionInterface
      */
     public function __construct()
     {
+        $this->initCollections();
+    }
+
+    /**
+     * Clone the element
+     */
+    public function __clone()
+    {
+        $this->initCollections();
+    }
+
+    protected function initCollections() {
         $this->roles = new ArrayCollection();
     }
 
