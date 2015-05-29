@@ -27,7 +27,8 @@ class WorkflowFunctionRepository extends DocumentRepository implements WorkflowF
      *
      * @return ArrayCollection
      */
-    public function findByRole(RoleInterface $role) {
+    public function findByRole(RoleInterface $role)
+    {
         $qb = $this->createQueryBuilder();
         $qb->field('roles.id')->equals($role->getId());
 
