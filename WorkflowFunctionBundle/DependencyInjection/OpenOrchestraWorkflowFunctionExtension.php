@@ -28,8 +28,7 @@ class OpenOrchestraWorkflowFunctionExtension extends Extension
                 $container->setParameter('open_orchestra_workflow_function.document.' . $class . '.class', $content['class']);
                 if (array_key_exists('repository', $content)) {
                     $container->register('open_orchestra_workflow_function.repository.' . $class, $content['repository'])
-                        ->setFactoryService('doctrine.odm.mongodb.document_manager')
-                        ->setFactoryMethod('getRepository')
+                        ->setFactory('doctrine.odm.mongodb.document_manager::getRepository')
                         ->addArgument($content['class']);
                 }
             }
