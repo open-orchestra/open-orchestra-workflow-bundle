@@ -13,6 +13,31 @@ use OpenOrchestra\ModelInterface\Model\RoleInterface;
 class WorkflowFunctionRepository extends DocumentRepository implements WorkflowFunctionRepositoryInterface
 {
     /**
+     * @param array|null  $descriptionEntity
+     * @param array|null  $columns
+     * @param string|null $search
+     * @param array|null  $order
+     * @param int|null    $skip
+     * @param int|null    $limit
+     *
+     * @return array
+     */
+    public function findForPaginateAndSearch($descriptionEntity = null, $columns = null, $search = null, $order = null, $skip = null, $limit = null)
+    {
+        $qb = $this->createQueryWithSearchAndOrderFilter($descriptionEntity, $columns, $search, $order);
+
+        if (null !== $skip && $skip > 0) {
+            $qb->skip($skip);
+        }
+
+        if (null !== $limit) {
+            $qb->limit($limit);
+        }
+
+        return $qb->getQuery()->execute();
+    }
+
+    /**
      * @return int
      */
     public function count()
@@ -23,9 +48,9 @@ class WorkflowFunctionRepository extends DocumentRepository implements WorkflowF
     }
 
     /**
-     * @param array|null $columns
-     * @param array|null $descriptionEntity
-     * @param array|null $search
+     * @param array|null  $columns
+     * @param array|null  $descriptionEntity
+     * @param string|null $search
      *
      * @return int
      */
@@ -55,31 +80,6 @@ class WorkflowFunctionRepository extends DocumentRepository implements WorkflowF
     {
         $qb = $this->createQueryBuilder();
         $qb->field('roles.id')->equals($role->getId());
-
-        return $qb->getQuery()->execute();
-    }
-
-    /**
-     * @param array|null  $descriptionEntity
-     * @param array|null  $columns
-     * @param string|null $search
-     * @param array|null  $order
-     * @param int|null    $skip
-     * @param int|null    $limit
-     *
-     * @return array
-     */
-    public function findForPaginateAndSearch($descriptionEntity = null, $columns = null, $search = null, $order = null, $skip = null, $limit = null)
-    {
-        $qb = $this->createQueryWithSearchAndOrderFilter($descriptionEntity, $columns, $search, $order);
-
-        if (null !== $skip && $skip > 0) {
-            $qb->skip($skip);
-        }
-
-        if (null !== $limit) {
-            $qb->limit($limit);
-        }
 
         return $qb->getQuery()->execute();
     }

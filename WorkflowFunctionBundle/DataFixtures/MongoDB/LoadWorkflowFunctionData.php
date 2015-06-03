@@ -17,10 +17,16 @@ class LoadWorkflowFunctionData extends AbstractFixture implements OrderedFixture
      */
     public function load(ObjectManager $manager)
     {
-        $workflowFunction = new WorkflowFunction();
-        $workflowFunction->setName('Validator');
-        $workflowFunction->addRole($this->getReference('role-published'));
-        $manager->persist($workflowFunction);
+        $workflowFunctionValidator = new WorkflowFunction();
+        $workflowFunctionValidator->setName('Validator');
+        $workflowFunctionValidator->addRole($this->getReference('role-published'));
+
+        $workflowFunctionContributor = new WorkflowFunction();
+        $workflowFunctionContributor->setName('Contributor');
+        $workflowFunctionContributor->addRole($this->getReference('role-draft'));
+
+        $manager->persist($workflowFunctionValidator);
+        $manager->persist($workflowFunctionContributor);
         $manager->flush();
     }
 
