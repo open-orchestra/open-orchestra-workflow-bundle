@@ -28,9 +28,9 @@ interface WorkflowFunctionRepositoryInterface
     public function count();
 
     /**
-     * @param array|null $columns
-     * @param array|null $descriptionEntity
-     * @param array|null $search
+     * @param array|null  $columns
+     * @param array|null  $descriptionEntity
+     * @param string|null $search
      *
      * @return int
      */

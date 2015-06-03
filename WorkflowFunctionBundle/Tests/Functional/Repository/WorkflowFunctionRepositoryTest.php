@@ -33,7 +33,7 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
      * @param array  $order
      * @param int    $skip
      * @param int    $limit
-     * @param int  $count
+     * @param int    $count
      *
      * @dataProvider providePaginateAndSearch
      */
@@ -78,8 +78,8 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
      */
     public function testCountFilterSearch($descriptionEntity, $columns, $search, $count)
     {
-        $sites = $this->repository->countFilterSearch($descriptionEntity, $columns, $search);
-        $this->assertEquals($count, $sites);
+        $worflowFunctions = $this->repository->countFilterSearch($descriptionEntity, $columns, $search);
+        $this->assertEquals($count, $worflowFunctions);
     }
 
     /**
