@@ -23,9 +23,9 @@ class WorkflowFunctionRepository extends DocumentRepository implements WorkflowF
     }
 
     /**
-     * @param array|null   $columns
-     * @param array|null   $descriptionEntity
-     * @param array|null   $search
+     * @param array|null $columns
+     * @param array|null $descriptionEntity
+     * @param array|null $search
      *
      * @return int
      */
