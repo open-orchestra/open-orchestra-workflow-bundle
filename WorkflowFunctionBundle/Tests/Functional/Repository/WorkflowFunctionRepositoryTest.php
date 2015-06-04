@@ -85,7 +85,8 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
     /**
      * @return array
      */
-    public function provideColumnsAndSearchAndCount(){
+    public function provideColumnsAndSearchAndCount()
+    {
         $descriptionEntity = $this->getDescriptionColumnEntity();
 
         return array(
