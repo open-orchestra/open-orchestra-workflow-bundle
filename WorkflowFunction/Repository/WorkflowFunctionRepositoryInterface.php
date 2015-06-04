@@ -34,7 +34,7 @@ interface WorkflowFunctionRepositoryInterface
      *
      * @return int
      */
-    public function countFilterSearch($descriptionEntity = null, $columns = null, $search = null);
+    public function countWithSearchFilter($descriptionEntity = null, $columns = null, $search = null);
 
     /**
      * @return Collection

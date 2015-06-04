@@ -76,9 +76,9 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
      *
      * @dataProvider provideColumnsAndSearchAndCount
      */
-    public function testCountFilterSearch($descriptionEntity, $columns, $search, $count)
+    public function testCountWithSearchFilter($descriptionEntity, $columns, $search, $count)
     {
-        $worflowFunctions = $this->repository->countFilterSearch($descriptionEntity, $columns, $search);
+        $worflowFunctions = $this->repository->countWithSearchFilter($descriptionEntity, $columns, $search);
         $this->assertEquals($count, $worflowFunctions);
     }
 
