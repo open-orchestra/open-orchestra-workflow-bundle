@@ -98,6 +98,7 @@ class WorkflowFunctionRepository extends DocumentRepository implements WorkflowF
             $value = ($value === 'true' || $value === '1') ? true : false;
             $filter = $value;
         } else {
+            $value = preg_quote($value);
             $filter = new \MongoRegex('/.*'.$value.'.*/i');
         }
 
