@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\ModelBundle\Tests\Functional\Repository;
+namespace OpenOrchestra\WorkflowFunctionBundle\Tests\Functional\Repository;
 
 use OpenOrchestra\WorkflowFunction\Repository\WorkflowFunctionRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
