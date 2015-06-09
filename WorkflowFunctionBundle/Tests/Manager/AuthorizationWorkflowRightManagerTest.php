@@ -2,7 +2,7 @@
 
 namespace OpenOrchestra\WorkflowFunctionBundle\Tests\Manager;
 
-use OpenOrchestra\WorkflowFunctionBundle\Manager\AuthorizationWorkflowRightManager;
+use OpenOrchestra\WorkflowFunction\Manager\AuthorizationWorkflowRightManager;
 use Doctrine\Common\Collections\ArrayCollection;
 use Phake;
 

@@ -1,5 +1,5 @@
 parameters:
-    open_orchestra_workflow_function.manager.authorization_workflow_right.class: OpenOrchestra\WorkflowFunctionBundle\Manager\AuthorizationWorkflowRightManager
+    open_orchestra_workflow_function.manager.authorization_workflow_right.class: OpenOrchestra\WorkflowFunction\Manager\AuthorizationWorkflowRightManager
 
 services:
     open_orchestra_workflow_function.manager.authorization_workflow_right:
