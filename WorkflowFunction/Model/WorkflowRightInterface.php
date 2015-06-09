@@ -3,8 +3,6 @@
 namespace OpenOrchestra\WorkflowFunction\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Security\Core\User\UserInterface;
-use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
 
 /**
  * Interface WorkflowRightInterface
@@ -29,7 +27,7 @@ interface WorkflowRightInterface
     public function getUserId();
 
     /**
-     * @param ArrayCollection
+     * @param ArrayCollection $authorizations
      */
     public function setAuthorizations(ArrayCollection $authorizations);
 
