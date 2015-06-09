@@ -2,8 +2,6 @@
 
 namespace OpenOrchestra\WorkflowFunction\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 /**
  * Interface ReferenceInterface
  */
