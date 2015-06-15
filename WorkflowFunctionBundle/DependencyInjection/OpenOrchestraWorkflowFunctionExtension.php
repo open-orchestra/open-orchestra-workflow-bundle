@@ -6,6 +6,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\DependencyInjection\Definition;
 
 /**
  * This is the class that loads and manages your bundle configuration
@@ -26,10 +28,9 @@ class OpenOrchestraWorkflowFunctionExtension extends Extension
             if (is_array($content)) {
                 $container->setParameter('open_orchestra_workflow_function.document.' . $class . '.class', $content['class']);
                 if (array_key_exists('repository', $content)) {
-                    $container->register('open_orchestra_workflow_function.repository.' . $class, $content['repository'])
-                        ->setFactoryService('doctrine.odm.mongodb.document_manager')
-                        ->setFactoryMethod('getRepository')
-                        ->addArgument($content['class']);
+                    $definition = new Definition($content['repository'], array($content['class']));
+                    $definition->setFactory(array(new Reference('doctrine.odm.mongodb.document_manager'), 'getRepository'));
+                    $container->setDefinition('open_orchestra_workflow_function.repository.' . $class, $definition);
                 }
             }
         }
