@@ -27,9 +27,9 @@ class WorkflowRightTypeTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetDefaultOptions()
     {
-        $resolverMock = Phake::mock('Symfony\Component\OptionsResolver\OptionsResolverInterface');
+        $resolverMock = Phake::mock('Symfony\Component\OptionsResolver\OptionsResolver');
 
-        $this->workflowRightType->setDefaultOptions($resolverMock);
+        $this->workflowRightType->configureOptions($resolverMock);
 
         Phake::verify($resolverMock)->setDefaults(
             array('data_class' => $this->workflowRightClass)
