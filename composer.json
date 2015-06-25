@@ -17,6 +17,7 @@
         "stof/doctrine-extensions-bundle": "1.1.0"
     },
     "require-dev": {
+        "open-orchestra/open-orchestra-model-bundle": "*",
         "psr/log": "1.0.0",
         "codeclimate/php-test-reporter": "dev-master",
         "phpunit/phpunit" : "4.7.2",
