@@ -10,14 +10,14 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "open-orchestra/open-orchestra-model-interface": "*",
+        "open-orchestra/open-orchestra-cms-bundle": "*",
         "doctrine/data-fixtures":"1.1.1",
         "doctrine/mongodb-odm": "1.0.0-BETA13",
         "doctrine/mongodb-odm-bundle" : "3.0.0",
         "stof/doctrine-extensions-bundle": "1.1.0"
     },
     "require-dev": {
-        "open-orchestra/open-orchestra-base-bundle": "dev-master",
+        "open-orchestra/open-orchestra-model-bundle": "*",
         "psr/log": "1.0.0",
         "codeclimate/php-test-reporter": "dev-master",
         "phpunit/phpunit" : "4.7.2",
@@ -29,7 +29,8 @@
     "autoload": {
         "psr-0": {
             "OpenOrchestra\\WorkflowFunctionBundle": "",
-            "OpenOrchestra\\WorkflowFunction": ""
+            "OpenOrchestra\\WorkflowFunction": "",
+            "OpenOrchestra\\WorkflowFunctionAdminBundle": ""
         }
     },
     "target-dir": "OpenOrchestra"

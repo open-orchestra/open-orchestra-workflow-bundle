@@ -16,7 +16,7 @@
     <testsuites>
         <testsuite name="unit">
             <directory>*Bundle/Tests</directory>
-            <exclude>./WorkflowFunctionBundle/Tests/Functional</exclude>
+            <exclude>./*Bundle/Tests/Functional</exclude>
         </testsuite>
     </testsuites>
 
