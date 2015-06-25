@@ -34,7 +34,7 @@ class WorkflowFunctionCollectionFacade extends AbstractFacade
     public $recordsFiltered;
 
     /**
-     * @param FacadeInterface $log
+     * @param FacadeInterface $workflowFunction
      */
     public function addWorkflowFunction(FacadeInterface $workflowFunction)
     {

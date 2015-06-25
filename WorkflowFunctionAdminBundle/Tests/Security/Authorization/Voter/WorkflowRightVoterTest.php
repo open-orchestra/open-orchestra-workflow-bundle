@@ -116,9 +116,9 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
         foreach ($arrayId as $key => $value) {
             $authorization = Phake::mock('OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface');
             $workflowFunctions = new ArrayCollection();
-            foreach ($value as $subkey => $subvalue) {
+            foreach ($value as $subKey => $subValue) {
                 $workflowFunction = Phake::mock('OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface');
-                Phake::when($workflowFunction)->getId()->thenReturn($subvalue);
+                Phake::when($workflowFunction)->getId()->thenReturn($subValue);
                 $workflowFunctions->add($workflowFunction);
             }
             Phake::when($authorization)->getWorkflowFunctions()->thenReturn($workflowFunctions);

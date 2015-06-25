@@ -91,7 +91,7 @@ class WorkflowRight implements WorkflowRightInterface
     /**
      * Set authorizations
      *
-     * @param ArrayCollection
+     * @param ArrayCollection $authorizations
      */
     public function setAuthorizations(ArrayCollection $authorizations)
     {
@@ -111,7 +111,7 @@ class WorkflowRight implements WorkflowRightInterface
     /**
      * Remove authorization
      *
-     * @param AuthorizationInterface
+     * @param AuthorizationInterface $authorization
      */
     public function removeAuthorization(AuthorizationInterface $authorization)
     {
@@ -121,7 +121,7 @@ class WorkflowRight implements WorkflowRightInterface
     /**
      * Add authorization
      *
-     * @param AuthorizationInterface
+     * @param AuthorizationInterface $authorization
      */
     public function addAuthorization(AuthorizationInterface $authorization)
     {

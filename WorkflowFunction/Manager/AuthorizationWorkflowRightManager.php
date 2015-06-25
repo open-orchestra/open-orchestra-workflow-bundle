@@ -28,10 +28,10 @@ class AuthorizationWorkflowRightManager
      *
      * @return WorkflowRightInterface
      */
-    public function cleanAuthorization(array $references, WorkflowRightInterface $workflowRight)
+    public function cleanAuthorization($references, WorkflowRightInterface $workflowRight)
     {
         $authorizations = $workflowRight->getAuthorizations();
-        $indexAuthorizations = $this->indexList($authorizations, "getReferenceId", "AuthorizationInterfaces");
+        $indexAuthorizations = $this->indexList($authorizations, "getReferenceId", "AuthorizationInterface");
 
         $indexReferences = $this->indexList($references, "getId", "ReferenceInterface");
 
