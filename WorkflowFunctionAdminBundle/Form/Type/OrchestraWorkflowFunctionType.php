@@ -2,7 +2,7 @@
 namespace OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class OrchestraWorkflowFunctionType
@@ -25,7 +25,7 @@ class OrchestraWorkflowFunctionType extends AbstractType
     /**
      * {@inheritDoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             array(
