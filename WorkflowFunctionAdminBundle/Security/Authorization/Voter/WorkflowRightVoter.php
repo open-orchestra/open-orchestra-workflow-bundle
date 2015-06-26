@@ -76,7 +76,7 @@ class WorkflowRightVoter implements VoterInterface
             }
             $referenceId = WorkflowRightInterface::NODE;
             if ($object instanceof ContentInterface) {
-                $contentType = $this->contentTypeRepository->findOneByContentTypeIdAndVersion($object->getContentType());
+                $contentType = $this->contentTypeRepository->findOneByContentTypeIdInLastVersion($object->getContentType());
                 $referenceId = $contentType->getId();
             }
             $authorizations = $workflowRight->getAuthorizations();
