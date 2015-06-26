@@ -32,7 +32,7 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
         Phake::when($contentType)->getId()->thenReturn($this->contentType);
 
         $this->contentTypeRepository = Phake::mock('OpenOrchestra\ModelInterface\Repository\ContentTypeRepositoryInterface');
-        Phake::when($this->contentTypeRepository)->findOneByContentTypeIdAndVersion(Phake::anyParameters())->thenReturn($contentType);
+        Phake::when($this->contentTypeRepository)->findOneByContentTypeIdInLastVersion(Phake::anyParameters())->thenReturn($contentType);
 
         $this->workflowRightRepository = Phake::mock('OpenOrchestra\WorkflowFunction\Repository\WorkflowRightRepositoryInterface');
 
