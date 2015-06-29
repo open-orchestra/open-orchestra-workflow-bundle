@@ -20,7 +20,7 @@ interface AuthorizationInterface
     public function getReferenceId();
 
     /**
-     * @param ArrayCollection
+     * @param ArrayCollection $workflowFunctions
      */
     public function setWorkflowFunctions(ArrayCollection $workflowFunctions);
 

@@ -53,7 +53,7 @@ class WorkflowRightManager
         $reference = new $referenceClass();
         $reference->setId(WorkflowRightInterface::NODE);
 
-        $contentTypes = $this->contentTypeRepository->findAllByDeletedInLastVersion();
+        $contentTypes = $this->contentTypeRepository->findAllNotDeletedInLastVersion();
         $contentTypes[] = $reference;
 
         $workflowRight = $this->workflowRightRepository->findOneByUserId($userId);

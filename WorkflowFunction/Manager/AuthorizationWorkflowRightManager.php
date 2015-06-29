@@ -2,6 +2,8 @@
 
 namespace OpenOrchestra\WorkflowFunction\Manager;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface;
 use OpenOrchestra\WorkflowFunction\Model\ReferenceInterface;
 
@@ -21,7 +23,7 @@ class AuthorizationWorkflowRightManager
     }
 
     /**
-     * @param array $references
+     * @param array                  $references
      * @param WorkflowRightInterface $workflowRight
      *
      * @return WorkflowRightInterface
@@ -29,35 +31,42 @@ class AuthorizationWorkflowRightManager
     public function cleanAuthorization($references, WorkflowRightInterface $workflowRight)
     {
         $authorizations = $workflowRight->getAuthorizations();
-        $indexAuthorizations = array();
-        foreach ($authorizations as $authorization) {
-            $id = $authorization->getReferenceId();
-            $indexAuthorizations[$id] = $authorization;
-        }
-        $authorizationsId = array_keys($indexAuthorizations);
+        $indexAuthorizations = $this->indexList($authorizations, "getReferenceId", "AuthorizationInterface");
 
-        $indexReferences = array();
-        foreach ($references as $reference) {
-            if ($reference instanceof ReferenceInterface || method_exists($reference, 'getId')) {
-                $id = $reference->getId();
-                $indexReferences[$id] = $reference;
-            }
-        }
-        $referencesId = array_keys($indexReferences);
+        $indexReferences = $this->indexList($references, "getId", "ReferenceInterface");
 
-        $removes = array_diff($authorizationsId, $referencesId);
-        foreach ($removes as $remove) {
-            $workflowRight->removeAuthorization($indexAuthorizations[$remove]);
+        $AuthorizationNotInReference = array_diff_key($indexAuthorizations, $indexReferences);
+        foreach ($AuthorizationNotInReference as $remove) {
+            $workflowRight->removeAuthorization($remove);
         }
 
         $authorizationClass = $this->authorizationClass;
-        $adds = array_diff($referencesId, $authorizationsId);
-        foreach ($adds as $add) {
+        $ReferenceNotInAuthorization = array_diff_key($indexReferences, $indexAuthorizations);
+        foreach ($ReferenceNotInAuthorization as $add) {
             $authorization = new $authorizationClass();
-            $authorization->setReferenceId($indexReferences[$add]->getId());
+            $authorization->setReferenceId($add->getId());
             $workflowRight->addAuthorization($authorization);
         }
 
         return $workflowRight;
+    }
+
+    /**
+     * @param array|ArrayCollection  $list
+     * @param string                 $getter
+     * @param string                 $type
+     *
+     * @return array
+     */
+    private function indexList($list, $getter, $type)
+    {
+        $referenceArray = array();
+        foreach ($list as $value) {
+            if($value instanceof $type || method_exists($value, $getter)){
+                $id = $value->$getter();
+                $referenceArray[$id] = $value;
+            }
+        }
+        return $referenceArray;
     }
 }

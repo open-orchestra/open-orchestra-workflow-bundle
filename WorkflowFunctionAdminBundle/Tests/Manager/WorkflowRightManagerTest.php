@@ -40,7 +40,7 @@ class WorkflowRightManagerTest extends \PHPUnit_Framework_TestCase
 
         $workflowRightInterface = $this->workflowRightManager->loadOrGenerateByUser($userId);
 
-        Phake::verify($this->contentTypeRepository, Phake::times(1))->findAllByDeletedInLastVersion();
+        Phake::verify($this->contentTypeRepository, Phake::times(1))->findAllNotDeletedInLastVersion();
         Phake::verify($this->workflowRightRepository, Phake::times(1))->findOneByUserId($userId);
         Phake::verify($this->authorizationWorkflowRightManager, Phake::times(1))->cleanAuthorization(Phake::anyParameters());
     }
