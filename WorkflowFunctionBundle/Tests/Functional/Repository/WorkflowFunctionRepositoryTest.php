@@ -2,6 +2,8 @@
 
 namespace OpenOrchestra\WorkflowFunctionBundle\Tests\Functional\Repository;
 
+use OpenOrchestra\ModelInterface\Repository\Configuration\FinderConfiguration;
+use OpenOrchestra\ModelInterface\Repository\Configuration\PaginateFinderConfiguration;
 use OpenOrchestra\WorkflowFunction\Repository\WorkflowFunctionRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -30,16 +32,21 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
      * @param array  $descriptionEntity
      * @param array  $columns
      * @param string $search
-     * @param array  $order
      * @param int    $skip
      * @param int    $limit
      * @param int    $count
      *
      * @dataProvider providePaginateAndSearch
      */
-    public function testFindForPaginateAndSearch($descriptionEntity, $columns, $search, $order, $skip, $limit, $count)
+    public function testFindForPaginate($descriptionEntity, $columns, $search, $skip, $limit, $count)
     {
-        $worflowFunctions = $this->repository->findForPaginateAndSearch($descriptionEntity, $columns, $search, $order, $skip, $limit);
+        $configuration = new PaginateFinderConfiguration();
+        $configuration->setSearch($search);
+        $configuration->setDescriptionEntity($descriptionEntity);
+        $configuration->setColumns($columns);
+        $configuration->setSkip($skip);
+        $configuration->setLimit($limit);
+        $worflowFunctions = $this->repository->findForPaginate($configuration);
         $this->assertCount($count, $worflowFunctions);
     }
 
@@ -51,11 +58,11 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
         $descriptionEntity = $this->getDescriptionColumnEntity();
 
         return array(
-            array($descriptionEntity, $this->generateColumnsProvider(), null, null, 0 ,5 , 2),
-            array($descriptionEntity, $this->generateColumnsProvider('validator'), null, null, 0 ,5 , 1),
-            array($descriptionEntity, $this->generateColumnsProvider('contributor'), null, null, 0 ,5 , 1),
-            array($descriptionEntity, $this->generateColumnsProvider('fakeName'), null, null, 0 ,5 , 0),
-            array($descriptionEntity, $this->generateColumnsProvider(), 'validator', null, 0 ,5 , 1),
+            array($descriptionEntity, $this->generateColumnsProvider(), null, 0 ,5 , 2),
+            array($descriptionEntity, $this->generateColumnsProvider('validator'), null, 0 ,5 , 1),
+            array($descriptionEntity, $this->generateColumnsProvider('contributor'), null, 0 ,5 , 1),
+            array($descriptionEntity, $this->generateColumnsProvider('fakeName'), null, 0 ,5 , 0),
+            array($descriptionEntity, $this->generateColumnsProvider(), 'validator',  0 ,5 , 1),
         );
     }
 
@@ -78,7 +85,11 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
      */
     public function testCountWithSearchFilter($descriptionEntity, $columns, $search, $count)
     {
-        $worflowFunctions = $this->repository->countWithSearchFilter($descriptionEntity, $columns, $search);
+        $configuration = new FinderConfiguration();
+        $configuration->setDescriptionEntity($descriptionEntity);
+        $configuration->setColumns($columns);
+        $configuration->setSearch($search);
+        $worflowFunctions = $this->repository->countWithFilter($configuration);
         $this->assertEquals($count, $worflowFunctions);
     }
 
