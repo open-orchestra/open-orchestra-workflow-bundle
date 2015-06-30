@@ -39,7 +39,7 @@ class WorkflowFunction implements WorkflowFunctionInterface
     protected $name;
 
     /**
-     * @var ArrayCollection
+     * @var Collection
      *
      * @ODM\ReferenceMany(targetDocument="OpenOrchestra\ModelInterface\Model\RoleInterface")
      */
@@ -90,7 +90,7 @@ class WorkflowFunction implements WorkflowFunctionInterface
     }
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
     public function getRoles()
     {

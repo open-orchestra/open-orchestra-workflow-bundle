@@ -3,6 +3,7 @@
 namespace OpenOrchestra\WorkflowFunctionBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface;
 use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
@@ -25,7 +26,7 @@ class WorkflowRight implements WorkflowRightInterface
     protected $userId;
 
     /**
-     * @var ArrayCollection $authorizations
+     * @var Collection $authorizations
      *
      * @ODM\EmbedMany(targetDocument="OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface")
      */
@@ -91,9 +92,9 @@ class WorkflowRight implements WorkflowRightInterface
     /**
      * Set authorizations
      *
-     * @param ArrayCollection $authorizations
+     * @param Collection $authorizations
      */
-    public function setAuthorizations(ArrayCollection $authorizations)
+    public function setAuthorizations(Collection $authorizations)
     {
         $this->authorizations = $authorizations;
     }
@@ -101,7 +102,7 @@ class WorkflowRight implements WorkflowRightInterface
     /**
      * Get authorizations
      *
-     * @return ArrayCollection
+     * @return Collection
      */
     public function getAuthorizations()
     {

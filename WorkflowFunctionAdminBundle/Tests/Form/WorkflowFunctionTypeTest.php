@@ -2,7 +2,6 @@
 
 namespace OpenOrchestra\BackofficeBundle\Tests\Form\Type;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type\WorkflowFunctionType;
 use Phake;
 

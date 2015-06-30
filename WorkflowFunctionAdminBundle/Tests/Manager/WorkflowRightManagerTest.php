@@ -3,7 +3,6 @@
 namespace OpenOrchestra\WorkflowFunctionAdminBundle\Tests\Manager;
 
 use OpenOrchestra\WorkflowFunctionAdminBundle\Manager\WorkflowRightManager;
-use Doctrine\Common\Collections\ArrayCollection;
 use Phake;
 
 /**

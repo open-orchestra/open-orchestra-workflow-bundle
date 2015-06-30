@@ -2,10 +2,9 @@
 
 namespace OpenOrchestra\WorkflowFunction\Manager;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
+use Doctrine\Common\Collections\Collection;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface;
-use OpenOrchestra\WorkflowFunction\Model\ReferenceInterface;
+
 
 /**
  * Class AuthorizationWorkflowRightManager
@@ -52,13 +51,13 @@ class AuthorizationWorkflowRightManager
     }
 
     /**
-     * @param array|ArrayCollection  $list
+     * @param array|Collection  $list
      * @param string                 $getter
      * @param string                 $type
      *
      * @return array
      */
-    private function indexList($list, $getter, $type)
+    private function indexList(Collection $list, $getter, $type)
     {
         $referenceArray = array();
         foreach ($list as $value) {

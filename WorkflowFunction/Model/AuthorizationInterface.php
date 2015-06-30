@@ -2,7 +2,7 @@
 
 namespace OpenOrchestra\WorkflowFunction\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Interface AuthorizationInterface
@@ -20,12 +20,12 @@ interface AuthorizationInterface
     public function getReferenceId();
 
     /**
-     * @param ArrayCollection $workflowFunctions
+     * @param Collection $workflowFunctions
      */
-    public function setWorkflowFunctions(ArrayCollection $workflowFunctions);
+    public function setWorkflowFunctions(Collection $workflowFunctions);
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
     public function getWorkflowFunctions();
 }

@@ -2,7 +2,7 @@
 
 namespace OpenOrchestra\WorkflowFunctionAdminBundle\Transformer;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use OpenOrchestra\BaseApi\Facade\FacadeInterface;
 use OpenOrchestra\BaseApi\Transformer\AbstractTransformer;
 use OpenOrchestra\WorkflowFunctionAdminBundle\Facade\WorkflowFunctionCollectionFacade;
@@ -13,7 +13,7 @@ use OpenOrchestra\WorkflowFunctionAdminBundle\Facade\WorkflowFunctionCollectionF
 class WorkflowFunctionCollectionTransformer extends AbstractTransformer
 {
     /**
-     * @param ArrayCollection $mixed
+     * @param Collection $mixed
      *
      * @return FacadeInterface
      */
