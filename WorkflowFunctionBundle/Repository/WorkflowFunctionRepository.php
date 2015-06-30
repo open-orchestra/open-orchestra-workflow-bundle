@@ -4,7 +4,7 @@ namespace OpenOrchestra\WorkflowFunctionBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use OpenOrchestra\WorkflowFunction\Repository\WorkflowFunctionRepositoryInterface;
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use OpenOrchestra\ModelInterface\Model\RoleInterface;
 
 /**
@@ -74,7 +74,7 @@ class WorkflowFunctionRepository extends DocumentRepository implements WorkflowF
     /**
      * @param RoleInterface $role
      *
-     * @return ArrayCollection
+     * @return Collection
      */
     public function findByRole(RoleInterface $role)
     {

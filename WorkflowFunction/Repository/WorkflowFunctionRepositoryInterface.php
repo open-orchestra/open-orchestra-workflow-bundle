@@ -2,7 +2,7 @@
 
 namespace OpenOrchestra\WorkflowFunction\Repository;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use OpenOrchestra\ModelInterface\Model\RoleInterface;
 
 /**
@@ -51,7 +51,7 @@ interface WorkflowFunctionRepositoryInterface
     /**
      * @param RoleInterface $role
      *
-     * @return ArrayCollection
+     * @return Collection
      */
     public function findByRole(RoleInterface $role);
 }

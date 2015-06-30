@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\WorkflowFunctionBundle\Document;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
@@ -21,7 +22,7 @@ class Authorization implements AuthorizationInterface
     protected $referenceId;
 
     /**
-     * @var ArrayCollection $workflowFunctions
+     * @var Collection $workflowFunctions
      *
      * @ODM\ReferenceMany(targetDocument="OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface")
      */
@@ -70,9 +71,9 @@ class Authorization implements AuthorizationInterface
     /**
      * Set workflowFunctions
      *
-     * @param ArrayCollection $workflowFunctions
+     * @param Collection $workflowFunctions
      */
-    public function setWorkflowFunctions(ArrayCollection $workflowFunctions)
+    public function setWorkflowFunctions(Collection $workflowFunctions)
     {
         $this->workflowFunctions = $workflowFunctions;
     }
@@ -80,7 +81,7 @@ class Authorization implements AuthorizationInterface
     /**
      * Get workflowFunctions
      *
-     * @return ArrayCollection
+     * @return Collection
      */
     public function getWorkflowFunctions()
     {

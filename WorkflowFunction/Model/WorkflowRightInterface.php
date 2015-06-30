@@ -2,7 +2,7 @@
 
 namespace OpenOrchestra\WorkflowFunction\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Interface WorkflowRightInterface
@@ -27,12 +27,12 @@ interface WorkflowRightInterface
     public function getUserId();
 
     /**
-     * @param ArrayCollection $authorizations
+     * @param Collection $authorizations
      */
-    public function setAuthorizations(ArrayCollection $authorizations);
+    public function setAuthorizations(Collection $authorizations);
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
     public function getAuthorizations();
 
