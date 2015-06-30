@@ -33,7 +33,8 @@ class WorkflowRightManagerTest extends \PHPUnit_Framework_TestCase
     /**
      * test loadOrGenerateByUser
      */
-    public function testLoadOrGenerateByUser() {
+    public function testLoadOrGenerateByUser()
+    {
 
         $userId = 'fakeUserId';
 

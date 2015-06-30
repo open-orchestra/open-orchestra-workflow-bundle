@@ -10,7 +10,7 @@ interface WorkflowRightRepositoryInterface
     /**
      * @param string $userId
      *
-     * @return WorkflowRightInterface
+     * @return  \OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface
      */
     public function findOneByUserId($userId);
 
