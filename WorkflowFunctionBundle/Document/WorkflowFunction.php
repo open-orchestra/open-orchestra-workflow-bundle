@@ -3,13 +3,13 @@
 namespace OpenOrchestra\WorkflowFunctionBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Gedmo\Blameable\Traits\BlameableDocument;
 use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 use OpenOrchestra\ModelInterface\Model\RoleInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class WorkflowFunction
@@ -34,7 +34,6 @@ class WorkflowFunction implements WorkflowFunctionInterface
     /**
      * @var string $name
      *
-     * @Assert\NotBlank()
      * @ODM\Field(type="string")
      */
     protected $name;
@@ -42,7 +41,6 @@ class WorkflowFunction implements WorkflowFunctionInterface
     /**
      * @var Collection
      *
-     * @Assert\NotBlank()
      * @ODM\ReferenceMany(targetDocument="OpenOrchestra\ModelInterface\Model\RoleInterface")
      */
     protected $roles;
