@@ -20,9 +20,9 @@ class AuthorizationType extends AbstractType
     protected $authorizationClass;
 
     /**
-     * @param ContentTypeRepositoryInterface    $contentTypeRepository
-     * @param TranslationChoiceManager          $translationChoiceManager
-     * @param string                            $authorizationClass
+     * @param ContentTypeRepositoryInterface $contentTypeRepository
+     * @param TranslationChoiceManager       $translationChoiceManager
+     * @param string                         $authorizationClass
      */
     public function __construct(ContentTypeRepositoryInterface $contentTypeRepository, TranslationChoiceManager $translationChoiceManager, $authorizationClass)
     {
@@ -60,7 +60,9 @@ class AuthorizationType extends AbstractType
     }
 
     /**
-     * {@inheritDoc}
+     * Configures the options for this type.
+     *
+     * @param OptionsResolver $resolver The resolver for the options.
      */
     public function configureOptions(OptionsResolver $resolver)
     {

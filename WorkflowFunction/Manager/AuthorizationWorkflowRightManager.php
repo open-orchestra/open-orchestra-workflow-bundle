@@ -22,7 +22,7 @@ class AuthorizationWorkflowRightManager
     }
 
     /**
-     * @param array                  $references
+     * @param array|Collection       $references
      * @param WorkflowRightInterface $workflowRight
      *
      * @return WorkflowRightInterface
@@ -51,9 +51,9 @@ class AuthorizationWorkflowRightManager
     }
 
     /**
-     * @param array|Collection  $list
-     * @param string                 $getter
-     * @param string                 $type
+     * @param array|Collection $list
+     * @param string           $getter
+     * @param string           $type
      *
      * @return array
      */

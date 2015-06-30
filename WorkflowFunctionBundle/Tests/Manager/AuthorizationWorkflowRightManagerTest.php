@@ -34,30 +34,38 @@ class AuthorizationWorkflowRightManagerTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider provideWorkflowRight
      */
-    public function testCleanAuthorization($inReference, $inAuthorization, $nbrRemove, $nbrAdd) {
+    public function testCleanAuthorization($inReference, $inAuthorization, $nbrRemove, $nbrAdd)
+    {
         $workflowRight = Phake::mock('OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface');
 
-        $authorizations = new ArrayCollection();
-        foreach ($inAuthorization as $authorizationId) {
-            $authorization[] = Phake::mock('OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface');
-            $index = count($authorization) - 1;
-            Phake::when($authorization[$index])->getReferenceId()->thenReturn($authorizationId);
-            $authorizations->add($authorization[$index]);
-        }
+        $authorizations = $this->generateArray($inAuthorization, 'AuthorizationInterface', 'getReferenceId');
         Phake::when($workflowRight)->getAuthorizations()->thenReturn($authorizations);
 
-        $references = new ArrayCollection();
-        foreach ($inReference as $referenceId) {
-            $reference[] = Phake::mock('OpenOrchestra\WorkflowFunction\Model\ReferenceInterface');
-            $index = count($reference) - 1;
-            Phake::when($reference[$index])->getId()->thenReturn($referenceId);
-            $references->add($reference[$index]);
-        }
-
+        $references = $this->generateArray($inReference, "ReferenceInterface", "getId");
         $this->authorizationWorkflowRightManager->cleanAuthorization($references, $workflowRight);
 
         Phake::verify($workflowRight, Phake::times($nbrRemove))->removeAuthorization(Phake::anyParameters());
         Phake::verify($workflowRight, Phake::times($nbrAdd))->addAuthorization(Phake::anyParameters());
+    }
+
+    /**
+     * @param array  $inArray
+     * @param string $classInterface
+     * @param string $getter
+     *
+     * @return ArrayCollection
+     */
+    protected function generateArray($inArray, $classInterface, $getter)
+    {
+        $arrays = new ArrayCollection();
+        foreach ($inArray as $classId) {
+            $array[] = Phake::mock("OpenOrchestra\\WorkflowFunction\\Model\\" . $classInterface);
+            $index = count($array) - 1;
+            Phake::when($array[$index])->$getter()->thenReturn($classId);
+            $arrays->add($array[$index]);
+        }
+
+        return $arrays;
     }
 
     /**
