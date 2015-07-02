@@ -5,7 +5,7 @@ namespace OpenOrchestra\WorkflowFunctionBundle\DataFixtures\MongoDB;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use OpenOrchestra\WorkflowFunctionBundle\Document\WorkflowFunction;
+use OpenOrchestra\WorkflowFunctionModelBundle\Document\WorkflowFunction;
 
 /**
  * Class LoadWorkflowFunctionData

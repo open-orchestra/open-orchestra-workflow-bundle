@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\WorkflowFunctionBundle\Document;
+namespace OpenOrchestra\WorkflowFunctionModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -13,7 +13,7 @@ use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
  *
  * @ODM\Document(
  *   collection="workflow_right",
- *   repositoryClass="OpenOrchestra\WorkflowFunctionBundle\Repository\WorkflowRightRepository"
+ *   repositoryClass="OpenOrchestra\WorkflowFunctionModelBundle\Repository\WorkflowRightRepository"
  * )
  */
 class WorkflowRight implements WorkflowRightInterface

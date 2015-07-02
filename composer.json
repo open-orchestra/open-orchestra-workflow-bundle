@@ -29,6 +29,7 @@
     "autoload": {
         "psr-0": {
             "OpenOrchestra\\WorkflowFunctionBundle": "",
+            "OpenOrchestra\\WorkflowFunctionModelBundle": "",
             "OpenOrchestra\\WorkflowFunction": "",
             "OpenOrchestra\\WorkflowFunctionAdminBundle": ""
         }

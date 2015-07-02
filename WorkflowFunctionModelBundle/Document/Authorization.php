@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\WorkflowFunctionBundle\Document;
+namespace OpenOrchestra\WorkflowFunctionModelBundle\Document;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
