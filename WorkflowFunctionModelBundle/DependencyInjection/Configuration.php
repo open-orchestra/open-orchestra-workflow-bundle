@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\WorkflowFunctionBundle\DependencyInjection;
+namespace OpenOrchestra\WorkflowFunctionModelBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('open_orchestra_workflow_function');
+        $rootNode = $treeBuilder->root('open_orchestra_workflow_function_model');
 
         $rootNode->children()
             ->arrayNode('document')
@@ -27,27 +27,27 @@ class Configuration implements ConfigurationInterface
                     ->arrayNode('workflow_function')
                         ->addDefaultsIfNotSet()
                         ->children()
-                            ->scalarNode('class')->defaultValue('OpenOrchestra\WorkflowFunctionBundle\Document\WorkflowFunction')->end()
-                            ->scalarNode('repository')->defaultValue('OpenOrchestra\WorkflowFunctionBundle\Repository\WorkflowFunctionRepository')->end()
+                            ->scalarNode('class')->defaultValue('OpenOrchestra\WorkflowFunctionModelBundle\Document\WorkflowFunction')->end()
+                            ->scalarNode('repository')->defaultValue('OpenOrchestra\WorkflowFunctionModelBundle\Repository\WorkflowFunctionRepository')->end()
                         ->end()
                     ->end()
                     ->arrayNode('workflow_right')
                         ->addDefaultsIfNotSet()
                         ->children()
-                            ->scalarNode('class')->defaultValue('OpenOrchestra\WorkflowFunctionBundle\Document\WorkflowRight')->end()
-                            ->scalarNode('repository')->defaultValue('OpenOrchestra\WorkflowFunctionBundle\Repository\WorkflowRightRepository')->end()
+                            ->scalarNode('class')->defaultValue('OpenOrchestra\WorkflowFunctionModelBundle\Document\WorkflowRight')->end()
+                            ->scalarNode('repository')->defaultValue('OpenOrchestra\WorkflowFunctionModelBundle\Repository\WorkflowRightRepository')->end()
                         ->end()
                     ->end()
                     ->arrayNode('authorization')
                         ->addDefaultsIfNotSet()
                         ->children()
-                            ->scalarNode('class')->defaultValue('OpenOrchestra\WorkflowFunctionBundle\Document\Authorization')->end()
+                            ->scalarNode('class')->defaultValue('OpenOrchestra\WorkflowFunctionModelBundle\Document\Authorization')->end()
                         ->end()
                     ->end()
                     ->arrayNode('reference')
                         ->addDefaultsIfNotSet()
                         ->children()
-                            ->scalarNode('class')->defaultValue('OpenOrchestra\WorkflowFunctionBundle\Document\Reference')->end()
+                            ->scalarNode('class')->defaultValue('OpenOrchestra\WorkflowFunctionModelBundle\Document\Reference')->end()
                         ->end()
                     ->end()
                 ->end()

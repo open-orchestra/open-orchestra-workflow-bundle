@@ -10,13 +10,18 @@ use Phake;
  */
 class WorkflowRightManagerTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var WorkflowRightManager
+     */
+    protected $workflowRightManager;
+
     protected $contentTypeRepository;
     protected $workflowRightRepository;
     protected $authorizationWorkflowRightManager;
-    protected $workflowRightClass = 'OpenOrchestra\WorkflowFunctionBundle\Document\WorkflowRight';
-    protected $referenceClass = 'OpenOrchestra\WorkflowFunctionBundle\Document\Reference';
+    protected $workflowRightClass = 'OpenOrchestra\WorkflowFunctionModelBundle\Document\WorkflowRight';
+    protected $referenceClass = 'OpenOrchestra\WorkflowFunctionModelBundle\Document\Reference';
 
-    protected $authorizationClass = 'OpenOrchestra\WorkflowFunctionBundle\Document\Authorization';
+    protected $authorizationClass = 'OpenOrchestra\WorkflowFunctionModelBundle\Document\Authorization';
 
     /**
      * Set up the test
@@ -38,7 +43,7 @@ class WorkflowRightManagerTest extends \PHPUnit_Framework_TestCase
 
         $userId = 'fakeUserId';
 
-        $workflowRightInterface = $this->workflowRightManager->loadOrGenerateByUser($userId);
+        $this->workflowRightManager->loadOrGenerateByUser($userId);
 
         Phake::verify($this->contentTypeRepository, Phake::times(1))->findAllNotDeletedInLastVersion();
         Phake::verify($this->workflowRightRepository, Phake::times(1))->findOneByUserId($userId);

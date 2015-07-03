@@ -28,19 +28,6 @@ class OpenOrchestraWorkflowFunctionExtension extends Extension
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $config);
-
-        foreach ($config['document'] as $class => $content) {
-            if (is_array($content)) {
-                $container->setParameter('open_orchestra_workflow_function.document.' . $class . '.class', $content['class']);
-                if (array_key_exists('repository', $content)) {
-                    $definition = new Definition($content['repository'], array($content['class']));
-                    $definition->setFactory(array(new Reference('doctrine.odm.mongodb.document_manager'), 'getRepository'));
-                    $container->setDefinition('open_orchestra_workflow_function.repository.' . $class, $definition);
-                }
-            }
-        }
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('manager.yml');
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\WorkflowFunctionBundle\Document;
+namespace OpenOrchestra\WorkflowFunctionModelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -16,7 +16,7 @@ use OpenOrchestra\ModelInterface\Model\RoleInterface;
  *
  * @ODM\Document(
  *   collection="workflow_function",
- *   repositoryClass="OpenOrchestra\WorkflowFunctionBundle\Repository\WorkflowFunctionRepository"
+ *   repositoryClass="OpenOrchestra\WorkflowFunctionModelBundle\Repository\WorkflowFunctionRepository"
  * )
  */
 class WorkflowFunction implements WorkflowFunctionInterface

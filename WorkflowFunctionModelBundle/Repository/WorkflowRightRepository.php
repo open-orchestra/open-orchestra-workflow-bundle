@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\WorkflowFunctionBundle\Repository;
+namespace OpenOrchestra\WorkflowFunctionModelBundle\Repository;
 
 use Doctrine\ODM\MongoDB\DocumentRepository;
 use OpenOrchestra\WorkflowFunction\Repository\WorkflowRightRepositoryInterface;

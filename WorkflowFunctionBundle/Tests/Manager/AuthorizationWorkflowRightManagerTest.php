@@ -16,7 +16,7 @@ class AuthorizationWorkflowRightManagerTest extends \PHPUnit_Framework_TestCase
      */
     protected $authorizationWorkflowRightManager;
 
-    protected $authorizationClass = 'OpenOrchestra\WorkflowFunctionBundle\Document\Authorization';
+    protected $authorizationClass = 'OpenOrchestra\WorkflowFunctionModelBundle\Document\Authorization';
 
     /**
      * Set up the test

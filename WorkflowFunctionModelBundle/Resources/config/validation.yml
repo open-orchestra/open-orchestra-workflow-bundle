@@ -1,4 +1,4 @@
-OpenOrchestra\WorkflowFunctionBundle\Document\WorkflowFunction:
+OpenOrchestra\WorkflowFunctionModelBundle\Document\WorkflowFunction:
     properties:
         name:
             - NotBlank: ~
