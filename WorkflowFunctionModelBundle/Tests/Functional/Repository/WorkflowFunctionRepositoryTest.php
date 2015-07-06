@@ -2,6 +2,8 @@
 
 namespace OpenOrchestra\WorkflowFunctionBundle\Tests\Functional\Repository;
 
+use OpenOrchestra\Pagination\Configuration\FinderConfiguration;
+use OpenOrchestra\Pagination\Configuration\PaginateFinderConfiguration;
 use OpenOrchestra\WorkflowFunction\Repository\WorkflowFunctionRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -39,7 +41,9 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
      */
     public function testFindForPaginateAndSearch($descriptionEntity, $columns, $search, $order, $skip, $limit, $count)
     {
-        $worflowFunctions = $this->repository->findForPaginateAndSearch($descriptionEntity, $columns, $search, $order, $skip, $limit);
+        $configuration = PaginateFinderConfiguration::generateFromVariable($descriptionEntity, $columns, $search);
+        $configuration->setPaginateConfiguration($order, $skip, $limit);
+        $worflowFunctions = $this->repository->findForPaginate($configuration);
         $this->assertCount($count, $worflowFunctions);
     }
 
@@ -78,7 +82,8 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
      */
     public function testCountWithSearchFilter($descriptionEntity, $columns, $search, $count)
     {
-        $worflowFunctions = $this->repository->countWithSearchFilter($descriptionEntity, $columns, $search);
+        $configuration = FinderConfiguration::generateFromVariable($descriptionEntity, $columns, $search);
+        $worflowFunctions = $this->repository->countWithFilter($configuration);
         $this->assertEquals($count, $worflowFunctions);
     }
 
