@@ -3,6 +3,7 @@
 namespace OpenOrchestra\WorkflowFunctionAdminBundle\Controller\Api;
 
 use OpenOrchestra\BaseApi\Facade\FacadeInterface;
+use OpenOrchestra\Pagination\Configuration\PaginateFinderConfiguration;
 use OpenOrchestra\WorkflowFunction\Event\WorkflowFunctionEvent;
 use OpenOrchestra\WorkflowFunction\WorkflowFunctionEvents;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
@@ -51,25 +52,16 @@ class WorkflowFunctionController extends BaseController
      */
     public function listAction(Request $request)
     {
-        $columns = $request->get('columns');
-        $search = $request->get('search');
-        $search = (null !== $search && isset($search['value'])) ? $search['value'] : null;
-        $order = $request->get('order');
-        $skip = $request->get('start');
-        $skip = (null !== $skip) ? (int)$skip : null;
-        $limit = $request->get('length');
-        $limit = (null !== $limit) ? (int)$limit : null;
-
-        $columnsNameToEntityAttribute = array(
-            'site_id' => array('key' => 'siteId'),
-            'name'    => array('key' => 'name'),
-        );
-
         $repository =  $this->get('open_orchestra_workflow_function.repository.workflow_function');
 
-        $workflowFunctionCollection = $repository->findForPaginateAndSearch($columnsNameToEntityAttribute, $columns, $search, $order, $skip, $limit);
+        $configuration = PaginateFinderConfiguration::generateFromRequest($request);
+        $configuration->setDescriptionEntity(array(
+                'site_id' => array('key' => 'siteId'),
+                'name'    => array('key' => 'name'),
+        ));
+        $workflowFunctionCollection = $repository->findForPaginate($configuration);
         $recordsTotal = $repository->count();
-        $recordsFiltered = $repository->countWithSearchFilter($columnsNameToEntityAttribute, $columns, $search);
+        $recordsFiltered = $repository->countWithFilter($configuration);
 
         $facade = $this->get('open_orchestra_api.transformer_manager')->get('workflow_function_collection')->transform($workflowFunctionCollection);
         $facade->recordsTotal = $recordsTotal;
