@@ -28,6 +28,9 @@ class OpenOrchestraWorkflowFunctionModelExtension extends Extension
                 if (array_key_exists('repository', $content)) {
                     $definition = new Definition($content['repository'], array($content['class']));
                     $definition->setFactory(array(new Reference('doctrine.odm.mongodb.document_manager'), 'getRepository'));
+                    $definition->addMethodCall('setAggregationQueryBuilder', array(
+                        new Reference('doctrine_mongodb.odm.default_aggregation_query')
+                    ));
                     $container->setDefinition('open_orchestra_workflow_function.repository.' . $class, $definition);
                 }
             }
