@@ -51,13 +51,13 @@ class AuthorizationWorkflowRightManager
     }
 
     /**
-     * @param array|Collection $list
-     * @param string           $getter
-     * @param string           $type
+     * @param array  $list
+     * @param string $getter
+     * @param string $type
      *
      * @return array
      */
-    private function indexList(Collection $list, $getter, $type)
+    private function indexList($list, $getter, $type)
     {
         $referenceArray = array();
         foreach ($list as $value) {
