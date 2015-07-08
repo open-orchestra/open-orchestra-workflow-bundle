@@ -2,19 +2,17 @@
 
 namespace OpenOrchestra\WorkflowFunctionModelBundle\Repository;
 
-use Doctrine\ODM\MongoDB\DocumentRepository;
-use OpenOrchestra\Pagination\MongoTrait\FilterTrait;
 use OpenOrchestra\Pagination\MongoTrait\PaginationTrait;
+use OpenOrchestra\Repository\AbstractAggregateRepository;
 use OpenOrchestra\WorkflowFunction\Repository\WorkflowFunctionRepositoryInterface;
 use OpenOrchestra\ModelInterface\Model\RoleInterface;
 
 /**
  * Class WorkflowFunctionRepository
  */
-class WorkflowFunctionRepository extends DocumentRepository implements WorkflowFunctionRepositoryInterface
+class WorkflowFunctionRepository extends AbstractAggregateRepository implements WorkflowFunctionRepositoryInterface
 {
     use PaginationTrait;
-    use FilterTrait;
 
     /**
      * @return \Doctrine\Common\Collections\Collection

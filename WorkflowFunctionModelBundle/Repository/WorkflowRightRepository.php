@@ -2,13 +2,13 @@
 
 namespace OpenOrchestra\WorkflowFunctionModelBundle\Repository;
 
-use Doctrine\ODM\MongoDB\DocumentRepository;
+use OpenOrchestra\Repository\AbstractAggregateRepository;
 use OpenOrchestra\WorkflowFunction\Repository\WorkflowRightRepositoryInterface;
 
 /**
  * Class WorkflowRightRepositoryInterface
  */
-class WorkflowRightRepository extends DocumentRepository implements WorkflowRightRepositoryInterface
+class WorkflowRightRepository extends AbstractAggregateRepository implements WorkflowRightRepositoryInterface
 {
     /**
      * @param string $userId

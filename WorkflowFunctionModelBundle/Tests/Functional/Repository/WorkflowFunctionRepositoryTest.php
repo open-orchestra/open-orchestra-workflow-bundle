@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\WorkflowFunctionBundle\Tests\Functional\Repository;
+namespace OpenOrchestra\WorkflowFunctionModelBundle\Tests\Functional\Repository;
 
 use OpenOrchestra\Pagination\Configuration\FinderConfiguration;
 use OpenOrchestra\Pagination\Configuration\PaginateFinderConfiguration;
@@ -30,8 +30,7 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
 
     /**
      * @param array  $descriptionEntity
-     * @param array  $columns
-     * @param string $search
+     * @param array  $search
      * @param array  $order
      * @param int    $skip
      * @param int    $limit
@@ -39,9 +38,9 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
      *
      * @dataProvider providePaginateAndSearch
      */
-    public function testFindForPaginateAndSearch($descriptionEntity, $columns, $search, $order, $skip, $limit, $count)
+    public function testFindForPaginate($descriptionEntity, $search, $order, $skip, $limit, $count)
     {
-        $configuration = PaginateFinderConfiguration::generateFromVariable($descriptionEntity, $columns, $search);
+        $configuration = PaginateFinderConfiguration::generateFromVariable($descriptionEntity, $search);
         $configuration->setPaginateConfiguration($order, $skip, $limit);
         $worflowFunctions = $this->repository->findForPaginate($configuration);
         $this->assertCount($count, $worflowFunctions);
@@ -55,11 +54,11 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
         $descriptionEntity = $this->getDescriptionColumnEntity();
 
         return array(
-            array($descriptionEntity, $this->generateColumnsProvider(), null, null, 0 ,5 , 2),
-            array($descriptionEntity, $this->generateColumnsProvider('validator'), null, null, 0 ,5 , 1),
-            array($descriptionEntity, $this->generateColumnsProvider('contributor'), null, null, 0 ,5 , 1),
-            array($descriptionEntity, $this->generateColumnsProvider('fakeName'), null, null, 0 ,5 , 0),
-            array($descriptionEntity, $this->generateColumnsProvider(), 'validator', null, 0 ,5 , 1),
+            array($descriptionEntity, null, null, 0 ,5 , 2),
+            array($descriptionEntity, $this->generateSearchProvider('validator'), null, 0 ,5 , 1),
+            array($descriptionEntity, $this->generateSearchProvider('contributor'),  null, 0 ,5 , 1),
+            array($descriptionEntity, $this->generateSearchProvider('fakeName'),  null, 0 ,5 , 0),
+            array($descriptionEntity, $this->generateSearchProvider('', 'validator'), null, 0 ,5 , 1),
         );
     }
 
@@ -73,16 +72,15 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
     }
 
     /**
-     * @param array  $columns
      * @param array  $descriptionEntity
-     * @param string $search
+     * @param array  $search
      * @param int    $count
      *
      * @dataProvider provideColumnsAndSearchAndCount
      */
-    public function testCountWithSearchFilter($descriptionEntity, $columns, $search, $count)
+    public function testCountWithFilter($descriptionEntity, $search, $count)
     {
-        $configuration = FinderConfiguration::generateFromVariable($descriptionEntity, $columns, $search);
+        $configuration = FinderConfiguration::generateFromVariable($descriptionEntity, $search);
         $worflowFunctions = $this->repository->countWithFilter($configuration);
         $this->assertEquals($count, $worflowFunctions);
     }
@@ -95,11 +93,11 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
         $descriptionEntity = $this->getDescriptionColumnEntity();
 
         return array(
-            array($descriptionEntity, $this->generateColumnsProvider(), null, 2),
-            array($descriptionEntity, $this->generateColumnsProvider('validator'), null, 1),
-            array($descriptionEntity, $this->generateColumnsProvider('contributor'), null, 1),
-            array($descriptionEntity, $this->generateColumnsProvider('fakeName'), null, 0),
-            array($descriptionEntity, $this->generateColumnsProvider(), 'validator', 1),
+            array($descriptionEntity, null, 2),
+            array($descriptionEntity, $this->generateSearchProvider('validator'), 1),
+            array($descriptionEntity, $this->generateSearchProvider('contributor'), 1),
+            array($descriptionEntity, $this->generateSearchProvider('fakeName'), 0),
+            array($descriptionEntity, $this->generateSearchProvider('', 'validator'), 1),
         );
     }
 
@@ -107,14 +105,21 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
      * Generate columns of content with search value
      *
      * @param string $searchName
+     * @param string $globalSearch
      *
      * @return array
      */
-    protected function generateColumnsProvider($searchName = '')
+    protected function generateSearchProvider($searchName = '', $globalSearch = '')
     {
-        return array(
-            array('name' => 'name', 'searchable' => true, 'orderable' => true, 'search' => array('value' => $searchName)),
-        );
+        $search = array();
+        if (!empty($searchName)) {
+            $search['columns'] = array('name' => $searchName);
+        }
+        if (!empty($globalSearch)) {
+            $search['global'] = $globalSearch;
+        }
+
+        return $search;
     }
 
     /**
