@@ -1,0 +1,46 @@
+{% block workflow_right_widget %}
+    {% spaceless %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped workflow-right-widget">
+                {% if form.authorizations is defined and form.authorizations|length > 0 and form.authorizations[0].workflowFunctions is defined %}
+                <thead>
+                    <tr>
+                        <th>&nbsp;</th>
+                        {% for child in form.authorizations[0].workflowFunctions %}
+                            <th>{{ child.vars.label|trans({}, translation_domain)|raw }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                {% endif %}
+                <tbody>
+                {% for child in form.authorizations %}
+                    <tr>
+                        <td>
+                            {{ child.vars.label|trans({}, translation_domain)|raw }}
+                            {{ form_widget(child.referenceId) }}
+                        </td>
+                        {{ form_widget(child) }}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {{ form_rest(form) }}
+    {% endspaceless %}
+{% endblock %}
+
+{% block authorization_widget %}
+    {% spaceless %}
+        {{ form_widget(form.workflowFunctions) }}
+    {% endspaceless %}
+{% endblock %}
+
+{% block orchestra_workflow_function_widget %}
+    {% spaceless %}
+        {% for child in form %}
+            <td>
+               {{ form_widget(child) }}
+            </td>
+        {% endfor %}
+    {% endspaceless %}
+{% endblock %}
