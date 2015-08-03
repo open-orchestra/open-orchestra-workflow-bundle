@@ -83,7 +83,7 @@ class WorkflowFunctionController extends BaseController
     public function deleteAction($workflowFunctionId)
     {
         $workflowFunction = $this->get('open_orchestra_workflow_function.repository.workflow_function')->find($workflowFunctionId);
-        $dm = $this->get('doctrine.odm.mongodb.document_manager');
+        $dm = $this->get('object_manager');
         $this->dispatchEvent(WorkflowFunctionEvents::WORKFLOWFUNCTION_DELETE, new WorkflowFunctionEvent($workflowFunction));
         $dm->remove($workflowFunction);
         $dm->flush();
