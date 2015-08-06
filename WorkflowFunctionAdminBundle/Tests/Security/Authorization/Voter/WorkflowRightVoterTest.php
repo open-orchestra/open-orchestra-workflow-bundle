@@ -153,6 +153,9 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
         $object4 = Phake::mock('OpenOrchestra\ModelInterface\Model\NodeInterface');
         Phake::when($object4)->getCreatedBy()->thenReturn('fakeOtherUsername');
 
+        $object5 = Phake::mock('OpenOrchestra\ModelInterface\Model\StatusableInterface');
+        Phake::when($object5)->getCreatedBy()->thenReturn($this->username);
+
         $workflowRight0 = array(
             $this->contentType => array('fakeFunctionId0', 'fakeFunctionId1'),
             WorkflowRightInterface::NODE => array()
@@ -181,7 +184,13 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
             $this->contentType => array(),
             WorkflowRightInterface::NODE => array('fakeFunctionId0', 'fakeFunctionId1'),
         );
-        $attributes4 = array('notFakeFunctionId0');
+        $attributes4 = array('fakeFunctionId0');
+
+        $workflowRight5 = array(
+            $this->contentType => array(),
+            WorkflowRightInterface::NODE => array('fakeFunctionId0', 'fakeFunctionId1'),
+        );
+        $attributes5 = array('fakeFunctionId0');
 
         return array(
             array(Phake::mock('stdClass'), array(), array(), VoterInterface::ACCESS_ABSTAIN),
@@ -190,6 +199,7 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
             array($object2, $workflowRight2, $attributes2, VoterInterface::ACCESS_GRANTED),
             array($object3, $workflowRight3, $attributes3, VoterInterface::ACCESS_DENIED),
             array($object4, $workflowRight4, $attributes4, VoterInterface::ACCESS_DENIED),
+            array($object5, $workflowRight5, $attributes5, VoterInterface::ACCESS_DENIED),
         );
     }
 }
