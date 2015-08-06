@@ -28,4 +28,14 @@ interface AuthorizationInterface
      * @return Collection
      */
     public function getWorkflowFunctions();
+
+    /**
+     * @param boolean $owner
+     */
+    public function setOwner($owner);
+
+    /**
+     * @return boolean
+     */
+    public function isOwner();
 }

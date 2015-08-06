@@ -9,6 +9,7 @@
                         {% for child in form.authorizations[0].workflowFunctions %}
                             <th>{{ child.vars.label|trans({}, translation_domain)|raw }}</th>
                         {% endfor %}
+                        <th>{{ 'open_orchestra_workflow_function_admin.right.owner'|trans({}, translation_domain)|raw }}</th>
                     </tr>
                 </thead>
                 {% endif %}
@@ -19,7 +20,10 @@
                             {{ child.vars.label|trans({}, translation_domain)|raw }}
                             {{ form_widget(child.referenceId) }}
                         </td>
-                        {{ form_widget(child) }}
+                        {{ form_widget(child.workflowFunctions) }}
+                        <td>
+                        {{ form_widget(child.owner) }}
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

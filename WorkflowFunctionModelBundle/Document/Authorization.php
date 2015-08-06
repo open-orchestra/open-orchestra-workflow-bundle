@@ -29,6 +29,13 @@ class Authorization implements AuthorizationInterface
     protected $workflowFunctions;
 
     /**
+     * @var boolean $owner
+     *
+     * @ODM\Field(type="boolean")
+     */
+    protected $owner;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -86,5 +93,25 @@ class Authorization implements AuthorizationInterface
     public function getWorkflowFunctions()
     {
         return $this->workflowFunctions;
+    }
+
+    /**
+     * Set owner
+     *
+     * @param boolean $owner
+     */
+    public function setOwner($owner)
+    {
+        $this->owner = $owner;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return boolean
+     */
+    public function isOwner()
+    {
+        return $this->owner;
     }
 }
