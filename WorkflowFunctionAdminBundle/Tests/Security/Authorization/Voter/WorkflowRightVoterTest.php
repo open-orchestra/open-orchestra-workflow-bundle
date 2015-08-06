@@ -154,7 +154,6 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
         Phake::when($object4)->getCreatedBy()->thenReturn('fakeOtherUsername');
 
         $object5 = Phake::mock('OpenOrchestra\ModelInterface\Model\StatusableInterface');
-        Phake::when($object5)->getCreatedBy()->thenReturn($this->username);
 
         $workflowRight0 = array(
             $this->contentType => array('fakeFunctionId0', 'fakeFunctionId1'),
