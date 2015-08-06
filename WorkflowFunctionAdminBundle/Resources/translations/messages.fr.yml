@@ -14,3 +14,4 @@ open_orchestra_workflow_function_admin:
             role: Rôle
     right:
         title: Formulaire des droits
+        owner: Propriétaire

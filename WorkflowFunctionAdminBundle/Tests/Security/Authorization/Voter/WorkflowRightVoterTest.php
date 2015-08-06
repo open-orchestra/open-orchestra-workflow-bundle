@@ -7,6 +7,7 @@ use Phake;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface;
 use Doctrine\Common\Collections\ArrayCollection;
+use OpenOrchestra\ModelInterface\Model\BlameableInterface;
 
 /**
  * Test WorkflowRightVoterTest
@@ -16,6 +17,7 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
     protected $workflowRightRepository;
     protected $contentTypeRepository;
     protected $contentType = 'fakeContentType';
+    protected $username = 'fakeUsername';
     protected $token;
 
     /**
@@ -38,6 +40,7 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
 
         $user = Phake::mock('OpenOrchestra\UserBundle\Document\User');
         Phake::when($user)->getId()->thenReturn('fakeUserId');
+        Phake::when($user)->getUsername()->thenReturn($this->username);
 
         $this->token = Phake::mock('Symfony\Component\Security\Core\Authentication\Token\TokenInterface');
         Phake::when($this->token)->getUser()->thenReturn($user);
@@ -111,7 +114,6 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
     public function testVote($object, $arrayId, $attributes, $accessResponse)
     {
         $workflowRight = Phake::mock('OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface');
-
         $authorizations = new ArrayCollection();
         foreach ($arrayId as $key => $value) {
             $authorization = Phake::mock('OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface');
@@ -123,6 +125,7 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
             }
             Phake::when($authorization)->getWorkflowFunctions()->thenReturn($workflowFunctions);
             Phake::when($authorization)->getReferenceId()->thenReturn($key);
+            Phake::when($authorization)->isOwner()->thenReturn(true);
             $authorizations->add($authorization);
         }
         Phake::when($workflowRight)->getAuthorizations()->thenReturn($authorizations);
@@ -138,11 +141,19 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
     {
         $object0 = Phake::mock('OpenOrchestra\ModelInterface\Model\ContentInterface');
         Phake::when($object0)->getContentType()->thenReturn($this->contentType);
+        Phake::when($object0)->getCreatedBy()->thenReturn($this->username);
         $object1 = Phake::mock('OpenOrchestra\ModelInterface\Model\ContentInterface');
         Phake::when($object1)->getContentType()->thenReturn($this->contentType);
+        Phake::when($object1)->getCreatedBy()->thenReturn($this->username);
 
         $object2 = Phake::mock('OpenOrchestra\ModelInterface\Model\NodeInterface');
+        Phake::when($object2)->getCreatedBy()->thenReturn($this->username);
         $object3 = Phake::mock('OpenOrchestra\ModelInterface\Model\NodeInterface');
+        Phake::when($object3)->getCreatedBy()->thenReturn($this->username);
+        $object4 = Phake::mock('OpenOrchestra\ModelInterface\Model\NodeInterface');
+        Phake::when($object4)->getCreatedBy()->thenReturn('fakeOtherUsername');
+
+        $object5 = Phake::mock('OpenOrchestra\ModelInterface\Model\StatusableInterface');
 
         $workflowRight0 = array(
             $this->contentType => array('fakeFunctionId0', 'fakeFunctionId1'),
@@ -168,12 +179,26 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
         );
         $attributes3 = array('notFakeFunctionId0');
 
+        $workflowRight4 = array(
+            $this->contentType => array(),
+            WorkflowRightInterface::NODE => array('fakeFunctionId0', 'fakeFunctionId1'),
+        );
+        $attributes4 = array('fakeFunctionId0');
+
+        $workflowRight5 = array(
+            $this->contentType => array(),
+            WorkflowRightInterface::NODE => array('fakeFunctionId0', 'fakeFunctionId1'),
+        );
+        $attributes5 = array('fakeFunctionId0');
+
         return array(
             array(Phake::mock('stdClass'), array(), array(), VoterInterface::ACCESS_ABSTAIN),
             array($object0, $workflowRight0, $attributes0, VoterInterface::ACCESS_GRANTED),
             array($object1, $workflowRight1, $attributes1, VoterInterface::ACCESS_DENIED),
             array($object2, $workflowRight2, $attributes2, VoterInterface::ACCESS_GRANTED),
             array($object3, $workflowRight3, $attributes3, VoterInterface::ACCESS_DENIED),
+            array($object4, $workflowRight4, $attributes4, VoterInterface::ACCESS_DENIED),
+            array($object5, $workflowRight5, $attributes5, VoterInterface::ACCESS_DENIED),
         );
     }
 }

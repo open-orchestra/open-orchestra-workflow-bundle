@@ -54,7 +54,7 @@ class AuthorizationTypeTest extends \PHPUnit_Framework_TestCase
 
         $this->authorizationType->buildForm($formBuilderInterface, array());
 
-        Phake::verify($formBuilderInterface, Phake::times(2))->add(Phake::anyParameters());
+        Phake::verify($formBuilderInterface, Phake::times(3))->add(Phake::anyParameters());
     }
 
     /**

@@ -14,3 +14,4 @@ open_orchestra_workflow_function_admin:
             role: Role
     right:
         title: Right Form
+        owner: Owner

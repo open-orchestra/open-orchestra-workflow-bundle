@@ -6,6 +6,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use OpenOrchestra\ModelInterface\Repository\ContentTypeRepositoryInterface;
 use OpenOrchestra\ModelInterface\Model\ContentInterface;
+use OpenOrchestra\ModelInterface\Model\BlameableInterface;
 use OpenOrchestra\WorkflowFunction\Repository\WorkflowRightRepositoryInterface;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface;
 use FOS\UserBundle\Model\UserInterface;
@@ -70,6 +71,7 @@ class WorkflowRightVoter implements VoterInterface
             return VoterInterface::ACCESS_ABSTAIN;
         }
         if (($user = $token->getUser()) instanceof UserInterface) {
+            $isOwner = $object instanceof BlameableInterface && $object->getCreatedBy() == $user->getUsername();
             $workflowRight = $this->workflowRightRepository->findOneByUserId($user->getId());
             if (null === $workflowRight) {
                 return VoterInterface::ACCESS_DENIED;
@@ -81,17 +83,18 @@ class WorkflowRightVoter implements VoterInterface
             }
             $authorizations = $workflowRight->getAuthorizations();
             foreach ($authorizations as $authorization) {
-                if ($authorization->getReferenceId() == $referenceId) {
-                    $workflowFunctions = $authorization->getWorkflowFunctions();
-                    foreach($workflowFunctions as $workflowFunction){
-                        if (in_array($workflowFunction->getId(), $attributes)) {
-                            return VoterInterface::ACCESS_GRANTED;
+                if (!$authorization->isOwner() || $isOwner) {
+                    if ($authorization->getReferenceId() == $referenceId) {
+                        $workflowFunctions = $authorization->getWorkflowFunctions();
+                        foreach($workflowFunctions as $workflowFunction){
+                            if (in_array($workflowFunction->getId(), $attributes)) {
+                                return VoterInterface::ACCESS_GRANTED;
+                            }
                         }
                     }
                 }
             }
         }
-
         return VoterInterface::ACCESS_DENIED;
     }
 }
