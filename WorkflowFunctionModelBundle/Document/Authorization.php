@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use OpenOrchestra\WorkflowFunction\Model\AuthorizationInterface;
+use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 
 /**
  * Description of Authorization
@@ -93,6 +94,14 @@ class Authorization implements AuthorizationInterface
     public function getWorkflowFunctions()
     {
         return $this->workflowFunctions;
+    }
+
+    /**
+     * @param WorkflowFunctionInterface $workflowFunction
+     */
+    public function addWorkflowFunction(WorkflowFunctionInterface $workflowFunction)
+    {
+        $this->workflowFunctions->add($workflowFunction);
     }
 
     /**
