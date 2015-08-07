@@ -55,7 +55,11 @@ class WorkflowRight implements WorkflowRightInterface
         $this->initCollections();
     }
 
-    protected function initCollections() {
+    /**
+     * Initialize collections
+     */
+    protected function initCollections()
+    {
         $this->authorizations = new ArrayCollection();
     }
 
