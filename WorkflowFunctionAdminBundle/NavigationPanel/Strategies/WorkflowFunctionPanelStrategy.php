@@ -1,13 +1,13 @@
 <?php
 
-namespace OpenOrchestra\WorkflowFunctionAdminBundle\LeftPanel\Strategies;
+namespace OpenOrchestra\WorkflowFunctionAdminBundle\NavigationPanel\Strategies;
 
-use OpenOrchestra\Backoffice\LeftPanel\Strategies\AbstractLeftPanelStrategy;
+use OpenOrchestra\Backoffice\NavigationPanel\Strategies\AbstractNavigationPanelStrategy;
 
 /**
  * Class WorkflowFunctionPanelStrategy
  */
-class WorkflowFunctionPanelStrategy extends AbstractLeftPanelStrategy
+class WorkflowFunctionPanelStrategy extends AbstractNavigationPanelStrategy
 {
     const ROLE_ACCESS_WORKFLOWFUNCTION = 'ROLE_ACCESS_WORKFLOWFUNCTION';
 
