@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\WorkflowFunctionModelBundle\Tests\Functional\Repository;
 
+use OpenOrchestra\ModelInterface\Mapping\Annotations\Search;
 use OpenOrchestra\Pagination\Configuration\FinderConfiguration;
 use OpenOrchestra\Pagination\Configuration\PaginateFinderConfiguration;
 use OpenOrchestra\WorkflowFunction\Repository\WorkflowFunctionRepositoryInterface;
@@ -130,7 +131,7 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
     protected function getDescriptionColumnEntity()
     {
         return array(
-            'name' => array('key' => 'name'),
+            'name' => new Search(array('key' => 'name', 'field' => 'name', 'type' => 'string')),
         );
     }
 
