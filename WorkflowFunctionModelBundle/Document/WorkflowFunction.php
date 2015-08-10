@@ -10,6 +10,7 @@ use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 use OpenOrchestra\ModelInterface\Model\RoleInterface;
+use OpenOrchestra\Mapping\Annotations as ORCHESTRA;
 
 /**
  * Class WorkflowFunction
@@ -35,6 +36,7 @@ class WorkflowFunction implements WorkflowFunctionInterface
      * @var string $name
      *
      * @ODM\Field(type="string")
+     * @ORCHESTRA\Search(key="name")
      */
     protected $name;
 
