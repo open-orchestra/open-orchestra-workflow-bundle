@@ -10,7 +10,7 @@ use Gedmo\Timestampable\Traits\TimestampableDocument;
 use Gedmo\Mapping\Annotation as Gedmo;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 use OpenOrchestra\ModelInterface\Model\RoleInterface;
-use OpenOrchestra\ModelInterface\Mapping\Annotations as ORCHESTRA;
+use OpenOrchestra\Mapping\Annotations as ORCHESTRA;
 
 /**
  * Class WorkflowFunction
