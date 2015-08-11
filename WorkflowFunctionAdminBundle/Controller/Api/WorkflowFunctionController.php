@@ -16,6 +16,8 @@ use OpenOrchestra\BaseApiBundle\Controller\BaseController;
  * Class WorkflowFunctionController
  *
  * @Config\Route("workflow-function")
+ *
+ * @Api\Serialize()
  */
 class WorkflowFunctionController extends BaseController
 {
@@ -26,8 +28,6 @@ class WorkflowFunctionController extends BaseController
      * @Config\Method({"GET"})
      *
      * @Config\Security("has_role('ROLE_ACCESS_WORKFLOWFUNCTION')")
-     *
-     * @Api\Serialize()
      *
      * @return FacadeInterface
      */
@@ -45,8 +45,6 @@ class WorkflowFunctionController extends BaseController
      * @Config\Method({"GET"})
      *
      * @Config\Security("has_role('ROLE_ACCESS_WORKFLOWFUNCTION')")
-     *
-     * @Api\Serialize()
      *
      * @return FacadeInterface
      */
@@ -86,6 +84,6 @@ class WorkflowFunctionController extends BaseController
         $dm->remove($workflowFunction);
         $dm->flush();
 
-        return new Response('', 200);
+        return array();
     }
 }
