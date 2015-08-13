@@ -36,6 +36,14 @@ class WorkflowFunctionPanelStrategy extends AbstractNavigationPanelStrategy
     }
 
     /**
+     * @return int
+     */
+    public function getWeight()
+    {
+        return 11;
+    }
+
+    /**
      * @return string
      */
     public function getRole()
