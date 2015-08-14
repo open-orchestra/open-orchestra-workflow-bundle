@@ -5,6 +5,7 @@ namespace OpenOrchestra\WorkflowFunctionModelBundle\DataFixtures\MongoDB;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use OpenOrchestra\ModelInterface\DataFixtures\OrchestraProductionFixturesInterface;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface;
 use OpenOrchestra\WorkflowFunctionModelBundle\Document\Authorization;
 use OpenOrchestra\WorkflowFunctionModelBundle\Document\WorkflowRight;
@@ -12,7 +13,7 @@ use OpenOrchestra\WorkflowFunctionModelBundle\Document\WorkflowRight;
 /**
  * Class LoadWorkflowRightData
  */
-class LoadWorkflowRightData extends AbstractFixture implements OrderedFixtureInterface
+class LoadWorkflowRightData extends AbstractFixture implements OrderedFixtureInterface, OrchestraProductionFixturesInterface
 {
     /**
      * Load data fixtures with the passed EntityManager

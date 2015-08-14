@@ -5,12 +5,13 @@ namespace OpenOrchestra\WorkflowFunctionBundle\DataFixtures\MongoDB;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use OpenOrchestra\ModelInterface\DataFixtures\OrchestraProductionFixturesInterface;
 use OpenOrchestra\WorkflowFunctionModelBundle\Document\WorkflowFunction;
 
 /**
  * Class LoadWorkflowFunctionData
  */
-class LoadWorkflowFunctionData extends AbstractFixture implements OrderedFixtureInterface
+class LoadWorkflowFunctionData extends AbstractFixture implements OrderedFixtureInterface, OrchestraProductionFixturesInterface
 {
     /**
      * @param ObjectManager $manager
