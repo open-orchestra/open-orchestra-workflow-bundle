@@ -5,12 +5,13 @@ namespace OpenOrchestra\WorkflowFunctionAdminBundle\DataFixtures\MongoDB;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use OpenOrchestra\ModelInterface\DataFixtures\OrchestraProductionFixturesInterface;
 use OpenOrchestra\WorkflowFunctionAdminBundle\NavigationPanel\Strategies\WorkflowFunctionPanelStrategy;
 
 /**
  * Class LoadGroupData
  */
-class LoadGroupData extends AbstractFixture implements OrderedFixtureInterface
+class LoadGroupData extends AbstractFixture implements OrderedFixtureInterface, OrchestraProductionFixturesInterface
 {
     /**
      * Load data fixtures with the passed EntityManager
