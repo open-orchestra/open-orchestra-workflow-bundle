@@ -31,6 +31,9 @@ class OpenOrchestraWorkflowFunctionModelExtension extends Extension
                     $definition->addMethodCall('setAggregationQueryBuilder', array(
                         new Reference('doctrine_mongodb.odm.default_aggregation_query')
                     ));
+                    $definition->addMethodCall('setFilterTypeManager', array(
+                        new Reference('open_orchestra_pagination.filter_type.manager')
+                    ));
                     $container->setDefinition('open_orchestra_workflow_function.repository.' . $class, $definition);
                 }
             }
