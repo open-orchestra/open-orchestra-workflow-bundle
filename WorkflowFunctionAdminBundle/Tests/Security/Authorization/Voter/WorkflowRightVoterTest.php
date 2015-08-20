@@ -19,6 +19,7 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
     protected $contentType = 'fakeContentType';
     protected $username = 'fakeUsername';
     protected $token;
+    protected $user;
 
     /**
      * @var WorkflowRightVoter
@@ -38,12 +39,12 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
 
         $this->workflowRightRepository = Phake::mock('OpenOrchestra\WorkflowFunction\Repository\WorkflowRightRepositoryInterface');
 
-        $user = Phake::mock('OpenOrchestra\UserBundle\Document\User');
-        Phake::when($user)->getId()->thenReturn('fakeUserId');
-        Phake::when($user)->getUsername()->thenReturn($this->username);
+        $this->user = Phake::mock('OpenOrchestra\UserBundle\Document\User');
+        Phake::when($this->user)->getId()->thenReturn('fakeUserId');
+        Phake::when($this->user)->getUsername()->thenReturn($this->username);
 
         $this->token = Phake::mock('Symfony\Component\Security\Core\Authentication\Token\TokenInterface');
-        Phake::when($this->token)->getUser()->thenReturn($user);
+        Phake::when($this->token)->getUser()->thenReturn($this->user);
 
         $this->voter = new WorkflowRightVoter($this->workflowRightRepository, $this->contentTypeRepository);
 
@@ -108,10 +109,11 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
      * @param array  $arrayId
      * @param array  $attributes
      * @param string $accessResponse
+     * @param bool   $superAdmin
      *
      * @dataProvider provideObject
      */
-    public function testVote($object, $arrayId, $attributes, $accessResponse)
+    public function testVote($object, $arrayId, $attributes, $accessResponse, $superAdmin = false)
     {
         $workflowRight = Phake::mock('OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface');
         $authorizations = new ArrayCollection();
@@ -129,6 +131,8 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
             $authorizations->add($authorization);
         }
         Phake::when($workflowRight)->getAuthorizations()->thenReturn($authorizations);
+
+        Phake::when($this->user)->isSuperAdmin()->thenReturn($superAdmin);
 
         Phake::when($this->workflowRightRepository)->findOneByUserId('fakeUserId')->thenReturn($workflowRight);
         $this->assertEquals($accessResponse, $this->voter->vote($this->token, $object, $attributes));
@@ -199,6 +203,8 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
             array($object3, $workflowRight3, $attributes3, VoterInterface::ACCESS_DENIED),
             array($object4, $workflowRight4, $attributes4, VoterInterface::ACCESS_DENIED),
             array($object5, $workflowRight5, $attributes5, VoterInterface::ACCESS_DENIED),
+            array(Phake::mock('stdClass'), array(), array(), VoterInterface::ACCESS_GRANTED, true),
+            array($object1, $workflowRight1, $attributes1, VoterInterface::ACCESS_GRANTED, true),
         );
     }
 }
