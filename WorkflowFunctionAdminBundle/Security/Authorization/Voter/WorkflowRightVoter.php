@@ -95,6 +95,7 @@ class WorkflowRightVoter implements VoterInterface
                 }
             }
         }
+
         return VoterInterface::ACCESS_DENIED;
     }
 }
