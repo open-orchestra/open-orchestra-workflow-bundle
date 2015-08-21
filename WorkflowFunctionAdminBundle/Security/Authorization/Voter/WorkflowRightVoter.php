@@ -67,10 +67,15 @@ class WorkflowRightVoter implements VoterInterface
      */
     public function vote(TokenInterface $token, $object, array $attributes)
     {
+        $user = $token->getUser();
+        $isOrchestraUser = $user instanceof UserInterface;
+        if ($isOrchestraUser && $user->isSuperAdmin()) {
+            return VoterInterface::ACCESS_GRANTED;
+        }
         if (!$this->supportsClass($object)) {
             return VoterInterface::ACCESS_ABSTAIN;
         }
-        if (($user = $token->getUser()) instanceof UserInterface) {
+        if ($isOrchestraUser) {
             $isOwner = $object instanceof BlameableInterface && $object->getCreatedBy() == $user->getUsername();
             $workflowRight = $this->workflowRightRepository->findOneByUserId($user->getId());
             if (null === $workflowRight) {
