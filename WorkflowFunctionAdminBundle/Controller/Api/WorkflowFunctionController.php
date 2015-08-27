@@ -53,7 +53,9 @@ class WorkflowFunctionController extends BaseController
         $repository =  $this->get('open_orchestra_workflow_function.repository.workflow_function');
 
         $configuration = PaginateFinderConfiguration::generateFromRequest($request);
-        $mapping = $this->get('open_orchestra_base.annotation_search_reader')->extractMapping('OpenOrchestra\WorkflowFunctionModelBundle\Document\WorkflowFunction');
+        $mapping = $this
+            ->get('open_orchestra_base.annotation_search_reader')
+            ->extractMapping($this->container->getParameter('open_orchestra_workflow_function.document.workflow_function.class'));
         $configuration->setDescriptionEntity($mapping);
         $workflowFunctionCollection = $repository->findForPaginate($configuration);
         $recordsTotal = $repository->count();
