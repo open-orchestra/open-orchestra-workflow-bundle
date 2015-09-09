@@ -9,11 +9,12 @@ use OpenOrchestra\ModelInterface\DataFixtures\OrchestraProductionFixturesInterfa
 use OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface;
 use OpenOrchestra\WorkflowFunctionModelBundle\Document\Authorization;
 use OpenOrchestra\WorkflowFunctionModelBundle\Document\WorkflowRight;
+use OpenOrchestra\ModelInterface\DataFixtures\OrchestraFunctionalFixturesInterface;
 
 /**
  * Class LoadWorkflowRightData
  */
-class LoadWorkflowRightData extends AbstractFixture implements OrderedFixtureInterface, OrchestraProductionFixturesInterface
+class LoadWorkflowRightData extends AbstractFixture implements OrderedFixtureInterface, OrchestraProductionFixturesInterface, OrchestraFunctionalFixturesInterface
 {
     /**
      * Load data fixtures with the passed EntityManager
