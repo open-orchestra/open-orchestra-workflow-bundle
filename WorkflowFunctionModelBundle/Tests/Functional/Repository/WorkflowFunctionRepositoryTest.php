@@ -131,7 +131,7 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
     protected function getDescriptionColumnEntity()
     {
         return array(
-            'name' => new Search(array('key' => 'name', 'field' => 'name', 'type' => 'string')),
+            'name' => array('key' => 'name', 'field' => 'name', 'type' => 'string'),
         );
     }
 
