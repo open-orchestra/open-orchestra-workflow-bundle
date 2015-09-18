@@ -17,7 +17,12 @@
                 {% for child in form.authorizations %}
                     <tr>
                         <td>
-                            {{ child.vars.label|trans({}, translation_domain)|raw }}
+                            {% if child.vars.label is iterable %}
+                                {{ child.vars.label|trans_choose}}
+                            {% else %}
+                                {{ child.vars.label |trans({}, translation_domain)|raw }}
+                            {% endif %}
+
                             {{ form_widget(child.referenceId) }}
                         </td>
                         {{ form_widget(child.workflowFunctions) }}
