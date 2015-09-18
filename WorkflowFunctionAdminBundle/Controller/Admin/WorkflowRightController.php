@@ -51,7 +51,7 @@ class WorkflowRightController extends AbstractAdminController
         $form->handleRequest($request);
         $this->handleForm(
             $form,
-            $this->get('translator')->trans('open_orchestra_workflow_function.form.workflow_right.success'),
+            $this->get('translator')->trans('open_orchestra_workflow_function_admin.form.workflow_right.success'),
             $workflowRight
         );
 

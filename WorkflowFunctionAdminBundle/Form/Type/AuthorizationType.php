@@ -58,8 +58,9 @@ class AuthorizationType extends AbstractType
         $contentTypeName = 'open_orchestra_backoffice.left_menu.editorial.nodes';
         $contentType = $this->contentTypeRepository->find($view->vars['value']->getReferenceId());
         if (null !== $contentType) {
-            $contentTypeName = $this->translationChoiceManager->choose($contentType->getNames());
+            $contentTypeName = $contentType->getNames();
         }
+
         $view->vars['label'] = $contentTypeName;
     }
 
