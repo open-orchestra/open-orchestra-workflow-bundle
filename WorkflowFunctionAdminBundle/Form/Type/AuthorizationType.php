@@ -8,7 +8,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use OpenOrchestra\ModelInterface\Repository\ContentTypeRepositoryInterface;
-use OpenOrchestra\Backoffice\Manager\TranslationChoiceManager;
 
 /**
  * Class AuthorizationType
@@ -21,13 +20,11 @@ class AuthorizationType extends AbstractType
 
     /**
      * @param ContentTypeRepositoryInterface $contentTypeRepository
-     * @param TranslationChoiceManager       $translationChoiceManager
      * @param string                         $authorizationClass
      */
-    public function __construct(ContentTypeRepositoryInterface $contentTypeRepository, TranslationChoiceManager $translationChoiceManager, $authorizationClass)
+    public function __construct(ContentTypeRepositoryInterface $contentTypeRepository, $authorizationClass)
     {
         $this->contentTypeRepository = $contentTypeRepository;
-        $this->translationChoiceManager = $translationChoiceManager;
         $this->authorizationClass = $authorizationClass;
     }
 

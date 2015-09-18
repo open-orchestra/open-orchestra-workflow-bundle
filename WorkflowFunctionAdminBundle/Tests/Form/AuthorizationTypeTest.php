@@ -17,7 +17,6 @@ class AuthorizationTypeTest extends \PHPUnit_Framework_TestCase
     protected $authorizationType;
 
     protected $contentTypeRepository;
-    protected $translationChoiceManager;
     protected $authorizationClass = 'fakeClass';
 
     /**
@@ -26,9 +25,8 @@ class AuthorizationTypeTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->contentTypeRepository = Phake::mock('OpenOrchestra\ModelInterface\Repository\ContentTypeRepositoryInterface');
-        $this->translationChoiceManager = Phake::mock('OpenOrchestra\Backoffice\Manager\TranslationChoiceManager');
 
-        $this->authorizationType = new AuthorizationType($this->contentTypeRepository, $this->translationChoiceManager, $this->authorizationClass);
+        $this->authorizationType = new AuthorizationType($this->contentTypeRepository, $this->authorizationClass);
     }
 
     /**
@@ -59,7 +57,7 @@ class AuthorizationTypeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param mixed  $contentType
-     * @param string $contentTypeName
+     * @param mixed $contentTypeName
      *
      * @dataProvider provideContentTypeAndName
      */
@@ -71,7 +69,6 @@ class AuthorizationTypeTest extends \PHPUnit_Framework_TestCase
         $formView->vars['value'] = $authorization;
 
         Phake::when($this->contentTypeRepository)->find(Phake::anyParameters())->thenReturn($contentType);
-        Phake::when($this->translationChoiceManager)->choose(Phake::anyParameters())->thenReturn($contentTypeName);
 
         $this->authorizationType->buildView($formView, $form, array());
 
@@ -83,12 +80,13 @@ class AuthorizationTypeTest extends \PHPUnit_Framework_TestCase
      */
     public function provideContentTypeAndName()
     {
+        $names = new ArrayCollection();
         $contentType = Phake::mock('OpenOrchestra\ModelInterface\Model\ContentTypeInterface');
-        Phake::when($contentType)->getNames()->thenReturn(new ArrayCollection());
+        Phake::when($contentType)->getNames()->thenReturn($names);
 
         return array(
             array(null),
-            array($contentType, 'contentTypeName'),
+            array($contentType, $names),
         );
     }
 
