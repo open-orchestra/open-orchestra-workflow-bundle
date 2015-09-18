@@ -12,6 +12,16 @@ class WorkflowFunctionPanelStrategy extends AbstractNavigationPanelStrategy
     const ROLE_ACCESS_WORKFLOWFUNCTION = 'ROLE_ACCESS_WORKFLOWFUNCTION';
 
     /**
+     * @param string $parent
+     * @param int    $weight
+     */
+    public function __construct($parent, $weight)
+    {
+        $this->parent = $parent;
+        $this->weight = $weight;
+    }
+
+    /**
      * @return string
      */
     public function show()
@@ -22,25 +32,9 @@ class WorkflowFunctionPanelStrategy extends AbstractNavigationPanelStrategy
     /**
      * @return string
      */
-    public function getParent()
-    {
-        return self::ADMINISTRATION;
-    }
-
-    /**
-     * @return string
-     */
     public function getName()
     {
         return 'workflow_function';
-    }
-
-    /**
-     * @return int
-     */
-    public function getWeight()
-    {
-        return 110;
     }
 
     /**
