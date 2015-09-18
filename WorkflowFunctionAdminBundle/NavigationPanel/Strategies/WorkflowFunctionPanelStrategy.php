@@ -17,8 +17,7 @@ class WorkflowFunctionPanelStrategy extends AbstractNavigationPanelStrategy
      */
     public function __construct($parent, $weight)
     {
-        $this->parent = $parent;
-        $this->weight = $weight;
+        parent::__construct('workflow_function', self::ROLE_ACCESS_WORKFLOWFUNCTION, $weight, $parent);
     }
 
     /**
@@ -27,21 +26,5 @@ class WorkflowFunctionPanelStrategy extends AbstractNavigationPanelStrategy
     public function show()
     {
         return $this->render('OpenOrchestraWorkflowFunctionAdminBundle:AdministrationPanel:workflowFunctions.html.twig');
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'workflow_function';
-    }
-
-    /**
-     * @return string
-     */
-    public function getRole()
-    {
-        return self::ROLE_ACCESS_WORKFLOWFUNCTION;
     }
 }
