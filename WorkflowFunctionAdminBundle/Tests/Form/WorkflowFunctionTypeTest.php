@@ -12,13 +12,15 @@ class WorkflowFunctionTypeTest extends \PHPUnit_Framework_TestCase
 {
     protected $workflowFunctionClass = 'fakeClass';
     protected $workflowFunctionType;
+    protected $roleRepositoryInterface;
 
     /**
      * Set up the test
      */
     public function setUp()
     {
-        $this->workflowFunctionType = new WorkflowFunctionType($this->workflowFunctionClass);
+        $this->roleRepositoryInterface = Phake::mock('OpenOrchestra\ModelInterface\Repository\RoleRepositoryInterface');
+        $this->workflowFunctionType = new WorkflowFunctionType($this->workflowFunctionClass, $this->roleRepositoryInterface);
     }
 
     /**
