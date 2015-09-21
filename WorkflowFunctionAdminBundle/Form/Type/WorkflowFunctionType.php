@@ -6,6 +6,7 @@ use OpenOrchestra\BackofficeBundle\EventSubscriber\AddSubmitButtonSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use OpenOrchestra\ModelInterface\Repository\RoleRepositoryInterface;
 
 /**
  * Class WorkflowFunctionType
@@ -15,11 +16,13 @@ class WorkflowFunctionType extends AbstractType
     protected $workflowFunctionClass;
 
     /**
-     * @param string $workflowFunctionClass
+     * @param string                  $workflowFunctionClass
+     * @param RoleRepositoryInterface $roleRepositoryInterface
      */
-    public function __construct($workflowFunctionClass)
+    public function __construct($workflowFunctionClass, RoleRepositoryInterface $roleRepositoryInterface)
     {
         $this->workflowFunctionClass = $workflowFunctionClass;
+        $this->roleRepositoryInterface = $roleRepositoryInterface;
     }
 
     /**
@@ -35,7 +38,8 @@ class WorkflowFunctionType extends AbstractType
                 'class' => 'OpenOrchestra\ModelBundle\Document\Role',
                 'property' => 'name',
                 'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.role',
-                'multiple' => true
+                'multiple' => true,
+                'choices' => $this->getChoices(),
         ));
         $builder->addEventSubscriber(new AddSubmitButtonSubscriber());
     }
@@ -50,6 +54,14 @@ class WorkflowFunctionType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => $this->workflowFunctionClass,
         ));
+    }
+
+    /**
+     * Returns roles list for workflow.
+     */
+    protected function getChoices()
+    {
+        return $this->roleRepositoryInterface->findWorkflowRole();
     }
 
     /**
