@@ -15,6 +15,7 @@ class WorkflowFunctionTypeTest extends \PHPUnit_Framework_TestCase
     protected $workflowFunctionType;
     protected $roleRepositoryInterface;
     protected $roles;
+
     /**
      * Set up the test
      */

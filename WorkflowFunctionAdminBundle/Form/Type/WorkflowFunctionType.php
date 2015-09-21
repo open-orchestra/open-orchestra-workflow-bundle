@@ -56,10 +56,14 @@ class WorkflowFunctionType extends AbstractType
         ));
     }
 
+    /**
+     * Returns roles list for workflow.
+     */
     protected function getChoices()
     {
         return $this->roleRepositoryInterface->findWorkflowRole();
     }
+
     /**
      * Returns the name of this type.
      *
