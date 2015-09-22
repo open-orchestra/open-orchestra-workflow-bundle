@@ -4,6 +4,7 @@ namespace OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use OpenOrchestra\Backoffice\Manager\TranslationChoiceManager;
+use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 
 /**
  * Class OrchestraWorkflowFunctionType
@@ -37,7 +38,7 @@ class OrchestraWorkflowFunctionType extends AbstractType
                 'expanded' => true,
                 'required' => false,
                 'class' => $this->workflowFunctionClass,
-                'choice_label' => function ($choice) use ($translationChoiceManager) {
+                'choice_label' => function (WorkflowFunctionInterface $choice) use ($translationChoiceManager) {
                     return $translationChoiceManager->choose($choice->getNames());
                 },
             )

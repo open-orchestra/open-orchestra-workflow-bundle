@@ -14,6 +14,7 @@ class WorkflowFunctionTypeTest extends \PHPUnit_Framework_TestCase
     protected $workflowFunctionClass = 'fakeClass';
     protected $workflowFunctionType;
     protected $roleRepositoryInterface;
+    protected $translateValueInitializer;
     protected $roles;
 
     /**
@@ -29,8 +30,9 @@ class WorkflowFunctionTypeTest extends \PHPUnit_Framework_TestCase
         $this->roles->add($role2);
         $this->roleRepositoryInterface = Phake::mock('OpenOrchestra\ModelInterface\Repository\RoleRepositoryInterface');
         Phake::when($this->roleRepositoryInterface)->findWorkflowRole()->thenReturn($this->roles);
+        $this->translateValueInitializer = Phake::mock('OpenOrchestra\BackofficeBundle\EventListener\TranslateValueInitializerListener');
 
-        $this->workflowFunctionType = new WorkflowFunctionType($this->workflowFunctionClass, $this->roleRepositoryInterface);
+        $this->workflowFunctionType = new WorkflowFunctionType($this->workflowFunctionClass, $this->roleRepositoryInterface, $this->translateValueInitializer);
     }
 
     /**
@@ -53,10 +55,11 @@ class WorkflowFunctionTypeTest extends \PHPUnit_Framework_TestCase
     public function testBuildForm()
     {
         $formBuilderInterface = Phake::mock('Symfony\Component\Form\FormBuilderInterface');
+        Phake::when($formBuilderInterface)->add(Phake::anyParameters())->thenReturn($formBuilderInterface);
 
         $this->workflowFunctionType->buildForm($formBuilderInterface, array());
 
-        Phake::verify($formBuilderInterface)->add('name', 'text', array(
+        Phake::verify($formBuilderInterface)->add('names', 'translated_value_collection', array(
             'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.name'
         ));
         Phake::verify($formBuilderInterface)->add('roles', 'document', array(

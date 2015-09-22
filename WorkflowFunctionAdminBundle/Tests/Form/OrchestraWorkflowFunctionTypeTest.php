@@ -12,13 +12,15 @@ class OrchestraWorkflowFunctionTypeTest extends \PHPUnit_Framework_TestCase
 {
     protected $workflowFunctionClass = 'fakeClass';
     protected $orchestraWorkflowFunction;
+    protected $translationChoiceManager;
 
     /**
      * Set up the test
      */
     public function setUp()
     {
-        $this->orchestraWorkflowFunction = new OrchestraWorkflowFunctionType($this->workflowFunctionClass);
+        $this->translationChoiceManager = Phake::mock('OpenOrchestra\Backoffice\Manager\TranslationChoiceManager');
+        $this->orchestraWorkflowFunction = new OrchestraWorkflowFunctionType($this->workflowFunctionClass, $this->translationChoiceManager);
     }
 
     /**
@@ -29,6 +31,7 @@ class OrchestraWorkflowFunctionTypeTest extends \PHPUnit_Framework_TestCase
         $resolverMock = Phake::mock('Symfony\Component\OptionsResolver\OptionsResolver');
 
         $this->orchestraWorkflowFunction->configureOptions($resolverMock);
+        $translationChoiceManager = $this->translationChoiceManager;
 
         Phake::verify($resolverMock)->setDefaults(
             array(
@@ -36,7 +39,9 @@ class OrchestraWorkflowFunctionTypeTest extends \PHPUnit_Framework_TestCase
                 'expanded' => true,
                 'required' => false,
                 'class' => $this->workflowFunctionClass,
-                'property' => 'name'
+                'choice_label' => function (WorkflowFunctionInterface $choice) use ($translationChoiceManager) {
+                    return $translationChoiceManager->choose($choice->getNames());
+                },
             )
         );
     }
