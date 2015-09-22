@@ -3,23 +3,24 @@ namespace OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use OpenOrchestra\Backoffice\Manager\TranslationChoiceManager;
 
 /**
  * Class OrchestraWorkflowFunctionType
  */
 class OrchestraWorkflowFunctionType extends AbstractType
 {
-    /**
-     * @var string
-     */
-    private $workflowFunctionClass;
+    protected $workflowFunctionClass;
+    protected $translationChoiceManager;
 
     /**
-     * @param $workflowFunctionClass
+     * @param string                   $workflowFunctionClass
+     * @param TranslationChoiceManager $translationChoiceManager
      */
-    public function __construct($workflowFunctionClass)
+    public function __construct($workflowFunctionClass, TranslationChoiceManager $translationChoiceManager)
     {
         $this->workflowFunctionClass = $workflowFunctionClass;
+        $this->translationChoiceManager = $translationChoiceManager;
     }
 
     /**
@@ -29,13 +30,16 @@ class OrchestraWorkflowFunctionType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
+        $translationChoiceManager = $this->translationChoiceManager;
         $resolver->setDefaults(
             array(
                 'multiple' => true,
                 'expanded' => true,
                 'required' => false,
                 'class' => $this->workflowFunctionClass,
-                'property' => 'name'
+                'choice_label' => function ($choice) use ($translationChoiceManager) {
+                    return $translationChoiceManager->choose($choice->getNames());
+                },
             )
         );
     }

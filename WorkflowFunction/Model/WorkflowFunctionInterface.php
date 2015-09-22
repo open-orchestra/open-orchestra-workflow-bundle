@@ -6,11 +6,13 @@ use Doctrine\Common\Collections\Collection;
 use OpenOrchestra\ModelInterface\Model\BlameableInterface;
 use OpenOrchestra\ModelInterface\Model\TimestampableInterface;
 use OpenOrchestra\ModelInterface\Model\RoleInterface;
+use OpenOrchestra\ModelInterface\Model\TranslatedValueInterface;
+use OpenOrchestra\ModelInterface\Model\TranslatedValueContainerInterface;
 
 /**
  * Interface WorkflowFunctionInterface
  */
-interface WorkflowFunctionInterface extends TimestampableInterface, BlameableInterface
+interface WorkflowFunctionInterface extends TimestampableInterface, BlameableInterface, TranslatedValueContainerInterface
 {
     /**
      * @return string
@@ -18,14 +20,26 @@ interface WorkflowFunctionInterface extends TimestampableInterface, BlameableInt
     public function getId();
 
     /**
+     * @param TranslatedValueInterface $name
+     */
+    public function addName(TranslatedValueInterface $name);
+
+    /**
+     * @param TranslatedValueInterface $name
+     */
+    public function removeName(TranslatedValueInterface $name);
+
+    /**
+     * @param string $language
+     *
      * @return string
      */
     public function getName();
 
     /**
-     * @param string $name
+     * @return ArrayCollection
      */
-    public function setName($name);
+    public function getNames();
 
     /**
      * @return Collection

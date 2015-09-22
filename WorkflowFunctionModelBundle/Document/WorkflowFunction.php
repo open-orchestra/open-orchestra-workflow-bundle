@@ -11,6 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 use OpenOrchestra\ModelInterface\Model\RoleInterface;
 use OpenOrchestra\Mapping\Annotations as ORCHESTRA;
+use OpenOrchestra\ModelInterface\Model\TranslatedValueInterface;
 
 /**
  * Class WorkflowFunction
@@ -35,10 +36,10 @@ class WorkflowFunction implements WorkflowFunctionInterface
     /**
      * @var string $name
      *
-     * @ODM\Field(type="string")
-     * @ORCHESTRA\Search(key="name")
+     * @ODM\EmbedMany(targetDocument="OpenOrchestra\ModelInterface\Model\TranslatedValueInterface", strategy="set")
+     * @ORCHESTRA\Search(key="name", type="translatedValue")
      */
-    protected $name;
+    protected $names;
 
     /**
      * @var Collection
@@ -65,6 +66,7 @@ class WorkflowFunction implements WorkflowFunctionInterface
 
     protected function initCollections() {
         $this->roles = new ArrayCollection();
+        $this->names = new ArrayCollection();
     }
 
     /**
@@ -76,19 +78,37 @@ class WorkflowFunction implements WorkflowFunctionInterface
     }
 
     /**
-     * @return string
+     * @param TranslatedValueInterface $name
      */
-    public function getName()
+    public function addName(TranslatedValueInterface $name)
     {
-        return $this->name;
+        $this->names->set($name->getLanguage(), $name);
     }
 
     /**
-     * @param string $name
+     * @param TranslatedValueInterface $name
      */
-    public function setName($name)
+    public function removeName(TranslatedValueInterface $name)
     {
-        $this->name = $name;
+        $this->names->remove($name->getLanguage());
+    }
+
+    /**
+     * @param string $language
+     *
+     * @return string
+     */
+    public function getName($language = 'en')
+    {
+        return $this->names->get($language)->getValue();
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getNames()
+    {
+        return $this->names;
     }
 
     /**
@@ -113,5 +133,15 @@ class WorkflowFunction implements WorkflowFunctionInterface
     public function removeRole(RoleInterface $role)
     {
         $this->roles->remove($role);
+    }
+
+    /**
+     * @return array
+     */
+    public function getTranslatedProperties()
+    {
+        return array(
+            'getNames'
+        );
     }
 }

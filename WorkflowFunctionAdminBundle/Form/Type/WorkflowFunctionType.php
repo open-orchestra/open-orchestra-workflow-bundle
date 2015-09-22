@@ -7,20 +7,30 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use OpenOrchestra\ModelInterface\Repository\RoleRepositoryInterface;
+use OpenOrchestra\BackofficeBundle\EventListener\TranslateValueInitializerListener;
+use Symfony\Component\Form\FormEvents;
 
 /**
  * Class WorkflowFunctionType
  */
 class WorkflowFunctionType extends AbstractType
 {
+    protected $translateValueInitializer;
     protected $workflowFunctionClass;
+    protected $roleRepositoryInterface;
 
     /**
      * @param string                  $workflowFunctionClass
      * @param RoleRepositoryInterface $roleRepositoryInterface
      */
-    public function __construct($workflowFunctionClass, RoleRepositoryInterface $roleRepositoryInterface)
+    public function __construct(
+        $workflowFunctionClass,
+        RoleRepositoryInterface $roleRepositoryInterface,
+        TranslateValueInitializerListener $translateValueInitializer
+
+    )
     {
+        $this->translateValueInitializer = $translateValueInitializer;
         $this->workflowFunctionClass = $workflowFunctionClass;
         $this->roleRepositoryInterface = $roleRepositoryInterface;
     }
@@ -31,16 +41,18 @@ class WorkflowFunctionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', 'text', array(
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, array($this->translateValueInitializer, 'preSetData'));
+        $builder
+            ->add('names', 'translated_value_collection', array(
                 'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.name'
-        ));
-        $builder->add('roles', 'document', array(
+            ))
+            ->add('roles', 'document', array(
                 'class' => 'OpenOrchestra\ModelBundle\Document\Role',
                 'property' => 'name',
                 'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.role',
                 'multiple' => true,
                 'choices' => $this->getChoices(),
-        ));
+            ));
         $builder->addEventSubscriber(new AddSubmitButtonSubscriber());
     }
 
