@@ -6,12 +6,23 @@ use OpenOrchestra\BaseApi\Facade\FacadeInterface;
 use OpenOrchestra\BaseApi\Transformer\AbstractTransformer;
 use OpenOrchestra\WorkflowFunctionAdminBundle\Facade\WorkflowFunctionFacade;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
+use OpenOrchestra\Backoffice\Manager\TranslationChoiceManager;
 
 /**
  * Class WorkflowFunctionTransformer
  */
 class WorkflowFunctionTransformer extends AbstractTransformer
 {
+    protected $translationChoiceManager;
+
+    /**
+     * @param TranslationChoiceManager $translationChoiceManager
+     */
+    public function __construct(TranslationChoiceManager $translationChoiceManager)
+    {
+        $this->translationChoiceManager = $translationChoiceManager;
+    }
+
     /**
      * @param WorkflowFunctionInterface $mixed
      *
@@ -22,7 +33,7 @@ class WorkflowFunctionTransformer extends AbstractTransformer
         $facade = new WorkflowFunctionFacade();
 
         $facade->id = $mixed->getId();
-        $facade->name = $mixed->getName();
+        $facade->name = $this->translationChoiceManager->choose($mixed->getNames());
 
         $facade->addLink('_self', $this->generateRoute(
             'open_orchestra_api_workflow_function_show',

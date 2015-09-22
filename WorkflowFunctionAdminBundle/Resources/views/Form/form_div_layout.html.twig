@@ -6,8 +6,9 @@
                 <thead>
                     <tr>
                         <th>&nbsp;</th>
+                        {{ form.authorizations[0].workflowFunctions.vars.label }}
                         {% for child in form.authorizations[0].workflowFunctions %}
-                            <th>{{ child.vars.label|trans({}, translation_domain)|raw }}</th>
+                            <th>{{ child.vars.label }}</th>
                         {% endfor %}
                         <th>{{ 'open_orchestra_workflow_function_admin.right.owner'|trans({}, translation_domain)|raw }}</th>
                     </tr>
