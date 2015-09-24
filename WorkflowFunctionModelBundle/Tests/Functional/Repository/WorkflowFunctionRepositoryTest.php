@@ -114,7 +114,7 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
     {
         $search = array();
         if (!empty($searchName)) {
-            $search['columns'] = array('name' => $searchName);
+            $search['columns'] = array('names' => $searchName);
         }
         if (!empty($globalSearch)) {
             $search['global'] = $globalSearch;
@@ -131,7 +131,7 @@ class WorkflowFunctionRepositoryTest extends KernelTestCase
     protected function getDescriptionColumnEntity()
     {
         return array(
-            'name' => array('key' => 'name', 'field' => 'name', 'type' => 'string'),
+            'names' => array('key' => 'name', 'field' => 'names', 'type' => 'translatedValue'),
         );
     }
 
