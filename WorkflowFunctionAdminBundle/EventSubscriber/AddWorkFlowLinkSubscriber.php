@@ -8,7 +8,7 @@ use OpenOrchestra\UserAdminBundle\UserFacadeEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Class AddSubmitButtonSubscriber
+ * Class AddWorkFlowLinkSubscriber
  */
 class AddWorkFlowLinkSubscriber implements EventSubscriberInterface
 {
