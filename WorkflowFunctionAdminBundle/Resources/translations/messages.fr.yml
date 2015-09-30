@@ -12,6 +12,8 @@ open_orchestra_workflow_function_admin:
             success: La Fonction de Workflow a bien été sauvegardée
             name: Nom
             role: Rôle
+        workflow_right:
+            success: Les droits ont correctement été mis à jour
     right:
         title: Formulaire des droits
         owner: Propriétaire

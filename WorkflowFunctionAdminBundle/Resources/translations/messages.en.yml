@@ -12,6 +12,8 @@ open_orchestra_workflow_function_admin:
             success: The workflow function has been saved
             name: Name
             role: Role
+        workflow_right:
+            success: The rights have been succefully updated
     right:
         title: Right Form
         owner: Owner
