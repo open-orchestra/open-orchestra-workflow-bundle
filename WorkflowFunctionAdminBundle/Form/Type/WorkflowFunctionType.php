@@ -46,7 +46,7 @@ class WorkflowFunctionType extends AbstractType
                 'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.name'
             ))
             ->add('roles', 'document', array(
-                'class' => 'OpenOrchestra\ModelBundle\Document\Role',
+                'class' => 'OpenOrchestra\ModelInterface\Model\RoleInterface',
                 'property' => 'name',
                 'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.role',
                 'multiple' => true,
