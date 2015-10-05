@@ -28,12 +28,11 @@
         "bin-dir" : "bin"
     },
     "autoload": {
-        "psr-0": {
-            "OpenOrchestra\\WorkflowFunctionBundle": "",
-            "OpenOrchestra\\WorkflowFunctionModelBundle": "",
-            "OpenOrchestra\\WorkflowFunction": "",
-            "OpenOrchestra\\WorkflowFunctionAdminBundle": ""
+        "psr-4": {
+            "OpenOrchestra\\WorkflowFunctionBundle\\": "WorkflowFunctionBundle/",
+            "OpenOrchestra\\WorkflowFunctionModelBundle\\": "WorkflowFunctionModelBundle/",
+            "OpenOrchestra\\WorkflowFunction\\": "WorkflowFunction/",
+            "OpenOrchestra\\WorkflowFunctionAdminBundle\\": "WorkflowFunctionAdminBundle/"
         }
-    },
-    "target-dir": "OpenOrchestra"
+    }
 }
