@@ -5,7 +5,6 @@ namespace OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use OpenOrchestra\ModelInterface\Repository\RoleRepositoryInterface;
 use OpenOrchestra\BackofficeBundle\EventListener\TranslateValueInitializerListener;
 use Symfony\Component\Form\FormEvents;
 
@@ -14,24 +13,20 @@ use Symfony\Component\Form\FormEvents;
  */
 class WorkflowFunctionType extends AbstractType
 {
-    protected $translateValueInitializer;
     protected $workflowFunctionClass;
-    protected $roleRepositoryInterface;
+    protected $translateValueInitializer;
 
     /**
-     * @param string                  $workflowFunctionClass
-     * @param RoleRepositoryInterface $roleRepositoryInterface
+     * @param string                            $workflowFunctionClass
+     * @param TranslateValueInitializerListener $translateValueInitializer
      */
     public function __construct(
         $workflowFunctionClass,
-        RoleRepositoryInterface $roleRepositoryInterface,
         TranslateValueInitializerListener $translateValueInitializer
-
     )
     {
         $this->translateValueInitializer = $translateValueInitializer;
         $this->workflowFunctionClass = $workflowFunctionClass;
-        $this->roleRepositoryInterface = $roleRepositoryInterface;
     }
 
     /**
@@ -45,12 +40,9 @@ class WorkflowFunctionType extends AbstractType
             ->add('names', 'translated_value_collection', array(
                 'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.name'
             ))
-            ->add('roles', 'document', array(
-                'class' => 'OpenOrchestra\ModelBundle\Document\Role',
-                'property' => 'name',
+            ->add('roles', 'orchestra_role', array(
                 'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.role',
                 'multiple' => true,
-                'choices' => $this->getChoices(),
             ));
         if (array_key_exists('disabled', $options)) {
             $builder->setAttribute('disabled', $options['disabled']);
@@ -67,14 +59,6 @@ class WorkflowFunctionType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => $this->workflowFunctionClass,
         ));
-    }
-
-    /**
-     * Returns roles list for workflow.
-     */
-    protected function getChoices()
-    {
-        return $this->roleRepositoryInterface->findWorkflowRole();
     }
 
     /**

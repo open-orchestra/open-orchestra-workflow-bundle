@@ -13,7 +13,6 @@ class WorkflowFunctionTypeTest extends \PHPUnit_Framework_TestCase
 {
     protected $workflowFunctionClass = 'fakeClass';
     protected $workflowFunctionType;
-    protected $roleRepositoryInterface;
     protected $translateValueInitializer;
     protected $roles;
 
@@ -22,17 +21,9 @@ class WorkflowFunctionTypeTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $role1 = Phake::mock('OpenOrchestra\ModelInterface\Model\RoleInterface');
-        $role2 = Phake::mock('OpenOrchestra\ModelInterface\Model\RoleInterface');
-
-        $this->roles = new ArrayCollection();
-        $this->roles->add($role1);
-        $this->roles->add($role2);
-        $this->roleRepositoryInterface = Phake::mock('OpenOrchestra\ModelInterface\Repository\RoleRepositoryInterface');
-        Phake::when($this->roleRepositoryInterface)->findWorkflowRole()->thenReturn($this->roles);
         $this->translateValueInitializer = Phake::mock('OpenOrchestra\BackofficeBundle\EventListener\TranslateValueInitializerListener');
 
-        $this->workflowFunctionType = new WorkflowFunctionType($this->workflowFunctionClass, $this->roleRepositoryInterface, $this->translateValueInitializer);
+        $this->workflowFunctionType = new WorkflowFunctionType($this->workflowFunctionClass, $this->translateValueInitializer);
     }
 
     /**
@@ -62,12 +53,9 @@ class WorkflowFunctionTypeTest extends \PHPUnit_Framework_TestCase
         Phake::verify($formBuilderInterface)->add('names', 'translated_value_collection', array(
             'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.name'
         ));
-        Phake::verify($formBuilderInterface)->add('roles', 'document', array(
-            'class' => 'OpenOrchestra\ModelBundle\Document\Role',
-            'property' => 'name',
+        Phake::verify($formBuilderInterface)->add('roles', 'orchestra_role', array(
             'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.role',
-            'multiple' => true,
-            'choices' => $this->roles,
+            'multiple' => true
         ));
     }
 
