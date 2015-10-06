@@ -45,7 +45,7 @@ class WorkflowFunctionType extends AbstractType
             ->add('names', 'translated_value_collection', array(
                 'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.name'
             ))
-            ->add('roles', 'role_choice', array(
+            ->add('roles', 'orchestra_role', array(
                 'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.role',
                 'multiple' => true,
             ));
