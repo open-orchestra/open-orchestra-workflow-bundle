@@ -9,7 +9,6 @@ services:
         class: %open_orchestra_workflow_function_admin.type.workflow_function.class%
         arguments:
             - %open_orchestra_workflow_function.document.workflow_function.class%
-            - @open_orchestra_model.repository.role
             - @open_orchestra_backoffice.listener.translate_value_initializer
         tags:
             - { name: form.type, alias: workflow_function}
