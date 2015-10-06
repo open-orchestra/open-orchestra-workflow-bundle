@@ -45,12 +45,9 @@ class WorkflowFunctionType extends AbstractType
             ->add('names', 'translated_value_collection', array(
                 'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.name'
             ))
-            ->add('roles', 'document', array(
-                'class' => 'OpenOrchestra\ModelBundle\Document\Role',
-                'property' => 'name',
+            ->add('roles', 'role_choice', array(
                 'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.role',
                 'multiple' => true,
-                'choices' => $this->getChoices(),
             ));
         if (array_key_exists('disabled', $options)) {
             $builder->setAttribute('disabled', $options['disabled']);
