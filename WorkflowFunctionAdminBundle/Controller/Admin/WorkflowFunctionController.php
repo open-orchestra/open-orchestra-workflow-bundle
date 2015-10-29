@@ -25,7 +25,7 @@ class WorkflowFunctionController extends AbstractAdminController
      * @Config\Route("/form/{workflowFunctionId}", name="open_orchestra_backoffice_workflow_function_form")
      * @Config\Method({"GET", "POST"})
      *
-     * @Config\Security("has_role('ROLE_ACCESS_WORKFLOWFUNCTION')")
+     * @Config\Security("has_role('ROLE_ACCESS_UPDATE_WORKFLOWFUNCTION')")
      *
      * @return Response
      */
@@ -53,7 +53,7 @@ class WorkflowFunctionController extends AbstractAdminController
      * @Config\Route("/new", name="open_orchestra_backoffice_workflow_function_new")
      * @Config\Method({"GET", "POST"})
      *
-     * @Config\Security("has_role('ROLE_ACCESS_WORKFLOWFUNCTION')")
+     * @Config\Security("has_role('ROLE_ACCESS_CREATE_WORKFLOWFUNCTION')")
      *
      * @return Response
      */

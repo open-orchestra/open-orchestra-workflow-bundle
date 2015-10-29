@@ -4,13 +4,14 @@ namespace OpenOrchestra\WorkflowFunctionAdminBundle\Transformer;
 
 use Doctrine\Common\Collections\Collection;
 use OpenOrchestra\BaseApi\Facade\FacadeInterface;
-use OpenOrchestra\BaseApi\Transformer\AbstractTransformer;
+use OpenOrchestra\BaseApi\Transformer\AbstractSecurityCheckerAwareTransformer;
 use OpenOrchestra\WorkflowFunctionAdminBundle\Facade\WorkflowFunctionCollectionFacade;
+use OpenOrchestra\WorkflowFunctionAdminBundle\NavigationPanel\Strategies\WorkflowFunctionPanelStrategy;
 
 /**
  * Class WorkflowFunctionCollectionTransformer
  */
-class WorkflowFunctionCollectionTransformer extends AbstractTransformer
+class WorkflowFunctionCollectionTransformer extends AbstractSecurityCheckerAwareTransformer
 {
     /**
      * @param Collection $mixed
@@ -25,10 +26,12 @@ class WorkflowFunctionCollectionTransformer extends AbstractTransformer
             $facade->addWorkflowFunction($this->getTransformer('workflow_function')->transform($workflowFunction));
         }
 
-        $facade->addLink('_self_add', $this->generateRoute(
-            'open_orchestra_backoffice_workflow_function_new',
-            array()
-        ));
+        if ($this->authorizationChecker->isGranted(WorkflowFunctionPanelStrategy::ROLE_ACCESS_CREATE_WORKFLOWFUNCTION)) {
+            $facade->addLink('_self_add', $this->generateRoute(
+                'open_orchestra_backoffice_workflow_function_new',
+                array()
+            ));
+        }
 
         return $facade;
     }

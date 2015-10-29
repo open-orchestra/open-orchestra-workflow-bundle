@@ -3,23 +3,26 @@
 namespace OpenOrchestra\WorkflowFunctionAdminBundle\Transformer;
 
 use OpenOrchestra\BaseApi\Facade\FacadeInterface;
-use OpenOrchestra\BaseApi\Transformer\AbstractTransformer;
+use OpenOrchestra\BaseApi\Transformer\AbstractSecurityCheckerAwareTransformer;
 use OpenOrchestra\WorkflowFunctionAdminBundle\Facade\WorkflowFunctionFacade;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 use OpenOrchestra\Backoffice\Manager\TranslationChoiceManager;
+use OpenOrchestra\WorkflowFunctionAdminBundle\NavigationPanel\Strategies\WorkflowFunctionPanelStrategy;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
  * Class WorkflowFunctionTransformer
  */
-class WorkflowFunctionTransformer extends AbstractTransformer
+class WorkflowFunctionTransformer extends AbstractSecurityCheckerAwareTransformer
 {
     protected $translationChoiceManager;
 
     /**
      * @param TranslationChoiceManager $translationChoiceManager
      */
-    public function __construct(TranslationChoiceManager $translationChoiceManager)
+    public function __construct(TranslationChoiceManager $translationChoiceManager, AuthorizationCheckerInterface $authorizationChecker)
     {
+        parent::__construct($authorizationChecker);
         $this->translationChoiceManager = $translationChoiceManager;
     }
 
@@ -39,14 +42,18 @@ class WorkflowFunctionTransformer extends AbstractTransformer
             'open_orchestra_api_workflow_function_show',
             array('workflowFunctionId' => $mixed->getId())
         ));
-        $facade->addLink('_self_delete', $this->generateRoute(
-            'open_orchestra_api_workflow_function_delete',
-            array('workflowFunctionId' => $mixed->getId())
-        ));
-        $facade->addLink('_self_form', $this->generateRoute(
-            'open_orchestra_backoffice_workflow_function_form',
-            array('workflowFunctionId' => $mixed->getId())
-        ));
+        if ($this->authorizationChecker->isGranted(WorkflowFunctionPanelStrategy::ROLE_ACCESS_DELETE_WORKFLOWFUNCTION)) {
+            $facade->addLink('_self_delete', $this->generateRoute(
+                'open_orchestra_api_workflow_function_delete',
+                array('workflowFunctionId' => $mixed->getId())
+            ));
+        }
+        if ($this->authorizationChecker->isGranted(WorkflowFunctionPanelStrategy::ROLE_ACCESS_UPDATE_WORKFLOWFUNCTION)) {
+            $facade->addLink('_self_form', $this->generateRoute(
+                'open_orchestra_backoffice_workflow_function_form',
+                array('workflowFunctionId' => $mixed->getId())
+            ));
+        }
 
         return $facade;
     }

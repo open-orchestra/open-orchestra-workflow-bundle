@@ -22,6 +22,9 @@ class RoleCompilerPass extends AbstractRoleCompilerPass
     {
         $this->addRoles($container, array(
             WorkflowFunctionPanelStrategy::ROLE_ACCESS_WORKFLOWFUNCTION,
+            WorkflowFunctionPanelStrategy::ROLE_ACCESS_CREATE_WORKFLOWFUNCTION,
+            WorkflowFunctionPanelStrategy::ROLE_ACCESS_UPDATE_WORKFLOWFUNCTION,
+            WorkflowFunctionPanelStrategy::ROLE_ACCESS_DELETE_WORKFLOWFUNCTION,
         ));
     }
 }

@@ -74,7 +74,7 @@ class WorkflowFunctionController extends BaseController
      * @Config\Route("/{workflowFunctionId}/delete", name="open_orchestra_api_workflow_function_delete")
      * @Config\Method({"DELETE"})
      *
-     * @Config\Security("has_role('ROLE_ACCESS_WORKFLOWFUNCTION')")
+     * @Config\Security("has_role('ROLE_ACCESS_DELETE_WORKFLOWFUNCTION')")
      *
      * @return Response
      */

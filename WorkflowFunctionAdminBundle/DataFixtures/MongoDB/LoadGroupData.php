@@ -24,6 +24,9 @@ class LoadGroupData extends AbstractFixture implements OrderedFixtureInterface, 
         foreach (array('group2', 'group3') as $groupName) {
             $group = $this->getReference($groupName);
             $group->addRole(WorkflowFunctionPanelStrategy::ROLE_ACCESS_WORKFLOWFUNCTION);
+            $group->addRole(WorkflowFunctionPanelStrategy::ROLE_ACCESS_CREATE_WORKFLOWFUNCTION);
+            $group->addRole(WorkflowFunctionPanelStrategy::ROLE_ACCESS_UPDATE_WORKFLOWFUNCTION);
+            $group->addRole(WorkflowFunctionPanelStrategy::ROLE_ACCESS_DELETE_WORKFLOWFUNCTION);
         }
 
         $manager->flush();

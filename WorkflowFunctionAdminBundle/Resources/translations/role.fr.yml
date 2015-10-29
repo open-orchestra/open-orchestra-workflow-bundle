@@ -1,2 +1,5 @@
 open_orchestra_role:
     role_access_workflowfunction: Gérer les fonctions de workflow
+    role_access_create_workflowfunction: Créer une fonction de workflow
+    role_access_update_workflowfunction: Editer une fonction de workflow
+    role_access_delete_workflowfunction: Supprimer une fonction de workflow
