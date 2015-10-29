@@ -1,0 +1,2 @@
+parameters:
+    open_orchestra_backoffice.collector.role.workflow_role_in_group: false
