@@ -49,13 +49,12 @@ class WorkflowRightController extends AbstractAdminController
     {
         $form = $this->createForm('workflow_right', $workflowRight, array('action' => $url));
         $form->handleRequest($request);
-        $this->handleForm(
+        if($this->handleForm(
             $form,
             $this->get('translator')->trans('open_orchestra_workflow_function_admin.form.workflow_right.success'),
-            $workflowRight
-        );
-
-        $this->dispatchEvent($workflowRightEvents, new WorkflowRightEvent($workflowRight));
+            $workflowRight)) {
+            $this->dispatchEvent($workflowRightEvents, new WorkflowRightEvent($workflowRight));
+        }
 
         $title = 'open_orchestra_workflow_function_admin.right.title';
         $title = $this->get('translator')->trans($title);
