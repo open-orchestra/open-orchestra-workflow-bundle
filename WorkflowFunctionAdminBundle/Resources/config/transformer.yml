@@ -5,11 +5,14 @@ parameters:
 services:
     open_orchestra_workflow_function_admin.transformer.workflow_function_collection:
         class: %open_orchestra_workflow_function_admin.transformer.workflow_function_collection.class%
+        arguments:
+            - @security.authorization_checker
         tags:
             - { name: open_orchestra_api.transformer.strategy}
     open_orchestra_workflow_function_admin.transformer.log:
         class: %open_orchestra_workflow_function_admin.transformer.workflow_function.class%
         arguments:
             - @open_orchestra_backoffice.manager.translation_choice
+            - @security.authorization_checker
         tags:
             - { name: open_orchestra_api.transformer.strategy}

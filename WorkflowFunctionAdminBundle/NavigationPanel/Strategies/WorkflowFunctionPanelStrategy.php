@@ -10,6 +10,9 @@ use OpenOrchestra\Backoffice\NavigationPanel\Strategies\AbstractNavigationPanelS
 class WorkflowFunctionPanelStrategy extends AbstractNavigationPanelStrategy
 {
     const ROLE_ACCESS_WORKFLOWFUNCTION = 'ROLE_ACCESS_WORKFLOWFUNCTION';
+    const ROLE_ACCESS_CREATE_WORKFLOWFUNCTION = 'ROLE_ACCESS_CREATE_WORKFLOWFUNCTION';
+    const ROLE_ACCESS_UPDATE_WORKFLOWFUNCTION = 'ROLE_ACCESS_UPDATE_WORKFLOWFUNCTION';
+    const ROLE_ACCESS_DELETE_WORKFLOWFUNCTION = 'ROLE_ACCESS_DELETE_WORKFLOWFUNCTION';
 
     /**
      * @param string $parent
