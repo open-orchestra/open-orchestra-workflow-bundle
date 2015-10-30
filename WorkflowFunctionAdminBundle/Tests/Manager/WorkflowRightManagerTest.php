@@ -49,17 +49,4 @@ class WorkflowRightManagerTest extends \PHPUnit_Framework_TestCase
         Phake::verify($this->workflowRightRepository, Phake::times(1))->findOneByUserId($userId);
         Phake::verify($this->authorizationWorkflowRightManager, Phake::times(1))->cleanAuthorization(Phake::anyParameters());
     }
-
-    /**
-     * @return array
-     */
-    public function provideWorkflowRight()
-    {
-        return array(
-            array(array('fake_reference', 'fake_both'), array('fake_authorization', 'fake_both'), 1, 1),
-            array(array('fake_reference'), array('fake_authorization'), 1, 1),
-            array(array(), array('fake_authorization', 'fake_both'), 2, 0),
-            array(array('fake_reference', 'fake_both'), array(), 0, 2),
-        );
-    }
 }
