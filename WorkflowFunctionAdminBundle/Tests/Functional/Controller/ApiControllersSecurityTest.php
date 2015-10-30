@@ -21,7 +21,6 @@ class ApiControllersSecurityTest extends AbstractControllerTest
     public function testApi($url, $method = 'GET')
     {
         $this->client->request($method, $url);
-
         $this->assertEquals(403, $this->client->getResponse()->getStatusCode());
     }
 
@@ -34,7 +33,6 @@ class ApiControllersSecurityTest extends AbstractControllerTest
             array('/api/workflow-function/root'),
             array('/api/workflow-function'),
             array('/api/workflow-function/root/delete', 'DELETE'),
-
         );
     }
 }

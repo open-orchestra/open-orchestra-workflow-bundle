@@ -4,6 +4,7 @@ namespace OpenOrchestra\WorkflowFunctionAdminBundle\Tests\Functional\Controller;
 
 use OpenOrchestra\BackofficeBundle\Tests\Functional\Controller\AbstractControllerTest;
 
+
 /**
  * Class FormControllersSecurityTest
  */
