@@ -86,7 +86,7 @@ class AddWorkFlowFunctionSubscriberTest extends \PHPUnit_Framework_TestCase
     {
         $roles = new ArrayCollection();
 
-        foreach($newRoles as $newRole) {
+        foreach ($newRoles as $newRole) {
             $role = Phake::mock('OpenOrchestra\ModelInterface\Model\RoleInterface');
             Phake::when($role)->getName()->thenReturn($newRole);
             $roles->add($role);
@@ -97,7 +97,7 @@ class AddWorkFlowFunctionSubscriberTest extends \PHPUnit_Framework_TestCase
 
         $this->subscriber->postUserUpdate($this->workflowRightEvent);
 
-        foreach($expectingRoles as $expectingRole) {
+        foreach ($expectingRoles as $expectingRole) {
             Phake::verify($this->user)->addRole($expectingRole);
         }
     }

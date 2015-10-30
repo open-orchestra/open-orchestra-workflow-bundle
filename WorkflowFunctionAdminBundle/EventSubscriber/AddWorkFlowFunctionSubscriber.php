@@ -36,20 +36,20 @@ class AddWorkFlowFunctionSubscriber implements EventSubscriberInterface
         $newRoles = array();
 
         $authorizations = $workfolwRight->getAuthorizations();
-        foreach($authorizations as $authorization) {
+        foreach ($authorizations as $authorization) {
             $workflowFunctions = $authorization->getWorkflowFunctions();
-            foreach($workflowFunctions as $workflowFunction) {
+            foreach ($workflowFunctions as $workflowFunction) {
                 $roles = $workflowFunction->getRoles();
-                foreach($roles as $role) {
+                foreach ($roles as $role) {
                     $newRoles[] = $role->getName();
                 }
             }
         }
         $newRoles = array_diff(array_unique($newRoles), $user->getRoles());
-        foreach($newRoles as $newRole) {
+        foreach ($newRoles as $newRole) {
             $user->addRole($newRole);
         }
-        $this->documentManager->flush();
+        $this->documentManager->flush($user);
     }
 
     /**
