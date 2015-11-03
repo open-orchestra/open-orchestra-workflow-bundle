@@ -24,7 +24,7 @@ class WorkflowRightController extends AbstractAdminController
      * @Config\Route("/form/{userId}", name="open_orchestra_backoffice_workflow_right_form")
      * @Config\Method({"GET", "POST"})
      *
-     * @Config\Security("has_role('ROLE_ACCESS_USER')")
+     * @Config\Security("is_granted('ROLE_ACCESS_USER')")
      *
      * @return Response
      */
