@@ -7,6 +7,8 @@ use OpenOrchestra\BackofficeBundle\Tests\Functional\Controller\AbstractControlle
 
 /**
  * Class FormControllersSecurityTest
+ *
+ * @group securityCheck
  */
 class FormControllersSecurityTest extends AbstractControllerTest
 {
