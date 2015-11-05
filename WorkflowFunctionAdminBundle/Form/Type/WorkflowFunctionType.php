@@ -37,7 +37,7 @@ class WorkflowFunctionType extends AbstractType
     {
         $builder->addEventListener(FormEvents::PRE_SET_DATA, array($this->translateValueInitializer, 'preSetData'));
         $builder
-            ->add('names', 'translated_value_collection', array(
+            ->add('names', 'oo_translated_value_collection', array(
                 'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.name'
             ))
             ->add('roles', 'orchestra_role', array(
