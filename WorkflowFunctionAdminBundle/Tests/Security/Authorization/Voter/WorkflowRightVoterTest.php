@@ -99,8 +99,10 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
     public function provideAttributeAndSupport()
     {
         return array(
-            array('test', true),
-            array(array(), false)
+            array('test', false),
+            array('ROLE_ACCESS', true),
+            array('ROLE_', true),
+            array('5640af7a02b0cf39178b4598', false),
         );
     }
 

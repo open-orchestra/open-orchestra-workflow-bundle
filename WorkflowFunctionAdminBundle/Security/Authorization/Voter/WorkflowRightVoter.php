@@ -38,7 +38,7 @@ class WorkflowRightVoter implements VoterInterface
      */
     public function supportsAttribute($attribute)
     {
-        return is_string($attribute);
+        return strpos($attribute, 'ROLE_') === 0;
     }
 
     /**
@@ -70,10 +70,15 @@ class WorkflowRightVoter implements VoterInterface
         $user = $token->getUser();
         $isOrchestraUser = $user instanceof UserInterface;
         if ($isOrchestraUser && $user->isSuperAdmin()) {
-            return VoterInterface::ACCESS_GRANTED;
+            return self::ACCESS_GRANTED;
         }
         if (!$this->supportsClass($object)) {
-            return VoterInterface::ACCESS_ABSTAIN;
+            return self::ACCESS_ABSTAIN;
+        }
+        foreach ($attributes as $role) {
+            if ($this->supportsAttribute($role)) {
+                return self::ACCESS_ABSTAIN;
+            }
         }
         if ($isOrchestraUser) {
             $isOwner = $object instanceof BlameableInterface && $object->getCreatedBy() == $user->getUsername();
