@@ -87,7 +87,7 @@ class WorkflowFunctionController extends AbstractAdminController
     protected function generateForm(WorkflowFunctionInterface $workflowFunction, $url)
     {
         $form = $this->createForm(
-            'workflow_function',
+            'oo_workflow_function',
             $workflowFunction,
             array('action' => $url)
         );

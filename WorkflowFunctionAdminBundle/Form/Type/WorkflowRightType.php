@@ -28,7 +28,7 @@ class WorkflowRightType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('authorizations', 'collection', array(
-            'type' => 'authorization',
+            'type' => 'oo_authorization',
             'label' => false,
             'required' => false,
         ));
@@ -57,7 +57,7 @@ class WorkflowRightType extends AbstractType
      */
     public function getName()
     {
-        return 'workflow_right';
+        return 'oo_workflow_right';
     }
 
 }

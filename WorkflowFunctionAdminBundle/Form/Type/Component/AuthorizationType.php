@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type;
+namespace OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type\Component;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormView;
@@ -39,7 +39,7 @@ class AuthorizationType extends AbstractType
             'label' => false,
             'required' => false
         ));
-        $builder->add('workflowFunctions', 'orchestra_workflow_function', array(
+        $builder->add('workflowFunctions', 'oo_workflow_function_choice', array(
             'label' => false,
             'required' => false
         ));
@@ -82,7 +82,7 @@ class AuthorizationType extends AbstractType
      */
     public function getName()
     {
-        return 'authorization';
+        return 'oo_authorization';
     }
 
 }
