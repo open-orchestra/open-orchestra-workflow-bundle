@@ -1,9 +1,9 @@
 <?php
 
-namespace OpenOrchestra\BackofficeBundle\Tests\Form\Type;
+namespace OpenOrchestra\BackofficeBundle\Tests\Form\Type\Component;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type\AuthorizationType;
+use OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type\Component\AuthorizationType;
 use Phake;
 
 /**
@@ -95,6 +95,6 @@ class AuthorizationTypeTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetName()
     {
-        $this->assertEquals('authorization', $this->authorizationType->getName());
+        $this->assertEquals('oo_authorization', $this->authorizationType->getName());
     }
 }

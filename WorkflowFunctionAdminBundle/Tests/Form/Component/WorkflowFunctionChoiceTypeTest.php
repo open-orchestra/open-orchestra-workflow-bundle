@@ -1,14 +1,14 @@
 <?php
 
-namespace OpenOrchestra\BackofficeBundle\Tests\Form\Type;
+namespace OpenOrchestra\BackofficeBundle\Tests\Form\Type\Component;
 
-use OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type\OrchestraWorkflowFunctionType;
+use OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type\Component\WorkflowFunctionChoiceType;
 use Phake;
 
 /**
- * Description of OrchestraWorkflowFunctionTypeTest
+ * Description of WorkflowFunctionChoiceTypeTest
  */
-class OrchestraWorkflowFunctionTypeTest extends \PHPUnit_Framework_TestCase
+class WorkflowFunctionChoiceTypeTest extends \PHPUnit_Framework_TestCase
 {
     protected $workflowFunctionClass = 'fakeClass';
     protected $orchestraWorkflowFunction;
@@ -20,7 +20,7 @@ class OrchestraWorkflowFunctionTypeTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->translationChoiceManager = Phake::mock('OpenOrchestra\Backoffice\Manager\TranslationChoiceManager');
-        $this->orchestraWorkflowFunction = new OrchestraWorkflowFunctionType($this->workflowFunctionClass, $this->translationChoiceManager);
+        $this->orchestraWorkflowFunction = new WorkflowFunctionChoiceType($this->workflowFunctionClass, $this->translationChoiceManager);
     }
 
     /**
@@ -59,6 +59,6 @@ class OrchestraWorkflowFunctionTypeTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetName()
     {
-        $this->assertEquals('orchestra_workflow_function', $this->orchestraWorkflowFunction->getName());
+        $this->assertEquals('oo_workflow_function_choice', $this->orchestraWorkflowFunction->getName());
     }
 }

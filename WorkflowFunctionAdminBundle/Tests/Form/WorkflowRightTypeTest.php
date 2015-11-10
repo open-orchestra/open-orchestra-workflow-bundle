@@ -52,6 +52,6 @@ class WorkflowRightTypeTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetName()
     {
-        $this->assertEquals('workflow_right', $this->workflowRightType->getName());
+        $this->assertEquals('oo_workflow_right', $this->workflowRightType->getName());
     }
 }

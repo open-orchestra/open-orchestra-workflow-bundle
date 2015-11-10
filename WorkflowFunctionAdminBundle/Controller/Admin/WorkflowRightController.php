@@ -47,7 +47,7 @@ class WorkflowRightController extends AbstractAdminController
      */
     protected function generateForm(Request $request, WorkflowRightInterface $workflowRight, $url, $workflowRightEvents)
     {
-        $form = $this->createForm('workflow_right', $workflowRight, array('action' => $url));
+        $form = $this->createForm('oo_workflow_right', $workflowRight, array('action' => $url));
         $form->handleRequest($request);
         if ($this->handleForm(
             $form,

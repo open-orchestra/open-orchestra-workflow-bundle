@@ -1,5 +1,5 @@
 <?php
-namespace OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type;
+namespace OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type\Component;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -7,9 +7,9 @@ use OpenOrchestra\Backoffice\Manager\TranslationChoiceManager;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 
 /**
- * Class OrchestraWorkflowFunctionType
+ * Class WorkflowFunctionChoiceType
  */
-class OrchestraWorkflowFunctionType extends AbstractType
+class WorkflowFunctionChoiceType extends AbstractType
 {
     protected $workflowFunctionClass;
     protected $translationChoiceManager;
@@ -66,6 +66,6 @@ class OrchestraWorkflowFunctionType extends AbstractType
      */
     public function getName()
     {
-        return 'orchestra_workflow_function';
+        return 'oo_workflow_function_choice';
     }
 }

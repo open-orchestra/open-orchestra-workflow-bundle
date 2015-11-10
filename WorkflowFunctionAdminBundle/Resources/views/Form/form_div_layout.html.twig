@@ -1,4 +1,4 @@
-{% block workflow_right_widget %}
+{% block oo_workflow_right_widget %}
     {% spaceless %}
         <div class="table-responsive">
             <table class="table table-bordered table-striped workflow-right-widget">
@@ -39,13 +39,13 @@
     {% endspaceless %}
 {% endblock %}
 
-{% block authorization_widget %}
+{% block oo_authorization_widget %}
     {% spaceless %}
         {{ form_widget(form.workflowFunctions) }}
     {% endspaceless %}
 {% endblock %}
 
-{% block orchestra_workflow_function_widget %}
+{% block oo_workflow_function_choice_widget %}
     {% spaceless %}
         {% for child in form %}
             <td>
