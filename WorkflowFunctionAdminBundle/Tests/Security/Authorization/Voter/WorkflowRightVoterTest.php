@@ -99,21 +99,23 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
     public function provideAttributeAndSupport()
     {
         return array(
-            array('test', true),
-            array(array(), false)
+            array('test', false),
+            array('ROLE_ACCESS', true),
+            array('ROLE_', true),
+            array('5640af7a02b0cf39178b4598', false),
         );
     }
 
     /**
+     * @param string $accessResponse
      * @param mixed  $object
      * @param array  $arrayId
      * @param array  $attributes
-     * @param string $accessResponse
      * @param bool   $superAdmin
      *
      * @dataProvider provideObject
      */
-    public function testVote($object, $arrayId, $attributes, $accessResponse, $superAdmin = false)
+    public function testVote($accessResponse, $object, $arrayId, $attributes, $superAdmin = false)
     {
         $workflowRight = Phake::mock('OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface');
         $authorizations = new ArrayCollection();
@@ -195,16 +197,24 @@ class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
         );
         $attributes5 = array('fakeFunctionId0');
 
+        $attributesRoleAccess = array('ROLE_ACCESS_UPDATE_FOO');
+
         return array(
-            array(Phake::mock('stdClass'), array(), array(), VoterInterface::ACCESS_ABSTAIN),
-            array($object0, $workflowRight0, $attributes0, VoterInterface::ACCESS_GRANTED),
-            array($object1, $workflowRight1, $attributes1, VoterInterface::ACCESS_DENIED),
-            array($object2, $workflowRight2, $attributes2, VoterInterface::ACCESS_GRANTED),
-            array($object3, $workflowRight3, $attributes3, VoterInterface::ACCESS_DENIED),
-            array($object4, $workflowRight4, $attributes4, VoterInterface::ACCESS_DENIED),
-            array($object5, $workflowRight5, $attributes5, VoterInterface::ACCESS_DENIED),
-            array(Phake::mock('stdClass'), array(), array(), VoterInterface::ACCESS_GRANTED, true),
-            array($object1, $workflowRight1, $attributes1, VoterInterface::ACCESS_GRANTED, true),
+            array(VoterInterface::ACCESS_ABSTAIN, Phake::mock('stdClass'), array(), array()),
+            array(VoterInterface::ACCESS_GRANTED, $object0, $workflowRight0, $attributes0),
+            array(VoterInterface::ACCESS_DENIED, $object1, $workflowRight1, $attributes1),
+            array(VoterInterface::ACCESS_GRANTED, $object2, $workflowRight2, $attributes2),
+            array(VoterInterface::ACCESS_DENIED, $object3, $workflowRight3, $attributes3),
+            array(VoterInterface::ACCESS_DENIED, $object4, $workflowRight4, $attributes4),
+            array(VoterInterface::ACCESS_DENIED, $object5, $workflowRight5, $attributes5),
+            array(VoterInterface::ACCESS_ABSTAIN, $object0, $workflowRight0, $attributesRoleAccess),
+            array(VoterInterface::ACCESS_ABSTAIN, $object1, $workflowRight1, $attributesRoleAccess),
+            array(VoterInterface::ACCESS_ABSTAIN, $object2, $workflowRight2, $attributesRoleAccess),
+            array(VoterInterface::ACCESS_ABSTAIN, $object3, $workflowRight3, $attributesRoleAccess),
+            array(VoterInterface::ACCESS_ABSTAIN, $object4, $workflowRight4, $attributesRoleAccess),
+            array(VoterInterface::ACCESS_ABSTAIN, $object5, $workflowRight5, $attributesRoleAccess),
+            array(VoterInterface::ACCESS_GRANTED, Phake::mock('stdClass'), array(), array(), true),
+            array(VoterInterface::ACCESS_GRANTED, $object1, $workflowRight1, $attributes1, true),
         );
     }
 }

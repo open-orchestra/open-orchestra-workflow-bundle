@@ -4,7 +4,7 @@ services:
     open_orchestra_workflow_function_admin.authorize_status_change.workflow_right:
         class: %open_orchestra_workflow_function_admin.authorize_status_change.workflow_right.class%
         arguments:
-            - @security.context
+            - @security.authorization_checker
             - @open_orchestra_model.repository.role
             - @open_orchestra_workflow_function.repository.workflow_function
         tags:
