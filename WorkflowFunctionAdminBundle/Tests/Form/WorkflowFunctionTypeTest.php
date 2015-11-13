@@ -53,7 +53,7 @@ class WorkflowFunctionTypeTest extends \PHPUnit_Framework_TestCase
         Phake::verify($formBuilderInterface)->add('names', 'oo_translated_value_collection', array(
             'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.name'
         ));
-        Phake::verify($formBuilderInterface)->add('roles', 'oo_orchestra_role', array(
+        Phake::verify($formBuilderInterface)->add('roles', 'oo_workflow_role_choice', array(
             'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.role',
             'multiple' => true
         ));
