@@ -5,7 +5,6 @@ namespace OpenOrchestra\WorkflowFunctionAdminBundle\Transformer;
 use Doctrine\Common\Collections\Collection;
 use OpenOrchestra\BaseApi\Facade\FacadeInterface;
 use OpenOrchestra\BaseApi\Transformer\AbstractSecurityCheckerAwareTransformer;
-use OpenOrchestra\WorkflowFunctionAdminBundle\Facade\WorkflowFunctionCollectionFacade;
 use OpenOrchestra\WorkflowFunctionAdminBundle\NavigationPanel\Strategies\WorkflowFunctionPanelStrategy;
 
 /**
@@ -20,7 +19,7 @@ class WorkflowFunctionCollectionTransformer extends AbstractSecurityCheckerAware
      */
     public function transform($mixed)
     {
-        $facade = new WorkflowFunctionCollectionFacade();
+        $facade = $this->newFacade();
 
         foreach ($mixed as $workflowFunction) {
             $facade->addWorkflowFunction($this->getTransformer('workflow_function')->transform($workflowFunction));

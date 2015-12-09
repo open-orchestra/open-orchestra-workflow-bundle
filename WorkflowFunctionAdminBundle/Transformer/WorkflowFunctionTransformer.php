@@ -4,7 +4,6 @@ namespace OpenOrchestra\WorkflowFunctionAdminBundle\Transformer;
 
 use OpenOrchestra\BaseApi\Facade\FacadeInterface;
 use OpenOrchestra\BaseApi\Transformer\AbstractSecurityCheckerAwareTransformer;
-use OpenOrchestra\WorkflowFunctionAdminBundle\Facade\WorkflowFunctionFacade;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 use OpenOrchestra\Backoffice\Manager\TranslationChoiceManager;
 use OpenOrchestra\WorkflowFunctionAdminBundle\NavigationPanel\Strategies\WorkflowFunctionPanelStrategy;
@@ -18,11 +17,16 @@ class WorkflowFunctionTransformer extends AbstractSecurityCheckerAwareTransforme
     protected $translationChoiceManager;
 
     /**
-     * @param TranslationChoiceManager $translationChoiceManager
+     * @param string                        $facadeClass
+     * @param TranslationChoiceManager      $translationChoiceManager
+     * @param AuthorizationCheckerInterface $authorizationChecker
      */
-    public function __construct(TranslationChoiceManager $translationChoiceManager, AuthorizationCheckerInterface $authorizationChecker)
-    {
-        parent::__construct($authorizationChecker);
+    public function __construct(
+        $facadeClass,
+        TranslationChoiceManager $translationChoiceManager,
+        AuthorizationCheckerInterface $authorizationChecker
+    ){
+        parent::__construct($facadeClass, $authorizationChecker);
         $this->translationChoiceManager = $translationChoiceManager;
     }
 
@@ -33,7 +37,7 @@ class WorkflowFunctionTransformer extends AbstractSecurityCheckerAwareTransforme
      */
     public function transform($mixed)
     {
-        $facade = new WorkflowFunctionFacade();
+        $facade = $this->newFacade();
 
         $facade->id = $mixed->getId();
         $facade->name = $this->translationChoiceManager->choose($mixed->getNames());
