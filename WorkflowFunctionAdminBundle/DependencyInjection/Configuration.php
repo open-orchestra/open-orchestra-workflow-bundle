@@ -6,11 +6,7 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
- * This is the class that validates and merges configuration from your app/config files
- *
- * To learn more see {
- * @link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class
- * }
+ * Class Configuration
  */
 class Configuration implements ConfigurationInterface
 {
@@ -23,21 +19,11 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('open_orchestra_workflow_function_admin');
 
         $rootNode->children()
-            ->arrayNode('transformer')
+            ->arrayNode('facades')
                 ->addDefaultsIfNotSet()
                 ->children()
-                    ->arrayNode('workflow_function')
-                        ->addDefaultsIfNotSet()
-                        ->children()
-                            ->scalarNode('facade')->defaultValue('OpenOrchestra\WorkflowFunctionAdminBundle\Facade\WorkflowFunctionFacade')->end()
-                        ->end()
-                    ->end()
-                    ->arrayNode('workflow_function_collection')
-                        ->addDefaultsIfNotSet()
-                        ->children()
-                            ->scalarNode('facade')->defaultValue('OpenOrchestra\WorkflowFunctionAdminBundle\Facade\WorkflowFunctionCollectionFacade')->end()
-                        ->end()
-                    ->end()
+                    ->scalarNode('workflow_function')->defaultValue('OpenOrchestra\WorkflowFunctionAdminBundle\Facade\WorkflowFunctionFacade')->end()
+                    ->scalarNode('workflow_function_collection')->defaultValue('OpenOrchestra\WorkflowFunctionAdminBundle\Facade\WorkflowFunctionCollectionFacade')->end()
                 ->end()
             ->end()
         ->end();
