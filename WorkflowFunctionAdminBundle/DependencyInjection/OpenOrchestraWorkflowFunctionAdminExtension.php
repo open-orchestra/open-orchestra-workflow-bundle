@@ -35,6 +35,6 @@ class OpenOrchestraWorkflowFunctionAdminExtension extends Extension
         $loader->load('authorize_status_change.yml');
         $loader->load('subscriber.yml');
 
-        $container->setParameter('open_orchestra_backoffice.collector.role.workflow_role_in_group', false);
+        $container->setParameter('open_orchestra_backoffice.collector.backoffice_role.workflow_role_in_group', false);
     }
 }
