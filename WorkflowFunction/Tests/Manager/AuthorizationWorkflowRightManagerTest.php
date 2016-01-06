@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\WorkflowFunctionBundle\Tests\Manager;
+namespace OpenOrchestra\WorkflowFunction\Tests\Manager;
 
 use OpenOrchestra\WorkflowFunction\Manager\AuthorizationWorkflowRightManager;
 use Doctrine\Common\Collections\ArrayCollection;
