@@ -2,18 +2,17 @@
 
 namespace OpenOrchestra\WorkflowFunctionModelBundle\Tests\Functional\Repository;
 
-use OpenOrchestra\Mapping\Annotations\Search;
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractKernelTestCase;
 use OpenOrchestra\Pagination\Configuration\FinderConfiguration;
 use OpenOrchestra\Pagination\Configuration\PaginateFinderConfiguration;
 use OpenOrchestra\WorkflowFunction\Repository\WorkflowFunctionRepositoryInterface;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
  * Class WorkflowFunctionRepositoryTest
  *
  * @group integrationTest
  */
-class WorkflowFunctionRepositoryTest extends KernelTestCase
+class WorkflowFunctionRepositoryTest extends AbstractKernelTestCase
 {
     /**
      * @var WorkflowFunctionRepositoryInterface

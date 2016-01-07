@@ -4,11 +4,12 @@ use OpenOrchestra\WorkflowFunctionAdminBundle\DependencyInjection\OpenOrchestraW
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 
 /**
  * Class OpenOrchestraWorkflowFunctionAdminExtensionTest
  */
-class OpenOrchestraWorkflowFunctionAdminExtensionTest extends \PHPUnit_Framework_TestCase
+class OpenOrchestraWorkflowFunctionAdminExtensionTest extends AbstractBaseTestCase
 {
     /**
      * @var ContainerBuilder

@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\WorkflowFunction\Tests\Manager;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use OpenOrchestra\WorkflowFunction\Manager\AuthorizationWorkflowRightManager;
 use Doctrine\Common\Collections\ArrayCollection;
 use Phake;
@@ -9,7 +10,7 @@ use Phake;
 /**
  * Class AuthorizationWorkflowRightManagerTest
  */
-class AuthorizationWorkflowRightManagerTest extends \PHPUnit_Framework_TestCase
+class AuthorizationWorkflowRightManagerTest extends AbstractBaseTestCase
 {
     /**
      * @var AuthorizationWorkflowRightManager

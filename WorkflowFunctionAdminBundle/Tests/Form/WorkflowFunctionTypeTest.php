@@ -2,14 +2,14 @@
 
 namespace OpenOrchestra\BackofficeBundle\Tests\Form\Type;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type\WorkflowFunctionType;
-use Doctrine\Common\Collections\ArrayCollection;
 use Phake;
 
 /**
  * Description of WorkflowFunctionTypeTest
  */
-class WorkflowFunctionTypeTest extends \PHPUnit_Framework_TestCase
+class WorkflowFunctionTypeTest extends AbstractBaseTestCase
 {
     protected $workflowFunctionClass = 'fakeClass';
     protected $workflowFunctionType;
