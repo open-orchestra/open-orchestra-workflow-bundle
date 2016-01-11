@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\WorkflowFunctionAdminBundle\Tests\AuthorizeStatusChange\Strategies;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use OpenOrchestra\WorkflowFunctionAdminBundle\AuthorizeStatusChange\Strategies\WorkflowRightStrategy;
 use OpenOrchestra\ModelInterface\Model\StatusableInterface;
 use OpenOrchestra\ModelInterface\Model\StatusInterface;
@@ -10,7 +11,7 @@ use Phake;
 /**
  * Class WorkflowRightStrategyTest
  */
-class WorkflowRightStrategyTest extends \PHPUnit_Framework_TestCase
+class WorkflowRightStrategyTest extends AbstractBaseTestCase
 {
     protected $workflowRightStrategy;
     protected $authorizationChecker;

@@ -2,13 +2,14 @@
 
 namespace OpenOrchestra\WorkflowFunctionAdminBundle\Tests\Manager;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use OpenOrchestra\WorkflowFunctionAdminBundle\Manager\WorkflowRightManager;
 use Phake;
 
 /**
  * Class WorkflowRightManagerTest
  */
-class WorkflowRightManagerTest extends \PHPUnit_Framework_TestCase
+class WorkflowRightManagerTest extends AbstractBaseTestCase
 {
     /**
      * @var WorkflowRightManager

@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\WorkflowFunctionAdminBundle\Tests\EventSubscriber;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use OpenOrchestra\WorkflowFunctionAdminBundle\EventSubscriber\AddWorkFlowLinkSubscriber;
 use OpenOrchestra\UserAdminBundle\UserFacadeEvents;
 use Phake;
@@ -9,7 +10,7 @@ use Phake;
 /**
  * Class AddWorkFlowLinkSubscriberTest
  */
-class AddWorkFlowLinkSubscriberTest extends \PHPUnit_Framework_TestCase
+class AddWorkFlowLinkSubscriberTest extends AbstractBaseTestCase
 {
     /**
      * @var AddWorkFlowLinkSubscriber

@@ -2,9 +2,9 @@
 
 namespace OpenOrchestra\WorkflowFunctionAdminBundle\Tests\EventSubscriber;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use OpenOrchestra\WorkflowFunctionAdminBundle\EventSubscriber\AddWorkFlowFunctionSubscriber;
 use OpenOrchestra\WorkflowFunction\WorkflowRightEvents;
-use OpenOrchestra\WorkflowFunction\Event\WorkflowRightEvent;
 use Doctrine\Common\Collections\ArrayCollection;
 
 use Phake;
@@ -12,7 +12,7 @@ use Phake;
 /**
  * Class AddWorkFlowFunctionSubscriberTest
  */
-class AddWorkFlowFunctionSubscriberTest extends \PHPUnit_Framework_TestCase
+class AddWorkFlowFunctionSubscriberTest extends AbstractBaseTestCase
 {
     /**
      * @var AddWorkFlowFunctionSubscriber

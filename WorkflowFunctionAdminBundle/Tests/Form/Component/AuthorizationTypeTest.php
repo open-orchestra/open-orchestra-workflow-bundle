@@ -3,13 +3,14 @@
 namespace OpenOrchestra\BackofficeBundle\Tests\Form\Type\Component;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type\Component\AuthorizationType;
 use Phake;
 
 /**
  * Description of AuthorizationTypeTest
  */
-class AuthorizationTypeTest extends \PHPUnit_Framework_TestCase
+class AuthorizationTypeTest extends AbstractBaseTestCase
 {
     /**
      * @var AuthorizationType

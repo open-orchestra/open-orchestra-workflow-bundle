@@ -2,17 +2,17 @@
 
 namespace OpenOrchestra\WorkflowFunctionAdminBundle\Tests\Security\Authorization\Voter;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use OpenOrchestra\WorkflowFunctionAdminBundle\Security\Authorization\Voter\WorkflowRightVoter;
 use Phake;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface;
 use Doctrine\Common\Collections\ArrayCollection;
-use OpenOrchestra\ModelInterface\Model\BlameableInterface;
 
 /**
  * Test WorkflowRightVoterTest
  */
-class WorkflowRightVoterTest extends \PHPUnit_Framework_TestCase
+class WorkflowRightVoterTest extends AbstractBaseTestCase
 {
     protected $workflowRightRepository;
     protected $contentTypeRepository;

@@ -2,13 +2,14 @@
 
 namespace OpenOrchestra\BackofficeBundle\Tests\Form\Type;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type\WorkflowRightType;
 use Phake;
 
 /**
  * Description of WorkflowRightTypeTest
  */
-class WorkflowRightTypeTest extends \PHPUnit_Framework_TestCase
+class WorkflowRightTypeTest extends AbstractBaseTestCase
 {
     protected $workflowRightClass = 'fakeClass';
     protected $workflowRightType;

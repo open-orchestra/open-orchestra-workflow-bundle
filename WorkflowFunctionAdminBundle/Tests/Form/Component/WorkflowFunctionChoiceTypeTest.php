@@ -2,13 +2,14 @@
 
 namespace OpenOrchestra\BackofficeBundle\Tests\Form\Type\Component;
 
+use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type\Component\WorkflowFunctionChoiceType;
 use Phake;
 
 /**
  * Description of WorkflowFunctionChoiceTypeTest
  */
-class WorkflowFunctionChoiceTypeTest extends \PHPUnit_Framework_TestCase
+class WorkflowFunctionChoiceTypeTest extends AbstractBaseTestCase
 {
     protected $workflowFunctionClass = 'fakeClass';
     protected $orchestraWorkflowFunction;
