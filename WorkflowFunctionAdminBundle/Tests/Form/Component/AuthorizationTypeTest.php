@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\BackofficeBundle\Tests\Form\Type\Component;
+namespace OpenOrchestra\WorkflowFunctionAdminBundle\Tests\Form\Type\Component;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
