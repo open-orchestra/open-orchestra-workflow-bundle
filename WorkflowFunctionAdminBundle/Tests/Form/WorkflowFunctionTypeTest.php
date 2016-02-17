@@ -21,7 +21,7 @@ class WorkflowFunctionTypeTest extends AbstractBaseTestCase
      */
     public function setUp()
     {
-        $this->translateValueInitializer = Phake::mock('OpenOrchestra\BackofficeBundle\EventListener\TranslateValueInitializerListener');
+        $this->translateValueInitializer = Phake::mock('OpenOrchestra\Backoffice\EventListener\TranslateValueInitializerListener');
 
         $this->workflowFunctionType = new WorkflowFunctionType($this->workflowFunctionClass, $this->translateValueInitializer);
     }
