@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenOrchestra\BackofficeBundle\Tests\Form\Type\Component;
+namespace OpenOrchestra\WorkflowFunctionAdminBundle\Tests\Form\Type\Component;
 
 use OpenOrchestra\BaseBundle\Tests\AbstractTest\AbstractBaseTestCase;
 use OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type\Component\WorkflowFunctionChoiceType;
