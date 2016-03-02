@@ -12,7 +12,6 @@
     "require": {
         "open-orchestra/open-orchestra-cms-bundle": "*",
         "open-orchestra/open-orchestra-base-bundle": "*",
-        "open-orchestra/open-orchestra-mongo-libs": "dev-clean_dependency_composer",
         "doctrine/data-fixtures":"1.1.1",
         "doctrine/mongodb-odm-bundle" : "3.0.1",
         "stof/doctrine-extensions-bundle": "1.2.1",
