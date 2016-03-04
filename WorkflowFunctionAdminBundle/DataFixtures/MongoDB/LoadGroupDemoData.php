@@ -32,5 +32,4 @@ class LoadGroupDemoData extends AbstractLoadGroupData implements OrchestraProduc
     {
         return 660;
     }
-
 }
