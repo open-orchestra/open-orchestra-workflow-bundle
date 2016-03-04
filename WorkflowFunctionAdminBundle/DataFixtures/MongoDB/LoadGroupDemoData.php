@@ -2,14 +2,14 @@
 
 namespace OpenOrchestra\WorkflowFunctionAdminBundle\DataFixtures\MongoDB;
 
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use OpenOrchestra\ModelInterface\DataFixtures\OrchestraProductionFixturesInterface;
 use OpenOrchestra\ModelInterface\DataFixtures\OrchestraFunctionalFixturesInterface;
 
 /**
- * Class LoadGroupData
+ * Class LoadGroupDemoData
  */
-class LoadGroupData extends AbstractLoadGroupData implements OrderedFixtureInterface, OrchestraFunctionalFixturesInterface
+class LoadGroupDemoData extends AbstractLoadGroupData implements OrchestraProductionFixturesInterface, OrchestraFunctionalFixturesInterface
 {
     /**
      * Load data fixtures with the passed EntityManager
@@ -18,7 +18,7 @@ class LoadGroupData extends AbstractLoadGroupData implements OrderedFixtureInter
      */
     public function load(ObjectManager $manager)
     {
-        $this->addRole('group3');
+        $this->addRole('group2');
 
         $manager->flush();
     }
@@ -30,7 +30,6 @@ class LoadGroupData extends AbstractLoadGroupData implements OrderedFixtureInter
      */
     public function getOrder()
     {
-        return 650;
+        return 660;
     }
-
 }
