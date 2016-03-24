@@ -28,11 +28,11 @@ class RoleCompilerPass extends AbstractRoleCompilerPass
         ));
 
         if ($container->hasParameter('open_orchestra_backoffice.role')) {
-            $param = $container->getParameter('open_orchestra_backoffice.role');
+            $roles = $container->getParameter('open_orchestra_backoffice.role');
             if ($container->hasParameter('open_orchestra_workflow.role')) {
-                $param = array_merge_recursive($param, $container->getParameter('open_orchestra_workflow.role'));
+                $roles = array_merge_recursive($roles, $container->getParameter('open_orchestra_workflow.role'));
             }
-            $container->setParameter('open_orchestra_backoffice.role', $param);
+            $container->setParameter('open_orchestra_backoffice.role', $roles);
         }
     }
 }
