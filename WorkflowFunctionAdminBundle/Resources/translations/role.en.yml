@@ -1,5 +1,6 @@
 open_orchestra_role:
-    role_access_workflowfunction: Access workflow functions
-    role_access_create_workflowfunction: Create a workflow function
-    role_access_update_workflowfunction: Update a workflow function
-    role_access_delete_workflowfunction: Delete a workflow function
+    label_access_workflowfunction: Workflow function
+    role_access_workflowfunction: Access
+    role_access_create_workflowfunction: Create
+    role_access_update_workflowfunction: Update
+    role_access_delete_workflowfunction: Delete

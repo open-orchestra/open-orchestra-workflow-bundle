@@ -26,5 +26,13 @@ class RoleCompilerPass extends AbstractRoleCompilerPass
             WorkflowFunctionPanelStrategy::ROLE_ACCESS_UPDATE_WORKFLOWFUNCTION,
             WorkflowFunctionPanelStrategy::ROLE_ACCESS_DELETE_WORKFLOWFUNCTION,
         ));
+
+        if ($container->hasParameter('open_orchestra_backoffice.role')) {
+            $roles = $container->getParameter('open_orchestra_backoffice.role');
+            if ($container->hasParameter('open_orchestra_workflow.role')) {
+                $roles = array_merge_recursive($roles, $container->getParameter('open_orchestra_workflow.role'));
+            }
+            $container->setParameter('open_orchestra_backoffice.role', $roles);
+        }
     }
 }
