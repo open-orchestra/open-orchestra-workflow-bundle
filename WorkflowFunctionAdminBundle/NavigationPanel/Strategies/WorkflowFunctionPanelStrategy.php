@@ -2,13 +2,13 @@
 
 namespace OpenOrchestra\WorkflowFunctionAdminBundle\NavigationPanel\Strategies;
 
-use OpenOrchestra\Backoffice\NavigationPanel\Strategies\AbstractNavigationPanelStrategy;
+use OpenOrchestra\Backoffice\NavigationPanel\Strategies\AbstractNavigationStrategy;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * Class WorkflowFunctionPanelStrategy
  */
-class WorkflowFunctionPanelStrategy extends AbstractNavigationPanelStrategy
+class WorkflowFunctionPanelStrategy extends AbstractNavigationStrategy
 {
     const ROLE_ACCESS_WORKFLOWFUNCTION = 'ROLE_ACCESS_WORKFLOWFUNCTION';
     const ROLE_ACCESS_CREATE_WORKFLOWFUNCTION = 'ROLE_ACCESS_CREATE_WORKFLOWFUNCTION';
@@ -23,7 +23,7 @@ class WorkflowFunctionPanelStrategy extends AbstractNavigationPanelStrategy
      */
     public function __construct($parent, $weight, $datatableParameter, TranslatorInterface $translator)
     {
-        parent::__construct('workflow_function', self::ROLE_ACCESS_WORKFLOWFUNCTION, $weight, $parent, $datatableParameter, $translator);
+        parent::__construct('workflow_function', $weight, $parent, self::ROLE_ACCESS_WORKFLOWFUNCTION, $datatableParameter, $translator);
     }
 
     /**
