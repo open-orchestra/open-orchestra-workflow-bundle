@@ -5,6 +5,7 @@ namespace OpenOrchestra\WorkflowFunctionAdminBundle;
 use OpenOrchestra\WorkflowFunctionAdminBundle\DependencyInjection\Compiler\RoleCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use OpenOrchestra\WorkflowFunctionAdminBundle\DependencyInjection\Compiler\RoleUsageCompilerPass;
 use OpenOrchestra\WorkflowFunctionAdminBundle\DependencyInjection\Compiler\TwigGlobalsCompilerPass;
 
 /**
@@ -21,5 +22,6 @@ class OpenOrchestraWorkflowFunctionAdminBundle extends Bundle
 
         $container->addCompilerPass(new TwigGlobalsCompilerPass());
         $container->addCompilerPass(new RoleCompilerPass());
+        $container->addCompilerPass(new RoleUsageCompilerPass());
     }
 }
