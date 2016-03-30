@@ -6,6 +6,7 @@ use OpenOrchestra\Pagination\MongoTrait\PaginationTrait;
 use OpenOrchestra\Repository\AbstractAggregateRepository;
 use OpenOrchestra\WorkflowFunction\Repository\WorkflowFunctionRepositoryInterface;
 use OpenOrchestra\ModelInterface\Model\RoleInterface;
+use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 
 /**
  * Class WorkflowFunctionRepository
@@ -35,5 +36,19 @@ class WorkflowFunctionRepository extends AbstractAggregateRepository implements 
         $qb->field('roles.id')->equals($role->getId());
 
         return $qb->getQuery()->execute();
+    }
+
+    /**
+     * @param RoleInterface $status
+     *
+     * @return bool
+     */
+    public function hasElementWithRole(RoleInterface $role)
+    {
+        $qa = $this->createAggregationQuery();
+        $qa->match(array('roles.$id' => new \MongoId($role->getId())));
+        $workflowFunction = $this->singleHydrateAggregateQuery($qa);
+
+        return $workflowFunction instanceof WorkflowFunctionInterface;
     }
 }

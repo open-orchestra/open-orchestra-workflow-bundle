@@ -6,11 +6,12 @@ use Doctrine\Common\Collections\Collection;
 use OpenOrchestra\ModelInterface\Model\RoleInterface;
 use OpenOrchestra\Pagination\Configuration\FinderConfiguration;
 use OpenOrchestra\Pagination\Configuration\PaginateFinderConfiguration;
+use OpenOrchestra\ModelInterface\Repository\RoleableElementRepositoryInterface;
 
 /**
  * Interface WorkflowFunctionRepositoryInterface
  */
-interface WorkflowFunctionRepositoryInterface
+interface WorkflowFunctionRepositoryInterface extends RoleableElementRepositoryInterface
 {
     /**
      * @param PaginateFinderConfiguration $configuration
