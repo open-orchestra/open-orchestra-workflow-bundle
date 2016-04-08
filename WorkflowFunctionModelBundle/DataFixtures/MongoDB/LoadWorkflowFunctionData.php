@@ -26,7 +26,6 @@ class LoadWorkflowFunctionData extends AbstractFixture implements OrderedFixture
         $workflowFunctionValidator->addName($enName);
         $workflowFunctionValidator->addName($frName);
         $workflowFunctionValidator->addRole($this->getReference('role-pending'));
-        $workflowFunctionValidator->addRole($this->getReference('role-published'));
         $this->addReference('workflow_function-validator', $workflowFunctionValidator);
 
         $enName = $this->generateTranslatedValue('en', 'Contributor');
