@@ -14,7 +14,7 @@ use OpenOrchestra\ModelInterface\DataFixtures\OrchestraFunctionalFixturesInterfa
 /**
  * Class LoadWorkflowRightData
  */
-class LoadWorkflowRightData extends AbstractFixture implements OrderedFixtureInterface, OrchestraProductionFixturesInterface, OrchestraFunctionalFixturesInterface
+class LoadWorkflowRightDataFunctional extends AbstractFixture implements OrderedFixtureInterface,OrchestraFunctionalFixturesInterface
 {
     /**
      * Load data fixtures with the passed EntityManager
@@ -28,8 +28,8 @@ class LoadWorkflowRightData extends AbstractFixture implements OrderedFixtureInt
 
         $authorization = new Authorization();
         $authorization->setReferenceId(WorkflowRightInterface::NODE);
-        $authorization->addWorkflowFunction($this->getReference('workflow_function-validator'));
-        $authorization->addWorkflowFunction($this->getReference('workflow_function-contributor'));
+        $authorization->addWorkflowFunction($this->getReference('workflow_function_validator_functional'));
+        $authorization->addWorkflowFunction($this->getReference('workflow_function_contributor_functional'));
 
         $workflowRight->addAuthorization($authorization);
 

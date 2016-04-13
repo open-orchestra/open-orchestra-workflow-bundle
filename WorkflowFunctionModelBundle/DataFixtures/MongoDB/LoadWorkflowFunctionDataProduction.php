@@ -13,7 +13,7 @@ use OpenOrchestra\ModelBundle\Document\TranslatedValue;
 /**
  * Class LoadWorkflowFunctionData
  */
-class LoadWorkflowFunctionData extends AbstractFixture implements OrderedFixtureInterface, OrchestraProductionFixturesInterface, OrchestraFunctionalFixturesInterface
+class LoadWorkflowFunctionDataProduction extends AbstractFixture implements OrderedFixtureInterface, OrchestraProductionFixturesInterface
 {
     /**
      * @param ObjectManager $manager
@@ -25,19 +25,10 @@ class LoadWorkflowFunctionData extends AbstractFixture implements OrderedFixture
         $workflowFunctionValidator = new WorkflowFunction();
         $workflowFunctionValidator->addName($enName);
         $workflowFunctionValidator->addName($frName);
-        $workflowFunctionValidator->addRole($this->getReference('role-pending'));
-        $this->addReference('workflow_function-validator', $workflowFunctionValidator);
-
-        $enName = $this->generateTranslatedValue('en', 'Contributor');
-        $frName = $this->generateTranslatedValue('fr', 'Contributeur');
-        $workflowFunctionContributor = new WorkflowFunction();
-        $workflowFunctionContributor->addName($enName);
-        $workflowFunctionContributor->addName($frName);
-        $workflowFunctionContributor->addRole($this->getReference('role-draft'));
-        $this->addReference('workflow_function-contributor', $workflowFunctionContributor);
+        $workflowFunctionValidator->addRole($this->getReference('role-production-draft-to-published'));
+        $this->addReference('workflow_function_validator_production', $workflowFunctionValidator);
 
         $manager->persist($workflowFunctionValidator);
-        $manager->persist($workflowFunctionContributor);
         $manager->flush();
     }
 
@@ -65,7 +56,7 @@ class LoadWorkflowFunctionData extends AbstractFixture implements OrderedFixture
      */
     public function getOrder()
     {
-        return 120;
+        return 125;
     }
 
 }
