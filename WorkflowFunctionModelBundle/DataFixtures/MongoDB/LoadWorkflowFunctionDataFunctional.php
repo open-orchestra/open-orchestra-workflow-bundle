@@ -5,13 +5,12 @@ namespace OpenOrchestra\WorkflowFunctionBundle\DataFixtures\MongoDB;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use OpenOrchestra\ModelInterface\DataFixtures\OrchestraProductionFixturesInterface;
 use OpenOrchestra\WorkflowFunctionModelBundle\Document\WorkflowFunction;
 use OpenOrchestra\ModelInterface\DataFixtures\OrchestraFunctionalFixturesInterface;
 use OpenOrchestra\ModelBundle\Document\TranslatedValue;
 
 /**
- * Class LoadWorkflowFunctionData
+ * Class LoadWorkflowFunctionDataFunctional
  */
 class LoadWorkflowFunctionDataFunctional extends AbstractFixture implements OrderedFixtureInterface, OrchestraFunctionalFixturesInterface
 {
@@ -27,7 +26,6 @@ class LoadWorkflowFunctionDataFunctional extends AbstractFixture implements Orde
         $workflowFunctionValidator->addName($frName);
         $workflowFunctionValidator->addRole($this->getReference('role-functional-draft-to-pending'));
         $workflowFunctionValidator->addRole($this->getReference('role-functional-pending-to-published'));
-        $workflowFunctionValidator->addRole($this->getReference('role-functional-published-to-draft'));
         $this->addReference('workflow_function_validator_functional', $workflowFunctionValidator);
 
         $enName = $this->generateTranslatedValue('en', 'Contributor');
