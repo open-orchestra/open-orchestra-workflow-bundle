@@ -26,7 +26,7 @@ class LoadWorkflowFunctionDataFunctional extends AbstractFixture implements Orde
         $workflowFunctionValidator->addName($frName);
         $workflowFunctionValidator->addRole($this->getReference('role-functional-draft-to-pending'));
         $workflowFunctionValidator->addRole($this->getReference('role-functional-pending-to-published'));
-        $this->addReference('workflow_function_validator_functional', $workflowFunctionValidator);
+        $this->addReference('workflow-function-validator-functional', $workflowFunctionValidator);
 
         $enName = $this->generateTranslatedValue('en', 'Contributor');
         $frName = $this->generateTranslatedValue('fr', 'Contributeur');
@@ -34,7 +34,7 @@ class LoadWorkflowFunctionDataFunctional extends AbstractFixture implements Orde
         $workflowFunctionContributor->addName($enName);
         $workflowFunctionContributor->addName($frName);
         $workflowFunctionContributor->addRole($this->getReference('role-functional-published-to-draft'));
-        $this->addReference('workflow_function_contributor_functional', $workflowFunctionContributor);
+        $this->addReference('workflow-function-contributor-functional', $workflowFunctionContributor);
 
         $manager->persist($workflowFunctionValidator);
         $manager->persist($workflowFunctionContributor);
@@ -67,5 +67,5 @@ class LoadWorkflowFunctionDataFunctional extends AbstractFixture implements Orde
     {
         return 120;
     }
-
 }
+

@@ -27,8 +27,8 @@ class LoadWorkflowRightDataFunctional extends AbstractFixture implements Ordered
 
         $authorization = new Authorization();
         $authorization->setReferenceId(WorkflowRightInterface::NODE);
-        $authorization->addWorkflowFunction($this->getReference('workflow_function_validator_functional'));
-        $authorization->addWorkflowFunction($this->getReference('workflow_function_contributor_functional'));
+        $authorization->addWorkflowFunction($this->getReference('workflow-function-validator-functional'));
+        $authorization->addWorkflowFunction($this->getReference('workflow-function-contributor-functional'));
 
         $workflowRight->addAuthorization($authorization);
 

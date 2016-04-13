@@ -25,7 +25,7 @@ class LoadWorkflowFunctionDataProduction extends AbstractFixture implements Orde
         $workflowFunctionValidator->addName($enName);
         $workflowFunctionValidator->addName($frName);
         $workflowFunctionValidator->addRole($this->getReference('role-production-draft-to-published'));
-        $this->addReference('workflow_function_validator_production', $workflowFunctionValidator);
+        $this->addReference('workflow-function-validator-production', $workflowFunctionValidator);
 
         $manager->persist($workflowFunctionValidator);
         $manager->flush();
@@ -57,5 +57,4 @@ class LoadWorkflowFunctionDataProduction extends AbstractFixture implements Orde
     {
         return 125;
     }
-
 }
