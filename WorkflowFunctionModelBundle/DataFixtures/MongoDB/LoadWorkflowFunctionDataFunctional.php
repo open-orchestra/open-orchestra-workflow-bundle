@@ -5,15 +5,14 @@ namespace OpenOrchestra\WorkflowFunctionBundle\DataFixtures\MongoDB;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use OpenOrchestra\ModelInterface\DataFixtures\OrchestraProductionFixturesInterface;
 use OpenOrchestra\WorkflowFunctionModelBundle\Document\WorkflowFunction;
 use OpenOrchestra\ModelInterface\DataFixtures\OrchestraFunctionalFixturesInterface;
 use OpenOrchestra\ModelBundle\Document\TranslatedValue;
 
 /**
- * Class LoadWorkflowFunctionData
+ * Class LoadWorkflowFunctionDataFunctional
  */
-class LoadWorkflowFunctionData extends AbstractFixture implements OrderedFixtureInterface, OrchestraProductionFixturesInterface, OrchestraFunctionalFixturesInterface
+class LoadWorkflowFunctionDataFunctional extends AbstractFixture implements OrderedFixtureInterface, OrchestraFunctionalFixturesInterface
 {
     /**
      * @param ObjectManager $manager
@@ -25,17 +24,17 @@ class LoadWorkflowFunctionData extends AbstractFixture implements OrderedFixture
         $workflowFunctionValidator = new WorkflowFunction();
         $workflowFunctionValidator->addName($enName);
         $workflowFunctionValidator->addName($frName);
-        $workflowFunctionValidator->addRole($this->getReference('role-pending'));
-        $workflowFunctionValidator->addRole($this->getReference('role-published'));
-        $this->addReference('workflow_function-validator', $workflowFunctionValidator);
+        $workflowFunctionValidator->addRole($this->getReference('role-functional-draft-to-pending'));
+        $workflowFunctionValidator->addRole($this->getReference('role-functional-pending-to-published'));
+        $this->addReference('workflow-function-validator-functional', $workflowFunctionValidator);
 
         $enName = $this->generateTranslatedValue('en', 'Contributor');
         $frName = $this->generateTranslatedValue('fr', 'Contributeur');
         $workflowFunctionContributor = new WorkflowFunction();
         $workflowFunctionContributor->addName($enName);
         $workflowFunctionContributor->addName($frName);
-        $workflowFunctionContributor->addRole($this->getReference('role-draft'));
-        $this->addReference('workflow_function-contributor', $workflowFunctionContributor);
+        $workflowFunctionContributor->addRole($this->getReference('role-functional-published-to-draft'));
+        $this->addReference('workflow-function-contributor-functional', $workflowFunctionContributor);
 
         $manager->persist($workflowFunctionValidator);
         $manager->persist($workflowFunctionContributor);
@@ -68,5 +67,5 @@ class LoadWorkflowFunctionData extends AbstractFixture implements OrderedFixture
     {
         return 120;
     }
-
 }
+

@@ -5,16 +5,15 @@ namespace OpenOrchestra\WorkflowFunctionModelBundle\DataFixtures\MongoDB;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use OpenOrchestra\ModelInterface\DataFixtures\OrchestraProductionFixturesInterface;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface;
 use OpenOrchestra\WorkflowFunctionModelBundle\Document\Authorization;
 use OpenOrchestra\WorkflowFunctionModelBundle\Document\WorkflowRight;
 use OpenOrchestra\ModelInterface\DataFixtures\OrchestraFunctionalFixturesInterface;
 
 /**
- * Class LoadWorkflowRightData
+ * Class LoadWorkflowRightDataFunctional
  */
-class LoadWorkflowRightData extends AbstractFixture implements OrderedFixtureInterface, OrchestraProductionFixturesInterface, OrchestraFunctionalFixturesInterface
+class LoadWorkflowRightDataFunctional extends AbstractFixture implements OrderedFixtureInterface,OrchestraFunctionalFixturesInterface
 {
     /**
      * Load data fixtures with the passed EntityManager
@@ -28,8 +27,8 @@ class LoadWorkflowRightData extends AbstractFixture implements OrderedFixtureInt
 
         $authorization = new Authorization();
         $authorization->setReferenceId(WorkflowRightInterface::NODE);
-        $authorization->addWorkflowFunction($this->getReference('workflow_function-validator'));
-        $authorization->addWorkflowFunction($this->getReference('workflow_function-contributor'));
+        $authorization->addWorkflowFunction($this->getReference('workflow-function-validator-functional'));
+        $authorization->addWorkflowFunction($this->getReference('workflow-function-contributor-functional'));
 
         $workflowRight->addAuthorization($authorization);
 
