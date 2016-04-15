@@ -21,6 +21,7 @@ class AddWorkFlowLinkSubscriberTest extends AbstractBaseTestCase
     protected $userFacadeEvent;
     protected $userFacade;
     protected $fakeRoot = 'fakeRoot';
+    protected $user;
 
     /**
      * Set up the test
@@ -30,8 +31,10 @@ class AddWorkFlowLinkSubscriberTest extends AbstractBaseTestCase
         $this->router = Phake::mock('Symfony\Component\Routing\Generator\UrlGeneratorInterface');
         $this->userFacadeEvent = Phake::mock('OpenOrchestra\UserAdminBundle\Event\UserFacadeEvent');
         $this->userFacade = Phake::mock('OpenOrchestra\UserAdminBundle\Facade\UserFacade');
+        $this->user = Phake::mock('OpenOrchestra\UserBundle\Model\UserInterface');
 
         Phake::when($this->userFacadeEvent)->getUserFacade()->thenReturn($this->userFacade);
+        Phake::when($this->userFacadeEvent)->getUser()->thenReturn($this->user);
         Phake::when($this->router)->generate(Phake::anyParameters())->thenReturn($this->fakeRoot);
 
         $this->subscriber = new AddWorkFlowLinkSubscriber($this->router);
@@ -56,9 +59,27 @@ class AddWorkFlowLinkSubscriberTest extends AbstractBaseTestCase
     /**
      * Test postUserTransformation
      */
-    public function testPostUserTransformation()
+    /**
+     * @param int  $countAddLink
+     * @param bool $isSuperAdmin
+     *
+     * @dataProvider provideUserIsSuperAdmin
+     */
+    public function testPostUserTransformation($countAddLink, $isSuperAdmin)
     {
+        Phake::when($this->user)->isSuperAdmin()->thenReturn($isSuperAdmin);
         $this->subscriber->postUserTransformation($this->userFacadeEvent);
-        Phake::verify($this->userFacade)->addLink('_self_panel_workflow_right', $this->fakeRoot);
+        Phake::verify($this->userFacade, Phake::times($countAddLink))->addLink('_self_panel_workflow_right', $this->fakeRoot);
+    }
+
+    /**
+     * @return array
+     */
+    public function provideUserIsSuperAdmin()
+    {
+        return array(
+            array(0, true),
+            array(1, false),
+        );
     }
 }
