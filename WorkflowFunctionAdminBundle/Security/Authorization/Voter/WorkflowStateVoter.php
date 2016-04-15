@@ -39,13 +39,16 @@ class WorkflowStateVoter implements VoterInterface
      */
     public function supportsAttribute($attribute)
     {
-        return strpos($attribute, 'ROLE_') === 0 &&
+        return true === strpos($attribute, 'ROLE_ACCESS_UPDATE_NODE') ||
+               true === strpos($attribute, 'ROLE_ACCESS_UPDATE_ERROR_NODE') ||
+               true === strpos($attribute, 'ROLE_ACCESS_UPDATE_CONTENT_TYPE_FOR_CONTENT');
+        /*        return strpos($attribute, 'ROLE_') === 0 &&
                false === strpos($attribute, 'ROLE_ACCESS_CONTENT_TYPE_FOR_CONTENT') &&
                false === strpos($attribute, 'ROLE_ACCESS_CREATE_CONTENT') &&
                false === strpos($attribute, 'ROLE_ACCESS_CREATE_NODE') &&
                false === strpos($attribute, 'ROLE_ACCESS_CREATE_NODE_ERROR') &&
                false === strpos($attribute, 'ROLE_ACCESS_TREE_NODE') &&
-               false === strpos($attribute, 'ROLE_ACCESS_ERROR_NODE');
+               false === strpos($attribute, 'ROLE_ACCESS_ERROR_NODE');*/
     }
 
     /**
