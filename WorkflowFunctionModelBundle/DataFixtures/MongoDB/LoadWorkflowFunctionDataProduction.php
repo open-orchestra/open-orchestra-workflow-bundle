@@ -19,16 +19,18 @@ class LoadWorkflowFunctionDataProduction extends AbstractFixture implements Orde
      */
     public function load(ObjectManager $manager)
     {
-        $enName = $this->generateTranslatedValue('en', 'Validator');
-        $frName = $this->generateTranslatedValue('fr', 'Validateur');
-        $workflowFunctionValidator = new WorkflowFunction();
-        $workflowFunctionValidator->addName($enName);
-        $workflowFunctionValidator->addName($frName);
-        $workflowFunctionValidator->addRole($this->getReference('role-production-draft-to-published'));
-        $this->addReference('workflow-function-validator-production', $workflowFunctionValidator);
+        if ($this->hasReference('workflow-function-validator-functional') == false) {
+            $enName = $this->generateTranslatedValue('en', 'Validator');
+            $frName = $this->generateTranslatedValue('fr', 'Validateur');
+            $workflowFunctionValidator = new WorkflowFunction();
+            $workflowFunctionValidator->addName($enName);
+            $workflowFunctionValidator->addName($frName);
+            $workflowFunctionValidator->addRole($this->getReference('role-production-draft-to-published'));
+            $this->addReference('workflow-function-validator-production', $workflowFunctionValidator);
 
-        $manager->persist($workflowFunctionValidator);
-        $manager->flush();
+            $manager->persist($workflowFunctionValidator);
+            $manager->flush();
+        }
     }
 
     /**

@@ -22,17 +22,19 @@ class LoadWorkflowRightDataProduction extends AbstractFixture implements Ordered
      */
     public function load(ObjectManager $manager)
     {
-        $workflowRight = new WorkflowRight();
-        $workflowRight->setUserId($this->getReference('user-admin')->getId());
+        if ($this->hasReference('workflow-function-validator-production') == true) {
+            $workflowRight = new WorkflowRight();
+            $workflowRight->setUserId($this->getReference('user-admin')->getId());
 
-        $authorization = new Authorization();
-        $authorization->setReferenceId(WorkflowRightInterface::NODE);
-        $authorization->addWorkflowFunction($this->getReference('workflow-function-validator-production'));
+            $authorization = new Authorization();
+            $authorization->setReferenceId(WorkflowRightInterface::NODE);
+            $authorization->addWorkflowFunction($this->getReference('workflow-function-validator-production'));
 
-        $workflowRight->addAuthorization($authorization);
+            $workflowRight->addAuthorization($authorization);
 
-        $manager->persist($workflowRight);
-        $manager->flush();
+            $manager->persist($workflowRight);
+            $manager->flush();
+        }
     }
 
     /**
