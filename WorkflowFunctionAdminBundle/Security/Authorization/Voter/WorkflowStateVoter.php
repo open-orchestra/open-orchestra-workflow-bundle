@@ -2,6 +2,7 @@
 
 namespace OpenOrchestra\WorkflowFunctionAdminBundle\Security\Authorization\Voter;
 
+use Doctrine\Common\Collections\Collection;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
@@ -101,10 +102,6 @@ class WorkflowStateVoter implements VoterInterface
             $authorizations = $workflowRight->getAuthorizations();
             foreach ($authorizations as $authorization) {
                 if ($authorization->getReferenceId() == $referenceId) {
-                    dump($authorization->isOwner());
-                    dump($isOwner);
-                    dump($object->getCreatedBy());
-                    dump($user->getUsername());
                     if (!$authorization->isOwner() || ($authorization->isOwner() && true === $isOwner)) {
                         $workflowFunctions = $authorization->getWorkflowFunctions();
                         /** @var WorkflowFunctionInterface $workflowFunction */
@@ -113,8 +110,8 @@ class WorkflowStateVoter implements VoterInterface
                             $statusToRole = $object->getStatus()->getToRoles()->toArray();
                             $workflowRoles = $workflowFunction->getRoles()->toArray();
                             if (
-                                count(array_intersect($statusFromRole, $workflowRoles)) > 0 ||
-                                count(array_intersect($statusToRole, $workflowRoles)) > 0
+                                $this->hasIntersectArray($statusFromRole, $workflowRoles) ||
+                                $this->hasIntersectArray($statusToRole, $workflowRoles)
                             ) {
                                 return VoterInterface::ACCESS_GRANTED;
                             } else {
@@ -129,5 +126,22 @@ class WorkflowStateVoter implements VoterInterface
         }
 
         return VoterInterface::ACCESS_ABSTAIN;
+    }
+
+    /**
+     * @param array $array1
+     * @param array $array2
+     *
+     * @return bool
+     */
+    protected function hasIntersectArray(array $array1, array $array2)
+    {
+        foreach ($array1 as $value) {
+            if (in_array($value, $array2)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
