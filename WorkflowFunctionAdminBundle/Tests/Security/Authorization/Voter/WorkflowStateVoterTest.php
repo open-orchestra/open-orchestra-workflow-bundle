@@ -192,7 +192,7 @@ class WorkflowStateVoterTest extends AbstractBaseTestCase
         Phake::when($object2)->getCreatedBy()->thenReturn('fake_username');
         Phake::when($object2)->getStatus()->thenReturn($status1);
 
-        $attributes = array('ROLE_FAKE');
+        $attributes = array('ROLE_ACCESS_UPDATE_CONTENT_TYPE_FOR_CONTENT');
 
         return array(
             array(VoterInterface::ACCESS_GRANTED, Phake::mock('stdClass'), 'fake_ref', array(), array(), false, true),
