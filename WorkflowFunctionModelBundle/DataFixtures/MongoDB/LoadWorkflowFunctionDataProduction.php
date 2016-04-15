@@ -19,7 +19,7 @@ class LoadWorkflowFunctionDataProduction extends AbstractFixture implements Orde
      */
     public function load(ObjectManager $manager)
     {
-        if ($this->hasReference('workflow-function-validator-functional') == false) {
+        if (false == $this->hasReference('workflow-function-validator-functional')) {
             $enName = $this->generateTranslatedValue('en', 'Validator');
             $frName = $this->generateTranslatedValue('fr', 'Validateur');
             $workflowFunctionValidator = new WorkflowFunction();

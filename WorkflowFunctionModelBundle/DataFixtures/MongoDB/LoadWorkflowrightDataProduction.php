@@ -22,7 +22,7 @@ class LoadWorkflowRightDataProduction extends AbstractFixture implements Ordered
      */
     public function load(ObjectManager $manager)
     {
-        if ($this->hasReference('workflow-function-validator-production') == true) {
+        if (true == $this->hasReference('workflow-function-validator-production')) {
             $workflowRight = new WorkflowRight();
             $workflowRight->setUserId($this->getReference('user-admin')->getId());
 
