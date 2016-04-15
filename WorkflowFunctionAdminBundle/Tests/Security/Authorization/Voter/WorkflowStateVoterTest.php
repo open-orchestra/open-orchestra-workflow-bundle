@@ -98,15 +98,15 @@ class WorkflowStateVoterTest extends AbstractBaseTestCase
     {
         return array(
             array('test', false),
-            array('ROLE_ACCESS', true),
-            array('ROLE_', true),
+            array('ROLE_ACCESS', false),
+            array('ROLE_', false),
             array('5640af7a02b0cf39178b4598', false),
             array('ROLE_ACCESS_CREATE_CONTENT', false),
             array('ROLE_ACCESS_CREATE_NODE', false),
             array('ROLE_ACCESS_CONTENT_TYPE_FOR_CONTENT', false),
-            array('ROLE_ACCESS_CREATE_NODE_ERROR', false),
-            array('ROLE_ACCESS_TREE_NODE', false),
-            array('ROLE_ACCESS_ERROR_NODE', false),
+            array('ROLE_ACCESS_UPDATE_NODE', true),
+            array('ROLE_ACCESS_UPDATE_ERROR_NODE', true),
+            array('ROLE_ACCESS_UPDATE_CONTENT_TYPE_FOR_CONTENT', true),
         );
     }
 
