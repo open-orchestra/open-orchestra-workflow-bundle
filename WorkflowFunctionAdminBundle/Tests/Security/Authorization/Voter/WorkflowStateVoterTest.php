@@ -46,7 +46,6 @@ class WorkflowStateVoterTest extends AbstractBaseTestCase
         Phake::when($this->token)->getUser()->thenReturn($this->user);
 
         $this->voter = new WorkflowStateVoter($this->workflowRightRepository, $this->contentTypeRepository);
-
     }
 
     /**
@@ -124,7 +123,6 @@ class WorkflowStateVoterTest extends AbstractBaseTestCase
      */
     public function testVote($accessResponse, $object, $referenceId, array $attributes, array $workflowRoles, $isOwner = false, $superAdmin = false)
     {
-
         $workflowRight = Phake::mock('OpenOrchestra\WorkflowFunction\Model\WorkflowRightInterface');
         $authorizations = new ArrayCollection();
 
@@ -167,7 +165,6 @@ class WorkflowStateVoterTest extends AbstractBaseTestCase
         Phake::when($status1)->getToRoles()->thenReturn($arrayCollectionPendingToTranslate);
         Phake::when($arrayCollectionDraftToPending)->toArray()->thenReturn(array($roleDraftToPending));
         Phake::when($arrayCollectionPendingToTranslate)->toArray()->thenReturn(array($rolePendingToTranslate));
-
 
         $status2 = Phake::mock('OpenOrchestra\ModelInterface\Model\StatusInterface');
         $arrayCollectionPublishToDraft = Phake::mock('Doctrine\Common\Collections\ArrayCollection');
