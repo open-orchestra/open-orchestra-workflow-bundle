@@ -2,7 +2,6 @@
 
 namespace OpenOrchestra\WorkflowFunctionAdminBundle\Security\Authorization\Voter;
 
-use Doctrine\Common\Collections\Collection;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
