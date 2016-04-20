@@ -14,7 +14,11 @@
     "doctrine/data-fixtures": "1.1.1",
     "doctrine/mongodb-odm-bundle" : "3.1.0",
     "stof/doctrine-extensions-bundle": "1.2.1",
-    "solution/mongo-odm-aggregation-bundle": "dev-master"
+    "solution/mongo-odm-aggregation-bundle": "dev-master",
+
+    "open-orchestra/open-orchestra-user-bundle": "@dev",
+    "friendsofsymfony/user-bundle": "@dev",
+    "solution/pipeline-builder": "@dev"
   },
   "require-dev": {
     "open-orchestra/open-orchestra-model-bundle": "1.1.*@dev",
