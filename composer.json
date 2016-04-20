@@ -21,7 +21,8 @@
     "open-orchestra/open-orchestra-mongo-libs": "@dev",
     "open-orchestra/open-orchestra-user-bundle": "@dev",
     "friendsofsymfony/user-bundle": "@dev",
-    "solution/pipeline-builder": "@dev"
+    "solution/pipeline-builder": "@dev",
+    "innocead/captcha-bundle": "@dev"
   },
   "require-dev": {
     "open-orchestra/open-orchestra-model-bundle": "1.1.*@dev",
