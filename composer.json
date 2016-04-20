@@ -14,19 +14,7 @@
     "doctrine/data-fixtures": "1.1.1",
     "doctrine/mongodb-odm-bundle" : "3.1.0",
     "stof/doctrine-extensions-bundle": "1.2.1",
-    "solution/mongo-odm-aggregation-bundle": "dev-master",
-
-    "open-orchestra/open-orchestra-base-api-bundle": "1.1.*@dev",
-    "open-orchestra/open-orchestra-user-bundle": "1.1.*@dev",
-    "open-orchestra/open-orchestra-libs": "1.1.*@dev",
-    "open-orchestra/open-orchestra-model-interface": "1.1.*@dev",
-    "open-orchestra/open-orchestra-display-bundle": "1.1.*@dev",
-    "open-orchestra/open-orchestra-cms-bundle": "1.1.*@dev",
-    "open-orchestra/open-orchestra-mongo-libs": "1.1.*@dev",
-    "open-orchestra/open-orchestra-model-bundle": "1.1.*@dev",
-    "open-orchestra/open-orchestra-bbcode-bundle": "1.1.*@dev",
-    "friendsofsymfony/user-bundle": "2.0.*@dev",
-    "solution/pipeline-builder": "dev-master"
+    "solution/mongo-odm-aggregation-bundle": "dev-master"
   },
   "require-dev": {
     "open-orchestra/open-orchestra-model-bundle": "1.1.*@dev",
