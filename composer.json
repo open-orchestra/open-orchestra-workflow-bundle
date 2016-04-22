@@ -1,6 +1,6 @@
 {
   "name": "open-orchestra/open-orchestra-workflow-function-bundle",
-  "description": "A workflow function bundle for the OpenOrchestra Project",
+  "description": "A workflow function bundle for Open Orchestra",
   "license": "Apache-2.0",
   "authors": [
     {
@@ -14,7 +14,7 @@
     "doctrine/data-fixtures": "1.1.1",
     "doctrine/mongodb-odm-bundle" : "3.1.0",
     "stof/doctrine-extensions-bundle": "1.2.1",
-    "solution/mongo-odm-aggregation-bundle": "dev-master",
+    "solution/mongo-odm-aggregation-bundle": "~0.1",
 
     "open-orchestra/open-orchestra-display-bundle": "@dev",
     "open-orchestra/open-orchestra-base-api-bundle": "@dev",
@@ -23,7 +23,6 @@
     "open-orchestra/open-orchestra-mongo-libs": "@dev",
     "open-orchestra/open-orchestra-user-bundle": "@dev",
     "friendsofsymfony/user-bundle": "@dev",
-    "solution/pipeline-builder": "@dev",
     "innocead/captcha-bundle": "@dev"
   },
   "require-dev": {
