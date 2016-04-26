@@ -6,7 +6,7 @@ open_orchestra_backoffice:
 open_orchestra_workflow_function_admin:
     left_menu:
         administration:
-            workflow_function: Workflow profil
+            workflow_function: Workflow profile
     form:
         workflow_function:
             success: The workflow function has been saved
