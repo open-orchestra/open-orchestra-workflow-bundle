@@ -1,12 +1,12 @@
 open_orchestra_backoffice:
     table:
         workflow_functions:
-            name: Fonctions de Workflow
+            name: Nom
 
 open_orchestra_workflow_function_admin:
     left_menu:
         administration:
-            workflow_function: Profil de workflow
+            workflow_function: Profils de workflow
     form:
         workflow_function:
             success: La Fonction de Workflow a bien été sauvegardée
@@ -15,5 +15,5 @@ open_orchestra_workflow_function_admin:
         workflow_right:
             success: Les droits ont correctement été mis à jour
     right:
-        title: Formulaire des droits
+        title: Droits
         owner: Propriétaire
