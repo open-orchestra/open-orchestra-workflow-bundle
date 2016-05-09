@@ -19,6 +19,7 @@ class LoadGroupDemoData extends AbstractLoadGroupData implements OrchestraProduc
     public function load(ObjectManager $manager)
     {
         $this->addRole('group2');
+        $this->addRole('group-admin');
 
         $manager->flush();
     }
