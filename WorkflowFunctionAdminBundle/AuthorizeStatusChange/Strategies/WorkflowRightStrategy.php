@@ -26,8 +26,8 @@ class WorkflowRightStrategy implements AuthorizeStatusChangeInterface
     public function __construct(
         AuthorizationCheckerInterface $authorizationChecker,
         RoleRepositoryInterface $roleRepository,
-        WorkflowFunctionRepositoryInterface $workflowFunctionRepository)
-    {
+        WorkflowFunctionRepositoryInterface $workflowFunctionRepository
+    ){
         $this->authorizationChecker = $authorizationChecker;
         $this->roleRepository = $roleRepository;
         $this->workflowFunctionRepository = $workflowFunctionRepository;
@@ -47,11 +47,13 @@ class WorkflowRightStrategy implements AuthorizeStatusChangeInterface
             $workflowFunctions = $this->workflowFunctionRepository->findByRole($role);
             $attributes = array();
             foreach ($workflowFunctions as $workflowFunction) {
-                $attributes[] = $workflowFunction->getId();
+                if ($this->authorizationChecker->isGranted($workflowFunction->getId(), $document)) {
+
+                    return true;
+                }
             }
-            if (!$this->authorizationChecker->isGranted($attributes, $document)) {
-                return false;
-            }
+
+            return false;
         }
 
         return true;
