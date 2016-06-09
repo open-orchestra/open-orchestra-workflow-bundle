@@ -76,7 +76,7 @@ class WorkflowRightStrategyTest extends AbstractBaseTestCase
         return array(
             array($statusableInterface0, $statusInterface0_1, true, true),
             array($statusableInterface1, $statusInterface1_1, false, false),
-            array($statusableInterface1, $statusInterface1_1, true, true),
+            array($statusableInterface1, $statusInterface1_1, true, false),
         );
 
     }
