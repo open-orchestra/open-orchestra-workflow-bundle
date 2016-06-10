@@ -11,7 +11,7 @@ open_orchestra_workflow_function_admin:
         workflow_function:
             success: La Fonction de Workflow a bien été sauvegardée
             name: Nom
-            role: Rôle
+            role: Transition
         workflow_right:
             success: Les droits ont correctement été mis à jour
     right:
