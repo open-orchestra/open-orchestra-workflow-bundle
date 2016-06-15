@@ -16,4 +16,4 @@ open_orchestra_workflow_function_admin:
             success: Les droits ont correctement été mis à jour
     right:
         title: Droits
-        owner: Propriétaire
+        owner: Seulement quand l'utilisateur est le propriétaire
