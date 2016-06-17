@@ -7,6 +7,7 @@ use OpenOrchestra\BaseApi\Transformer\AbstractSecurityCheckerAwareTransformer;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 use OpenOrchestra\Backoffice\Manager\TranslationChoiceManager;
 use OpenOrchestra\WorkflowFunctionAdminBundle\NavigationPanel\Strategies\WorkflowFunctionPanelStrategy;
+use OpenOrchestra\WorkflowFunctionAdminBundle\Security\Authorization\Voter\WorkflowFunctionVoter;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
@@ -46,7 +47,8 @@ class WorkflowFunctionTransformer extends AbstractSecurityCheckerAwareTransforme
             'open_orchestra_api_workflow_function_show',
             array('workflowFunctionId' => $mixed->getId())
         ));
-        if ($this->authorizationChecker->isGranted(WorkflowFunctionPanelStrategy::ROLE_ACCESS_DELETE_WORKFLOWFUNCTION)) {
+
+        if ($this->authorizationChecker->isGranted(array(WorkflowFunctionPanelStrategy::ROLE_ACCESS_DELETE_WORKFLOWFUNCTION, WorkflowFunctionVoter::DELETE), $mixed)) {
             $facade->addLink('_self_delete', $this->generateRoute(
                 'open_orchestra_api_workflow_function_delete',
                 array('workflowFunctionId' => $mixed->getId())
