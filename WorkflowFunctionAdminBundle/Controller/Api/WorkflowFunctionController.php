@@ -46,6 +46,8 @@ class WorkflowFunctionController extends BaseController
      * @Config\Route("", name="open_orchestra_api_workflow_functions_list")
      * @Config\Method({"GET"})
      *
+     * @Config\Security("is_granted('ROLE_ACCESS_WORKFLOWFUNCTION')")
+     *
      * @return FacadeInterface
      */
     public function listAction(Request $request)
@@ -73,8 +75,6 @@ class WorkflowFunctionController extends BaseController
      *
      * @Config\Route("/{workflowFunctionId}/delete", name="open_orchestra_api_workflow_function_delete")
      * @Config\Method({"DELETE"})
-     *
-     * @Config\Security("is_granted('ROLE_ACCESS_DELETE_WORKFLOWFUNCTION')")
      *
      * @return Response
      */
