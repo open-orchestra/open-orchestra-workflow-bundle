@@ -45,7 +45,6 @@ class WorkflowRightStrategy implements AuthorizeStatusChangeInterface
         if ($fromStatus->getId() != $toStatus->getId()) {
             $role = $this->roleRepository->findOneByFromStatusAndToStatus($fromStatus, $toStatus);
             $workflowFunctions = $this->workflowFunctionRepository->findByRole($role);
-            $attributes = array();
             foreach ($workflowFunctions as $workflowFunction) {
                 if ($this->authorizationChecker->isGranted($workflowFunction->getId(), $document)) {
 
