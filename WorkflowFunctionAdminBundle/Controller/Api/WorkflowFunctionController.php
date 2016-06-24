@@ -6,6 +6,8 @@ use OpenOrchestra\BaseApi\Facade\FacadeInterface;
 use OpenOrchestra\Pagination\Configuration\PaginateFinderConfiguration;
 use OpenOrchestra\WorkflowFunction\Event\WorkflowFunctionEvent;
 use OpenOrchestra\WorkflowFunction\WorkflowFunctionEvents;
+use OpenOrchestra\WorkflowFunctionAdminBundle\NavigationPanel\Strategies\WorkflowFunctionPanelStrategy;
+use OpenOrchestra\WorkflowFunctionAdminBundle\Security\Authorization\Voter\WorkflowFunctionVoter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use OpenOrchestra\BaseApiBundle\Controller\Annotation as Api;
 use Symfony\Component\HttpFoundation\Request;
@@ -74,13 +76,18 @@ class WorkflowFunctionController extends BaseController
      * @Config\Route("/{workflowFunctionId}/delete", name="open_orchestra_api_workflow_function_delete")
      * @Config\Method({"DELETE"})
      *
-     * @Config\Security("is_granted('ROLE_ACCESS_DELETE_WORKFLOWFUNCTION')")
-     *
      * @return Response
      */
     public function deleteAction($workflowFunctionId)
     {
         $workflowFunction = $this->get('open_orchestra_workflow_function.repository.workflow_function')->find($workflowFunctionId);
+        $this->denyAccessUnlessGranted(
+            array(
+                WorkflowFunctionPanelStrategy::ROLE_ACCESS_DELETE_WORKFLOWFUNCTION,
+                WorkflowFunctionVoter::DELETE
+            ),
+            $workflowFunction
+        );
         $dm = $this->get('object_manager');
         $this->dispatchEvent(WorkflowFunctionEvents::WORKFLOWFUNCTION_DELETE, new WorkflowFunctionEvent($workflowFunction));
         $dm->remove($workflowFunction);

@@ -2,6 +2,8 @@
 
 namespace OpenOrchestra\WorkflowFunction\Repository;
 
+use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
+
 /**
  * Interface WorkflowFunctionRepositoryInterface
  */
@@ -20,4 +22,11 @@ interface WorkflowRightRepositoryInterface
      * @return mixed
      */
     public function find($id);
+
+    /**
+     * @param WorkflowFunctionInterface $workflowFunction
+     *
+     * @return bool
+     */
+    public function hasElementWithWorkflowFunction(WorkflowFunctionInterface $workflowFunction);
 }
