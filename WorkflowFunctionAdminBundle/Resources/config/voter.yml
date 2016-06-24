@@ -1,6 +1,7 @@
 parameters:
     open_orchestra_workflow_function_admin.voter.workflow_right.class: OpenOrchestra\WorkflowFunctionAdminBundle\Security\Authorization\Voter\WorkflowRightVoter
     open_orchestra_workflow_function_admin.voter.workflow_state.class: OpenOrchestra\WorkflowFunctionAdminBundle\Security\Authorization\Voter\WorkflowStateVoter
+    open_orchestra_workflow_function_admin.voter.workflow_function.class: OpenOrchestra\WorkflowFunctionAdminBundle\Security\Authorization\Voter\WorkflowFunctionVoter
 
 services:
     open_orchestra_workflow_function_admin.voter.workflow_right:
@@ -15,5 +16,11 @@ services:
         arguments:
             - @open_orchestra_workflow_function.repository.workflow_right
             - @open_orchestra_model.repository.content_type
+        tags:
+            - { name: security.voter }
+    open_orchestra_workflow_function_admin.voter.workflow_function:
+        class: '%open_orchestra_workflow_function_admin.voter.workflow_function.class%'
+        arguments:
+            - '@open_orchestra_workflow_function.repository.workflow_right'
         tags:
             - { name: security.voter }
