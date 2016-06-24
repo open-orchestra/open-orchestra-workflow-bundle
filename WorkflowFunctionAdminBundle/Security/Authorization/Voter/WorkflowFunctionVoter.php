@@ -61,9 +61,7 @@ class WorkflowFunctionVoter extends Voter
             return true;
         }
 
-        $workflowFunction = $subject;
-
-        return $this->canDelete($workflowFunction);
+        return $this->canDelete($subject);
     }
 
     /**
