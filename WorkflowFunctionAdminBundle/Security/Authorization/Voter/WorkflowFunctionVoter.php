@@ -57,9 +57,6 @@ class WorkflowFunctionVoter extends Voter
         if (!$user instanceof UserInterface) {
             return false;
         }
-        if ($user->isSuperAdmin()) {
-            return true;
-        }
 
         return $this->canDelete($subject);
     }

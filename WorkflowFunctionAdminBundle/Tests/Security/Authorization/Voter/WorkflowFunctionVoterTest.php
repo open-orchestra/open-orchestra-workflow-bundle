@@ -47,13 +47,11 @@ class WorkflowFunctionVoterTest extends AbstractBaseTestCase
      * @param array  $attributes
      * @param mixed  $object
      * @param bool   $hasElement
-     * @param bool   $superAdmin
      *
      * @dataProvider provideObject
      */
-    public function testVote($accessResponse, array $attributes, $object, $hasElement, $superAdmin = false)
+    public function testVote($accessResponse, array $attributes, $object, $hasElement)
     {
-        Phake::when($this->user)->isSuperAdmin()->thenReturn($superAdmin);
         Phake::when($this->workflowRightRepository)->hasElementWithWorkflowFunction(Phake::anyParameters())->thenReturn($hasElement);
 
         $this->assertEquals($accessResponse, $this->voter->vote($this->token, $object, $attributes));
@@ -71,8 +69,7 @@ class WorkflowFunctionVoterTest extends AbstractBaseTestCase
             array(VoterInterface::ACCESS_ABSTAIN, array(), null, false),
             array(VoterInterface::ACCESS_ABSTAIN, array('edit'), null, false),
             array(VoterInterface::ACCESS_ABSTAIN, array('delete'), $workflowRight, false),
-            array(VoterInterface::ACCESS_GRANTED, array('delete'), $workflowFunction, false, true),
-            array(VoterInterface::ACCESS_DENIED, array('delete'), $workflowFunction, true),
+            array(VoterInterface::ACCESS_GRANTED, array('delete'), $workflowFunction, false),
             array(VoterInterface::ACCESS_GRANTED, array('delete'), $workflowFunction, false),
         );
     }
