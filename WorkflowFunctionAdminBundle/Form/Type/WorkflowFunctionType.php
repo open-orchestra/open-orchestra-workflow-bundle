@@ -5,8 +5,6 @@ namespace OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use OpenOrchestra\Backoffice\EventListener\TranslateValueInitializerListener;
-use Symfony\Component\Form\FormEvents;
 
 /**
  * Class WorkflowFunctionType
