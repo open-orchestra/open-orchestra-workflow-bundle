@@ -2,10 +2,10 @@
 
 namespace OpenOrchestra\WorkflowFunctionAdminBundle\Transformer;
 
+use OpenOrchestra\Backoffice\Manager\MultiLanguagesChoiceManagerInterface;
 use OpenOrchestra\BaseApi\Facade\FacadeInterface;
 use OpenOrchestra\BaseApi\Transformer\AbstractSecurityCheckerAwareTransformer;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
-use OpenOrchestra\Backoffice\Manager\TranslationChoiceManager;
 use OpenOrchestra\WorkflowFunctionAdminBundle\NavigationPanel\Strategies\WorkflowFunctionPanelStrategy;
 use OpenOrchestra\WorkflowFunctionAdminBundle\Security\Authorization\Voter\WorkflowFunctionVoter;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -15,20 +15,20 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
  */
 class WorkflowFunctionTransformer extends AbstractSecurityCheckerAwareTransformer
 {
-    protected $translationChoiceManager;
+    protected $multiLanguagesChoiceManager;
 
     /**
-     * @param string                        $facadeClass
-     * @param TranslationChoiceManager      $translationChoiceManager
-     * @param AuthorizationCheckerInterface $authorizationChecker
+     * @param string                               $facadeClass
+     * @param MultiLanguagesChoiceManagerInterface $multiLanguagesChoiceManager
+     * @param AuthorizationCheckerInterface        $authorizationChecker
      */
     public function __construct(
         $facadeClass,
-        TranslationChoiceManager $translationChoiceManager,
+        MultiLanguagesChoiceManagerInterface $multiLanguagesChoiceManager,
         AuthorizationCheckerInterface $authorizationChecker
     ){
         parent::__construct($facadeClass, $authorizationChecker);
-        $this->translationChoiceManager = $translationChoiceManager;
+        $this->multiLanguagesChoiceManager = $multiLanguagesChoiceManager;
     }
 
     /**
@@ -41,7 +41,7 @@ class WorkflowFunctionTransformer extends AbstractSecurityCheckerAwareTransforme
         $facade = $this->newFacade();
 
         $facade->id = $mixed->getId();
-        $facade->name = $this->translationChoiceManager->choose($mixed->getNames());
+        $facade->name = $this->multiLanguagesChoiceManager->choose($mixed->getNames());
 
         $facade->addLink('_self', $this->generateRoute(
             'open_orchestra_api_workflow_function_show',

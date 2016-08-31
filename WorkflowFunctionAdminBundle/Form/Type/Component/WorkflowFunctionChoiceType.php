@@ -1,9 +1,9 @@
 <?php
 namespace OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type\Component;
 
+use OpenOrchestra\Backoffice\Manager\MultiLanguagesChoiceManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use OpenOrchestra\Backoffice\Manager\TranslationChoiceManager;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 
 /**
@@ -12,16 +12,16 @@ use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 class WorkflowFunctionChoiceType extends AbstractType
 {
     protected $workflowFunctionClass;
-    protected $translationChoiceManager;
+    protected $multiLanguagesChoiceManager;
 
     /**
-     * @param string                   $workflowFunctionClass
-     * @param TranslationChoiceManager $translationChoiceManager
+     * @param string                               $workflowFunctionClass
+     * @param MultiLanguagesChoiceManagerInterface $multiLanguagesChoiceManager
      */
-    public function __construct($workflowFunctionClass, TranslationChoiceManager $translationChoiceManager)
+    public function __construct($workflowFunctionClass, MultiLanguagesChoiceManagerInterface $multiLanguagesChoiceManager)
     {
         $this->workflowFunctionClass = $workflowFunctionClass;
-        $this->translationChoiceManager = $translationChoiceManager;
+        $this->multiLanguagesChoiceManager = $multiLanguagesChoiceManager;
     }
 
     /**
@@ -31,15 +31,15 @@ class WorkflowFunctionChoiceType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $translationChoiceManager = $this->translationChoiceManager;
+        $multiLanguagesChoiceManage = $this->multiLanguagesChoiceManager;
         $resolver->setDefaults(
             array(
                 'multiple' => true,
                 'expanded' => true,
                 'required' => false,
                 'class' => $this->workflowFunctionClass,
-                'choice_label' => function (WorkflowFunctionInterface $choice) use ($translationChoiceManager) {
-                    return $translationChoiceManager->choose($choice->getNames());
+                'choice_label' => function (WorkflowFunctionInterface $choice) use ($multiLanguagesChoiceManage) {
+                    return $multiLanguagesChoiceManage->choose($choice->getNames());
                 },
             )
         );

@@ -14,7 +14,7 @@ services:
         class: '%open_orchestra_workflow_function_admin.transformer.workflow_function.class%'
         arguments:
             - '%open_orchestra_workflow_function_admin.facade.workflow_function.class%'
-            - '@open_orchestra_backoffice.manager.translation_choice'
+            - '@open_orchestra_backoffice.manager.multi_languages_choice'
             - '@security.authorization_checker'
         tags:
             - { name: open_orchestra_api.transformer.strategy}

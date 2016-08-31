@@ -13,7 +13,6 @@ class WorkflowFunctionTypeTest extends AbstractBaseTestCase
 {
     protected $workflowFunctionClass = 'fakeClass';
     protected $workflowFunctionType;
-    protected $translateValueInitializer;
     protected $roles;
 
     /**
@@ -21,9 +20,7 @@ class WorkflowFunctionTypeTest extends AbstractBaseTestCase
      */
     public function setUp()
     {
-        $this->translateValueInitializer = Phake::mock('OpenOrchestra\Backoffice\EventListener\TranslateValueInitializerListener');
-
-        $this->workflowFunctionType = new WorkflowFunctionType($this->workflowFunctionClass, $this->translateValueInitializer);
+        $this->workflowFunctionType = new WorkflowFunctionType($this->workflowFunctionClass, array());
     }
 
     /**
@@ -50,8 +47,9 @@ class WorkflowFunctionTypeTest extends AbstractBaseTestCase
 
         $this->workflowFunctionType->buildForm($formBuilderInterface, array());
 
-        Phake::verify($formBuilderInterface)->add('names', 'oo_translated_value_collection', array(
-            'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.name'
+        Phake::verify($formBuilderInterface)->add('names', 'oo_multi_languages', array(
+            'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.name',
+            'languages' => Array ()
         ));
         Phake::verify($formBuilderInterface)->add('roles', 'oo_workflow_role_choice', array(
             'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.role',
