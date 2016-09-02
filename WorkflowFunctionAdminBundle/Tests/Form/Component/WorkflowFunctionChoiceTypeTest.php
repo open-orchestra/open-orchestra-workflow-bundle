@@ -13,15 +13,15 @@ class WorkflowFunctionChoiceTypeTest extends AbstractBaseTestCase
 {
     protected $workflowFunctionClass = 'fakeClass';
     protected $orchestraWorkflowFunction;
-    protected $translationChoiceManager;
+    protected $multiLanguagesManager;
 
     /**
      * Set up the test
      */
     public function setUp()
     {
-        $this->translationChoiceManager = Phake::mock('OpenOrchestra\Backoffice\Manager\TranslationChoiceManager');
-        $this->orchestraWorkflowFunction = new WorkflowFunctionChoiceType($this->workflowFunctionClass, $this->translationChoiceManager);
+        $this->multiLanguagesManager = Phake::mock('OpenOrchestra\Backoffice\Manager\MultiLanguagesChoiceManagerInterface');
+        $this->orchestraWorkflowFunction = new WorkflowFunctionChoiceType($this->workflowFunctionClass, $this->multiLanguagesManager);
     }
 
     /**
@@ -32,7 +32,7 @@ class WorkflowFunctionChoiceTypeTest extends AbstractBaseTestCase
         $resolverMock = Phake::mock('Symfony\Component\OptionsResolver\OptionsResolver');
 
         $this->orchestraWorkflowFunction->configureOptions($resolverMock);
-        $translationChoiceManager = $this->translationChoiceManager;
+        $multiLanguagesManager = $this->multiLanguagesManager;
 
         Phake::verify($resolverMock)->setDefaults(
             array(
@@ -40,8 +40,8 @@ class WorkflowFunctionChoiceTypeTest extends AbstractBaseTestCase
                 'expanded' => true,
                 'required' => false,
                 'class' => $this->workflowFunctionClass,
-                'choice_label' => function (WorkflowFunctionInterface $choice) use ($translationChoiceManager) {
-                    return $translationChoiceManager->choose($choice->getNames());
+                'choice_label' => function (WorkflowFunctionInterface $choice) use ($multiLanguagesManager) {
+                    return $multiLanguagesManager->choose($choice->getNames());
                 },
             )
         );

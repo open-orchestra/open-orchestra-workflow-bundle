@@ -5,8 +5,6 @@ namespace OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use OpenOrchestra\Backoffice\EventListener\TranslateValueInitializerListener;
-use Symfony\Component\Form\FormEvents;
 
 /**
  * Class WorkflowFunctionType
@@ -14,18 +12,18 @@ use Symfony\Component\Form\FormEvents;
 class WorkflowFunctionType extends AbstractType
 {
     protected $workflowFunctionClass;
-    protected $translateValueInitializer;
+    protected $backOfficeLanguages;
 
     /**
-     * @param string                            $workflowFunctionClass
-     * @param TranslateValueInitializerListener $translateValueInitializer
+     * @param string $workflowFunctionClass
+     * @param array  $backOfficeLanguages
      */
     public function __construct(
         $workflowFunctionClass,
-        TranslateValueInitializerListener $translateValueInitializer
+        array $backOfficeLanguages
     )
     {
-        $this->translateValueInitializer = $translateValueInitializer;
+        $this->backOfficeLanguages = $backOfficeLanguages;
         $this->workflowFunctionClass = $workflowFunctionClass;
     }
 
@@ -35,10 +33,10 @@ class WorkflowFunctionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, array($this->translateValueInitializer, 'preSetData'));
         $builder
-            ->add('names', 'oo_translated_value_collection', array(
-                'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.name'
+            ->add('names', 'oo_multi_languages', array(
+                'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.name',
+                'languages' => $this->backOfficeLanguages
             ))
             ->add('roles', 'oo_workflow_role_choice', array(
                 'label' => 'open_orchestra_workflow_function_admin.form.workflow_function.role',

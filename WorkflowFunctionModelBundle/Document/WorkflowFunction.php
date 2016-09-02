@@ -10,7 +10,6 @@ use Gedmo\Timestampable\Traits\TimestampableDocument;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
 use OpenOrchestra\ModelInterface\Model\RoleInterface;
 use OpenOrchestra\Mapping\Annotations as ORCHESTRA;
-use OpenOrchestra\ModelInterface\Model\TranslatedValueInterface;
 
 /**
  * Class WorkflowFunction
@@ -35,8 +34,8 @@ class WorkflowFunction implements WorkflowFunctionInterface
     /**
      * @var string $name
      *
-     * @ODM\EmbedMany(targetDocument="OpenOrchestra\ModelInterface\Model\TranslatedValueInterface", strategy="set")
-     * @ORCHESTRA\Search(key="name", type="translatedValue")
+     * @ODM\Field(type="hash")
+     * @ORCHESTRA\Search(key="name", type="multiLanguages")
      */
     protected $names;
 
@@ -52,6 +51,7 @@ class WorkflowFunction implements WorkflowFunctionInterface
      */
     public function __construct()
     {
+        $this->names = array();
         $this->initCollections();
     }
 
@@ -65,7 +65,6 @@ class WorkflowFunction implements WorkflowFunctionInterface
 
     protected function initCollections() {
         $this->roles = new ArrayCollection();
-        $this->names = new ArrayCollection();
     }
 
     /**
@@ -77,19 +76,24 @@ class WorkflowFunction implements WorkflowFunctionInterface
     }
 
     /**
-     * @param TranslatedValueInterface $name
+     * @param string $language
+     * @param string $name
      */
-    public function addName(TranslatedValueInterface $name)
+    public function addName($language, $name)
     {
-        $this->names->set($name->getLanguage(), $name);
+        if (is_string($language) && is_string($name)) {
+            $this->names[$language] = $name;
+        }
     }
 
     /**
-     * @param TranslatedValueInterface $name
+     * @param string $language
      */
-    public function removeName(TranslatedValueInterface $name)
+    public function removeName($language)
     {
-        $this->names->remove($name->getLanguage());
+        if (is_string($language) && isset($this->names[$language])) {
+            unset($this->names[$language]);
+        }
     }
 
     /**
@@ -97,17 +101,31 @@ class WorkflowFunction implements WorkflowFunctionInterface
      *
      * @return string
      */
-    public function getName($language = 'en')
+    public function getName($language)
     {
-        return $this->names->get($language)->getValue();
+        if (isset($this->names[$language])) {
+            return $this->names[$language];
+        }
+
+        return '';
     }
 
     /**
-     * @return ArrayCollection
+     * @return array
      */
     public function getNames()
     {
         return $this->names;
+    }
+
+    /**
+     * @param array $names
+     */
+    public function setNames(array $names)
+    {
+        foreach ($names as $language => $name) {
+            $this->addName($language, $name);
+        }
     }
 
     /**
@@ -132,15 +150,5 @@ class WorkflowFunction implements WorkflowFunctionInterface
     public function removeRole(RoleInterface $role)
     {
         $this->roles->remove($role);
-    }
-
-    /**
-     * @return array
-     */
-    public function getTranslatedProperties()
-    {
-        return array(
-            'getNames'
-        );
     }
 }

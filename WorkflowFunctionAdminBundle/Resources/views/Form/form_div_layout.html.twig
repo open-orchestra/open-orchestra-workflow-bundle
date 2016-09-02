@@ -19,7 +19,7 @@
                     <tr>
                         <td>
                             {% if child.vars.label is iterable %}
-                                {{ child.vars.label|trans_choose}}
+                                {{ child.vars.label| multi_languages_choose}}
                             {% else %}
                                 {{ child.vars.label |trans({}, translation_domain)|raw }}
                             {% endif %}

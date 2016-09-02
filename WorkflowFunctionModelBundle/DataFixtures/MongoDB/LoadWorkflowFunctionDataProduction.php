@@ -7,7 +7,6 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use OpenOrchestra\ModelInterface\DataFixtures\OrchestraProductionFixturesInterface;
 use OpenOrchestra\WorkflowFunctionModelBundle\Document\WorkflowFunction;
-use OpenOrchestra\ModelBundle\Document\TranslatedValue;
 
 /**
  * Class LoadWorkflowFunctionDataProduction
@@ -20,34 +19,15 @@ class LoadWorkflowFunctionDataProduction extends AbstractFixture implements Orde
     public function load(ObjectManager $manager)
     {
         if (false == $this->hasReference('workflow-function-validator-functional')) {
-            $enName = $this->generateTranslatedValue('en', 'Validator');
-            $frName = $this->generateTranslatedValue('fr', 'Validateur');
             $workflowFunctionValidator = new WorkflowFunction();
-            $workflowFunctionValidator->addName($enName);
-            $workflowFunctionValidator->addName($frName);
+            $workflowFunctionValidator->addName('en', 'Validator');
+            $workflowFunctionValidator->addName('fr', 'Validateur');
             $workflowFunctionValidator->addRole($this->getReference('role-production-draft-to-published'));
             $this->addReference('workflow-function-validator-production', $workflowFunctionValidator);
 
             $manager->persist($workflowFunctionValidator);
             $manager->flush();
         }
-    }
-
-    /**
-     * Generate a translatedValue
-     *
-     * @param string $language
-     * @param string $value
-     *
-     * @return TranslatedValue
-     */
-    protected function generateTranslatedValue($language, $value)
-    {
-        $label = new TranslatedValue();
-        $label->setLanguage($language);
-        $label->setValue($value);
-
-        return $label;
     }
 
     /**
