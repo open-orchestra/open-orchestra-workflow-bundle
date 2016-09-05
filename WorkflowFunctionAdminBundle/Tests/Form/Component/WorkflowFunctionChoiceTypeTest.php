@@ -20,7 +20,7 @@ class WorkflowFunctionChoiceTypeTest extends AbstractBaseTestCase
      */
     public function setUp()
     {
-        $this->multiLanguagesManager = Phake::mock('OpenOrchestra\Backoffice\Manager\MultiLanguagesChoiceManagerInterface');
+        $this->multiLanguagesManager = Phake::mock('OpenOrchestra\ModelInterface\Manager\MultiLanguagesChoiceManagerInterface');
         $this->orchestraWorkflowFunction = new WorkflowFunctionChoiceType($this->workflowFunctionClass, $this->multiLanguagesManager);
     }
 

@@ -1,7 +1,7 @@
 <?php
 namespace OpenOrchestra\WorkflowFunctionAdminBundle\Form\Type\Component;
 
-use OpenOrchestra\Backoffice\Manager\MultiLanguagesChoiceManagerInterface;
+use OpenOrchestra\ModelInterface\Manager\MultiLanguagesChoiceManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use OpenOrchestra\WorkflowFunction\Model\WorkflowFunctionInterface;
