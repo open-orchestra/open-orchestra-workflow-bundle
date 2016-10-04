@@ -54,6 +54,11 @@ class WorkflowRightManager
         $reference->setId(WorkflowRightInterface::NODE);
 
         $contentTypes = $this->contentTypeRepository->findAllNotDeletedInLastVersion();
+        foreach ($contentTypes as $key => $contentType) {
+            if (!$contentType->isDefiningStatusable()) {
+                unset($contentTypes[$key]);
+            }
+        }
         $contentTypes[] = $reference;
 
         $workflowRight = $this->workflowRightRepository->findOneByUserId($userId);
