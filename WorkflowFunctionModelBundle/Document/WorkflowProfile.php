@@ -12,8 +12,8 @@ use OpenOrchestra\WorkflowFunction\Model\WorkflowTransitionInterface;
  * Class WorkflowProfile
  *
  * @ODM\Document(
- *   collection="workflow_function",
- *   repositoryClass="OpenOrchestra\WorkflowFunctionModelBundle\Repository\WorkflowFunctionRepository"
+ *   collection="workflow_profile",
+ *   repositoryClass="OpenOrchestra\WorkflowFunctionModelBundle\Repository\WorkflowProfileRepository"
  * )
  */
 class WorkflowProfile implements WorkflowProfileInterface
@@ -26,6 +26,13 @@ class WorkflowProfile implements WorkflowProfileInterface
     protected $id;
 
     /**
+     * @var string $label
+     *
+     * @ODM\String
+     */
+    protected $label = '';
+
+    /**
      * @var Collection
      *
      * @ODM\EmbedMany(targetDocument="OpenOrchestra\WorkflowFunction\Model\WorkflowTransitionInterface")
@@ -34,10 +41,13 @@ class WorkflowProfile implements WorkflowProfileInterface
 
     /**
      * Constructor
+     *
+     * @param string $label
      */
-    public function __construct()
+    public function __construct($label = '')
     {
         $this->initCollections();
+        $this->label = $label;
     }
 
     /**
@@ -48,23 +58,18 @@ class WorkflowProfile implements WorkflowProfileInterface
         $this->initCollections();
     }
 
-    protected function initCollections() {
-        $this->transitions = new ArrayCollection();
-    }
-
-    /**
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
     /**
      * @param WorkflowTransitionInterface $transition
      */
     public function addTransition(WorkflowTransitionInterface $transition)
     {
         $this->transitions->add($transition);
+    }
+
+    /**
+     * Initialize collections
+     */
+    protected function initCollections() {
+        $this->transitions = new ArrayCollection();
     }
 }

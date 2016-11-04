@@ -8,11 +8,6 @@ namespace OpenOrchestra\WorkflowFunction\Model;
 interface WorkflowProfileInterface
 {
     /**
-     * @return string
-     */
-    public function getId();
-
-    /**
      * @param WorkflowTransitionInterface $transition
      */
     public function addTransition(WorkflowTransitionInterface $transition);
