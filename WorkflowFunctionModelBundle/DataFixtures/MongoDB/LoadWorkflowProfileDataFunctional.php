@@ -21,9 +21,9 @@ class LoadWorkflowProfileDataFunctional extends AbstractFixture implements Order
      */
     public function load(ObjectManager $manager)
     {
-         $transitionDraftToPending = $this->createTransition('status-draft', 'status-pending');
-         $transitionPendingToPublished = $this->createTransition('status-pending', 'status-published');
-         $transitionPublishedToDraft = $this->createTransition('status-published', 'status-draft');
+        $transitionDraftToPending = $this->createTransition('status-draft', 'status-pending');
+        $transitionPendingToPublished = $this->createTransition('status-pending', 'status-published');
+        $transitionPublishedToDraft = $this->createTransition('status-published', 'status-draft');
 
         $profileContributor = $this->createProfile('Contributor', array($transitionDraftToPending));
         $profileValidator = $this->createProfile('Validator', array($transitionPendingToPublished, $transitionPublishedToDraft));
@@ -62,6 +62,8 @@ class LoadWorkflowProfileDataFunctional extends AbstractFixture implements Order
         foreach ($transitions as $transition) {
             $profile->addTransition($transition);
         }
+
+        $this->addReference('profile-' . $label, $profile);
 
         return $profile;
     }
