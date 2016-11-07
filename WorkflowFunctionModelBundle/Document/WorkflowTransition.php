@@ -14,14 +14,18 @@ class WorkflowTransition implements WorkflowTransitionInterface
     /**
      * @var OpenOrchestra\ModelInterface\Model\StatusInterface
      *
-     * @ODM\ReferenceOne(targetDocument="OpenOrchestra\ModelInterface\Model\StatusInterface")
+     * @ODM\ReferenceOne(
+     *  targetDocument="OpenOrchestra\ModelInterface\Model\StatusInterface"
+     * )
      */
     protected $statusFrom;
 
     /**
      * @var OpenOrchestra\ModelInterface\Model\StatusInterface
      *
-     * @ODM\ReferenceOne(targetDocument="OpenOrchestra\ModelInterface\Model\StatusInterface")
+     * @ODM\ReferenceOne(
+     *  targetDocument="OpenOrchestra\ModelInterface\Model\StatusInterface"
+     * )
      */
     protected $statusTo;
 

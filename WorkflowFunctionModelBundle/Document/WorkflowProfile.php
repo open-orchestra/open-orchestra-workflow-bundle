@@ -35,7 +35,9 @@ class WorkflowProfile implements WorkflowProfileInterface
     /**
      * @var Collection
      *
-     * @ODM\EmbedMany(targetDocument="OpenOrchestra\WorkflowFunction\Model\WorkflowTransitionInterface")
+     * @ODM\EmbedMany(
+     *  targetDocument="OpenOrchestra\WorkflowFunction\Model\WorkflowTransitionInterface"
+     * )
      */
     protected $transitions;
 
