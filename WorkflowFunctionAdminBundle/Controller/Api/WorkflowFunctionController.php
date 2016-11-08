@@ -7,7 +7,6 @@ use OpenOrchestra\Pagination\Configuration\PaginateFinderConfiguration;
 use OpenOrchestra\WorkflowFunction\Event\WorkflowFunctionEvent;
 use OpenOrchestra\WorkflowFunction\WorkflowFunctionEvents;
 use OpenOrchestra\WorkflowFunctionAdminBundle\NavigationPanel\Strategies\WorkflowFunctionPanelStrategy;
-use OpenOrchestra\WorkflowFunctionAdminBundle\Security\Authorization\Voter\WorkflowFunctionVoter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use OpenOrchestra\BaseApiBundle\Controller\Annotation as Api;
 use Symfony\Component\HttpFoundation\Request;
@@ -84,7 +83,7 @@ class WorkflowFunctionController extends BaseController
         $this->denyAccessUnlessGranted(
             array(
                 WorkflowFunctionPanelStrategy::ROLE_ACCESS_DELETE_WORKFLOWFUNCTION,
-                WorkflowFunctionVoter::DELETE
+                'delete'
             ),
             $workflowFunction
         );
