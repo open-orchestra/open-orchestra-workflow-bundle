@@ -23,7 +23,7 @@ class LoadWorkflowRightDataFunctional extends AbstractFixture implements Ordered
     public function load(ObjectManager $manager)
     {
         $workflowRight = new WorkflowRight();
-        $workflowRight->setUserId($this->getReference('user-admin')->getId());
+        $workflowRight->setUserId($this->getReference('p-admin')->getId());
 
         $authorization = new Authorization();
         $authorization->setReferenceId(WorkflowRightInterface::NODE);

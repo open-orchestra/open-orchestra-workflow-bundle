@@ -28,8 +28,6 @@ class WorkflowFunctionController extends BaseController
      * @Config\Route("/{workflowFunctionId}", name="open_orchestra_api_workflow_function_show")
      * @Config\Method({"GET"})
      *
-     * @Config\Security("is_granted('ROLE_ACCESS_WORKFLOWFUNCTION')")
-     *
      * @return FacadeInterface
      */
     public function showAction($workflowFunctionId)
@@ -44,8 +42,6 @@ class WorkflowFunctionController extends BaseController
      *
      * @Config\Route("", name="open_orchestra_api_workflow_functions_list")
      * @Config\Method({"GET"})
-     *
-     * @Config\Security("is_granted('ROLE_ACCESS_WORKFLOWFUNCTION')")
      *
      * @return FacadeInterface
      */
