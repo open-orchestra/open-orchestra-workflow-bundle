@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Form;
+use OpenOrchestra\Backoffice\Security\ContributionActionInterface;
 
 /**
  * Class WorkflowFunctionController
@@ -31,6 +32,7 @@ class WorkflowFunctionController extends AbstractAdminController
     {
         $workflowFunctionRepository = $this->get('open_orchestra_workflow_function.repository.workflow_function');
         $workflowFunction = $workflowFunctionRepository->find($workflowFunctionId);
+        $this->denyAccessUnlessGranted(ContributionActionInterface::EDIT, $workflowFunction);
 
         $url = $this->generateUrl('open_orchestra_backoffice_workflow_function_form', array('workflowFunctionId' => $workflowFunctionId));
         $message = $this->get('translator')->trans('open_orchestra_workflow_function_admin.form.workflow_function.success');
@@ -57,6 +59,7 @@ class WorkflowFunctionController extends AbstractAdminController
     {
         $workflowFunctionClass = $this->getParameter('open_orchestra_workflow_function.document.workflow_function.class');
         $workflowFunction = new $workflowFunctionClass();
+        $this->denyAccessUnlessGranted(ContributionActionInterface::CREATE, $workflowFunction);
 
         $url = $this->generateUrl('open_orchestra_backoffice_workflow_function_new');
         $message = $this->get('translator')->trans('open_orchestra_workflow_function_admin.form.workflow_function.success');
