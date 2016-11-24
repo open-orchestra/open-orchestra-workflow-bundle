@@ -6,12 +6,12 @@ use OpenOrchestra\BaseApi\Facade\FacadeInterface;
 use OpenOrchestra\Pagination\Configuration\PaginateFinderConfiguration;
 use OpenOrchestra\WorkflowFunction\Event\WorkflowFunctionEvent;
 use OpenOrchestra\WorkflowFunction\WorkflowFunctionEvents;
-use OpenOrchestra\WorkflowFunctionAdminBundle\NavigationPanel\Strategies\WorkflowFunctionPanelStrategy;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration as Config;
 use OpenOrchestra\BaseApiBundle\Controller\Annotation as Api;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use OpenOrchestra\BaseApiBundle\Controller\BaseController;
+use OpenOrchestra\Backoffice\Security\ContributionActionInterface;
 
 /**
  * Class WorkflowFunctionController
@@ -76,13 +76,7 @@ class WorkflowFunctionController extends BaseController
     public function deleteAction($workflowFunctionId)
     {
         $workflowFunction = $this->get('open_orchestra_workflow_function.repository.workflow_function')->find($workflowFunctionId);
-        $this->denyAccessUnlessGranted(
-            array(
-                WorkflowFunctionPanelStrategy::ROLE_ACCESS_DELETE_WORKFLOWFUNCTION,
-                'delete'
-            ),
-            $workflowFunction
-        );
+        $this->denyAccessUnlessGranted(ContributionActionInterface::DELETE, $workflowFunction);
         $dm = $this->get('object_manager');
         $this->dispatchEvent(WorkflowFunctionEvents::WORKFLOWFUNCTION_DELETE, new WorkflowFunctionEvent($workflowFunction));
         $dm->remove($workflowFunction);
